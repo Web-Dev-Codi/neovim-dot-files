@@ -1,6 +1,4 @@
-## Install Neovim
-
-[Neovim site for installation](https://github.com/neovim/neovim/blob/master/INSTALL.md)
+## Install Neovim [Click Me](https://github.com/neovim/neovim/blob/master/INSTALL.md)
 
 ## Get healthy
 
@@ -12,7 +10,7 @@ Open `nvim` and enter the following:
 
 
 
-Install and fix copy/paste
+Install to fix copy/paste
 
 - On mac `pbcopy` should be builtin
 
@@ -47,15 +45,13 @@ We will also need `ripgrep` for Telescope to work:
 
 ---
 
-**NOTE** make sure you have [node](https://nodejs.org/en/).
+**NOTE** make sure you have [node](https://nodejs.org/en/) installed.
 
 ## Fonts
 
-Install a "Nerd Font" for better Neovim Compatibility (Font that supports icons)
+Install a [Nerd Font](https://github.com/ronniedroid/getnf) for better Neovim Compatibility.
 
-[getnf](https://github.com/ronniedroid/getnf)
-
-**NOTE** Some are already setup as examples, remove them if you want
+**NOTE** I pulled this from [This Dope Guy](https://github.com/LunarVim/Launch.nvim)
 
 ---
 
