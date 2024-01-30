@@ -1,1 +1,0 @@
-require("monokai-nightasty").load()

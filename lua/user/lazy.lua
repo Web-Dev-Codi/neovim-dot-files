@@ -25,7 +25,7 @@ require("lazy").setup {
   },
   {
      "wakatime/vim-wakatime",
-     lazy=true,
+     lazy=false,
      setup = function ()
          vim.cmd([[packadd wakatime/vim-wakatime]])
      end

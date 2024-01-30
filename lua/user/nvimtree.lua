@@ -6,7 +6,7 @@ local M = {
 function M.config()
   local wk = require "which-key"
   wk.register {
-    ["<C-b>"] = { "<cmd>NvimTreeToggle<CR>", "Explorer" },
+    ["<leader>e"] = { "<cmd>NvimTreeToggle<CR>", "Explorer" },
   }
 
   local icons = require "user.icons"
