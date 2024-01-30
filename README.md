@@ -10,7 +10,7 @@ Open `nvim` and enter the following:
 
 
 
-Install to fix copy/paste
+Install a clipboard manager to fix copy/paste issue within Neovim
 
 - On mac `pbcopy` should be builtin
 
