@@ -15,6 +15,8 @@ function M.config()
     "pyright",
     "bashls",
     "jsonls",
+    "emmet_ls",
+    "bashls"
   }
 
   require("mason").setup {
