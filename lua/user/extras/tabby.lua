@@ -18,7 +18,7 @@ local tab_name = function(tab)
   local current_bufnr = vim.fn.getwininfo(cur_win)[1].bufnr
   local current_bufinfo = vim.fn.getbufinfo(current_bufnr)[1]
   local current_buf_name = vim.fn.fnamemodify(current_bufinfo.name, ":t")
-  -- local no_extension = vim.fn.fnamemodify(current_bufinfo.name, ":p:r")
+  local no_extension = vim.fn.fnamemodify(current_bufinfo.name, ":p:r")
 
   if string.find(current_buf_name, "NvimTree") ~= nil then
     return "[File Explorer]"
@@ -86,20 +86,20 @@ return {
         {
           { " 󰓩  ", hl = theme.head },
           { tab_count(), hl = theme.head },
-          -- line.sep(" ", theme.head, theme.fill),
+          line.sep(" ", theme.head, theme.fill),
           line.sep(" ", theme.head, theme.fill),
         },
         line.tabs().foreach(function(tab)
           local hl = tab.is_current() and theme.current_tab or theme.tab
           return {
-            -- line.sep("", hl, theme.fill),
+            line.sep("", hl, theme.fill),
             line.sep("", hl, theme.fill),
             tab.is_current() and "" or "",
             tab_name(tab),
-            -- tab.close_btn("󰅖 "),
-            -- window_count(tab),
-            -- change_mark(tab),
-            -- line.sep(" ", hl, theme.fill),
+            tab.close_btn("󰅖 "),
+            window_count(tab),
+            change_mark(tab),
+            line.sep(" ", hl, theme.fill),
             line.sep(" ", hl, theme.fill),
             hl = hl,
             margin = " ",

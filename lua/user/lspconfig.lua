@@ -27,6 +27,7 @@ M.on_attach = function(client, bufnr)
   end
 end
 
+
 function M.common_capabilities()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = true

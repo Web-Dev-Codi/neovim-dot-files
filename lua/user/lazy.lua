@@ -14,7 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup {
   spec = LAZY_PLUGIN_SPEC,
   install = {
-    colorscheme = { "darkplus", "default" },
+    colorscheme = { "industry", "default" },
   },
   ui = {
     border = "rounded",
@@ -24,10 +24,10 @@ require("lazy").setup {
     notify = false,
   },
   {
-     "wakatime/vim-wakatime",
-     lazy=false,
-     setup = function ()
-         vim.cmd([[packadd wakatime/vim-wakatime]])
-     end
- },
+    "wakatime/vim-wakatime",
+    lazy = false,
+    setup = function()
+      vim.cmd [[packadd wakatime/vim-wakatime]]
+    end,
+  },
 }
