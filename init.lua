@@ -1,34 +1,20 @@
-require "user.launch"
-require "user.options"
-require "user.keymaps"
-require "user.autocmds"
-spec "user.colorscheme"
-spec "user.devicons"
-spec "user.treesitter"
-spec "user.mason"
-spec "user.schemastore"
-spec "user.lspconfig"
-spec "user.cmp"
-spec "user.wakatime"
-spec "user.telescope"
-spec "user.extras.colorizer"
-spec "user.none-ls"
-spec "user.illuminate"
-spec "user.gitsigns"
-spec "user.whichkey"
-spec "user.nvimtree"
-spec "user.comment"
-spec "user.lualine"
-spec "user.extras.tabby"
--- spec "user.lspsaga"
-spec "user.navic"
-spec "user.breadcrumbs"
-spec "user.harpoon"
-spec "user.neotest"
-spec "user.autopairs"
-spec "user.neogit"
-spec "user.alpha"
-spec "user.project"
-spec "user.indentline"
-spec "user.toggleterm"
-require "user.lazy"
+
+-- Lazy Load Plugin
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+local opts = {}
+
+-- require("luasnip/loaders/from_vscode").load { paths = { "./snippets" } }
+require("vim-options")
+require("lazy").setup("plugins")
