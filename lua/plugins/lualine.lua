@@ -1,10 +1,10 @@
 return {
   "nvim-lualine/lualine.nvim",
   config = function()
-    require("lualine").setup({
+    require("lualine").setup {
       options = {
-        theme = "solarized_dark",
+        theme = "powerline_dark",
       },
-    })
+    }
   end,
 }
