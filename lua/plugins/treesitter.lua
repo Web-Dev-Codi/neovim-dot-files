@@ -1,31 +1,55 @@
-return {
-  "nvim-treesitter/nvim-treesitter",
-  build = ":TSUpdate",
-  config = function()
-    --Treesitter config
-    local configs = require("nvim-treesitter.configs")
+local config = function()
+	require("nvim-treesitter.configs").setup({
+		build = ":TSUpdate",
+		indent = {
+			enable = true,
+		},
+		autotag = {
+			enable = true,
+		},
+		event = {
+			"BufReadPre",
+			"BufNewFile",
+		},
+		ensure_installed = {
+			"rust",
+			"markdown",
+			"json",
+			"javascript",
+			"typescript",
+			"yaml",
+			"html",
+			"css",
+			"markdown",
+			"bash",
+			"lua",
+			"dockerfile",
+			"solidity",
+			"gitignore",
+			"python",
+			"vue",
+			"svelte",
+			"toml",
+		},
+		auto_install = true,
+		highlight = {
+			enable = true,
+			additional_vim_regex_highlighting = true,
+		},
+		incremental_selection = {
+			enable = true,
+			keymaps = {
+				init_selection = "<C-s>",
+				node_incremental = "<C-s>",
+				scope_incremental = false,
+				node_decremental = "<BS>",
+			},
+		},
+	})
+end
 
-    configs.setup({
-      ensure_installed = {
-        "rust",
-        "typescript",
-        "css",
-        "lua",
-        "javascript",
-        "html",
-        "astro",
-        "git_config",
-        "git_rebase",
-        "gitcommit",
-        "gitignore",
-        "json",
-        "toml",
-        "tsx",
-      },
-      sync_install = false,
-      highlight = { enable = true },
-      indent = { enable = true },
-      auto_install = true,
-    })
-  end,
+return {
+	"nvim-treesitter/nvim-treesitter",
+	lazy = false,
+	config = config,
 }
