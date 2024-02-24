@@ -12,8 +12,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local opts = {}
-
 local protocol = require('vim.lsp.protocol')
 
 local on_attach = function(client, bufnr)
@@ -26,6 +24,8 @@ local on_attach = function(client, bufnr)
     })
   end
 end
--- require("luasnip/loaders/from_vscode").load { paths = { "./snippets" } }
-require("vim-options")
+
+
 require("lazy").setup("plugins")
+
+require("vim-options")
