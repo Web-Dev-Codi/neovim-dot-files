@@ -8,4 +8,3 @@ return {
     vim.cmd ("let g:minimap_auto_start_win_enter = 1")
   end,
 }
-
