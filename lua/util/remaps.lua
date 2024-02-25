@@ -1,5 +1,5 @@
 local keymap = vim.keymap
-local check_duplicates = require("utils.duplicates").check_duplicates
+local check_duplicates = require("util.duplicates").check_duplicates
 
 local X = {}
 

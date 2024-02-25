@@ -1,4 +1,4 @@
-local functions = require("utils.functions")
+local functions = require("util.functions")
 
 local X = {}
 

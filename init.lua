@@ -25,6 +25,8 @@ local on_attach = function(client, bufnr)
   end
 end
 
+vim.keymap.set("n", "<c-P>",
+  "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
 
 require("lazy").setup("plugins")
 
