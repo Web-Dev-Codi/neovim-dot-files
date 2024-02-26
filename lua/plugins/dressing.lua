@@ -1,8 +1,8 @@
 return {
-  'stevearc/dressing.nvim',
+  "stevearc/dressing.nvim",
   opts = {},
   config = function()
-    require("dressing").setup({
+    require("dressing").setup {
       input = {
         -- Set to false to disable the vim.ui.input implementation
         enabled = true,
@@ -166,6 +166,6 @@ return {
         -- see :help dressing_get_config
         get_config = nil,
       },
-    })
-  end
+    }
+  end,
 }

@@ -1,8 +1,8 @@
 return {
   {
-    'sidebar-nvim/sidebar.nvim',
-    main = 'sidebar-nvim',
-    cmd = { 'SidebarNvimToggle', 'SidebarNvimOpen' },
+    "sidebar-nvim/sidebar.nvim",
+    main = "sidebar-nvim",
+    cmd = { "SidebarNvimToggle", "SidebarNvimOpen" },
     opts = {
       open = true,
       bindings = {

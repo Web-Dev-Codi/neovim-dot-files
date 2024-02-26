@@ -2,7 +2,7 @@ return {
   "NvChad/nvim-colorizer.lua",
   event = { "BufReadPost", "BufNewFile" },
   config = function()
-    require("colorizer").setup({
+    require("colorizer").setup {
       filetypes = {
         "typescript",
         "typescriptreact",
@@ -20,6 +20,6 @@ return {
         tailwind = "both",
       },
       buftypes = {},
-    })
+    }
   end,
 }

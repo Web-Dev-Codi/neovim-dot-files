@@ -24,8 +24,8 @@ return {
       T = { name = "Treesitter" },
     }
 
-    local which_key = require("which-key")
-    which_key.setup({
+    local which_key = require "which-key"
+    which_key.setup {
       plugins = {
         marks = true,
         registers = true,
@@ -55,7 +55,7 @@ return {
         buftypes = {},
         filetypes = { "TelescopePrompt" },
       },
-    })
+    }
 
     local opts = {
       mode = "n", -- NORMAL mode

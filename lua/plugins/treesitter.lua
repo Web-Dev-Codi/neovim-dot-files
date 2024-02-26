@@ -1,5 +1,5 @@
 local config = function()
-  require("nvim-treesitter.configs").setup({
+  require("nvim-treesitter.configs").setup {
     build = ":TSUpdate",
     indent = {
       enable = true,
@@ -45,7 +45,7 @@ local config = function()
         node_decremental = "<BS>",
       },
     },
-  })
+  }
 end
 
 return {

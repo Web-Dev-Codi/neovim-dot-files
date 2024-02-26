@@ -39,7 +39,7 @@ return {
               },
               stdin = true,
             }
-          end
+          end,
         },
 
         -- Use the special "*" filetype for defining formatter configurations on
@@ -47,9 +47,9 @@ return {
         ["*"] = {
           -- "formatter.filetypes.any" defines default configurations for any
           -- filetype
-          require("formatter.filetypes.any").remove_trailing_whitespace
-        }
-      }
+          require("formatter.filetypes.any").remove_trailing_whitespace,
+        },
+      },
     }
   end,
 }

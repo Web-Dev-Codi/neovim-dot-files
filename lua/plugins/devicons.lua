@@ -2,7 +2,7 @@ return {
   "nvim-tree/nvim-web-devicons",
   event = "VeryLazy",
   config = function()
-    require("nvim-web-devicons").setup({
+    require("nvim-web-devicons").setup {
       -- yes, this is all the icons w/ an extra space
       override = {
         ["default_icon"] = {
@@ -798,6 +798,6 @@ return {
           icon = " ",
         },
       },
-    })
+    }
   end,
 }
