@@ -66,28 +66,6 @@ return {
           on_leave = nil,
         },
       },
-      -- ignore these autocmd events (via :h eventignore) while processing
-      -- smart-splits.nvim computations, which involve visiting different
-      -- buffers and windows. These events will be ignored during processing,
-      -- and un-ignored on completed. This only applies to resize events,
-      -- not cursor movement events.
-      ignored_events = {
-        "BufEnter",
-        "WinEnter",
-      },
-      -- enable or disable a multiplexer integration;
-      -- automatically determined, unless explicitly disabled or set,
-      -- by checking the $TERM_PROGRAM environment variable,
-      -- and the $KITTY_LISTEN_ON environment variable for Kitty
-      multiplexer_integration = nil,
-      -- disable multiplexer navigation if current multiplexer pane is zoomed
-      -- this functionality is only supported on tmux and Wezterm due to kitty
-      -- not having a way to check if a pane is zoomed
-      disable_multiplexer_nav_when_zoomed = true,
-      -- Supply a Kitty remote control password if needed,
-      -- or you can also set vim.g.smart_splits_kitty_password
-      -- see https://sw.kovidgoyal.net/kitty/conf/#opt-kitty.remote_control_password
-      kitty_password = nil,
       -- default logging level, one of: 'trace'|'debug'|'info'|'warn'|'error'|'fatal'
       log_level = "info",
     }
