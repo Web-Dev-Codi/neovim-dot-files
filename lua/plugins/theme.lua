@@ -1,9 +1,9 @@
 return {
-  "olimorris/onedarkpro.nvim",
+  "craftzdog/solarized-osaka.nvim",
   priority = 1000, -- Ensure it loads first
   config = function()
-    require("onedarkpro").setup {
-      vim.cmd "colorscheme onedark_dark",
+    require("solarized-osaka").setup {
+      vim.cmd "colorscheme solarized-osaka",
     }
   end,
 }
