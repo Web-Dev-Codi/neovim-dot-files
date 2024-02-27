@@ -19,6 +19,7 @@ local config = function()
       "typescript",
       "yaml",
       "html",
+      "markdown_inline",
       "css",
       "markdown",
       "bash",
