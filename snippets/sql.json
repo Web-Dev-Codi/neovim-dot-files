@@ -1,15 +1,11 @@
 {
   "-dec-s": {
-    "body": [
-      "DECLARE `${1:var_name}` VARCHAR(${2:255}) DEFAULT '${3:value}';"
-    ],
+    "body": ["DECLARE `${1:var_name}` VARCHAR(${2:255}) DEFAULT '${3:value}';"],
     "description": "(declare .. varchar .. default)",
     "prefix": "__-dec-s"
   },
   "alias": {
-    "body": [
-      "`$1`.`$2` AS `$3`"
-    ],
+    "body": ["`$1`.`$2` AS `$3`"],
     "prefix": "__alias"
   },
   "alter--fk": {
@@ -43,9 +39,7 @@
     "prefix": "__alter-add-first"
   },
   "alter-auto-increment": {
-    "body": [
-      "ALTER TABLE `${1:table}` AUTO_INCREMENT = ${2:1};"
-    ],
+    "body": ["ALTER TABLE `${1:table}` AUTO_INCREMENT = ${2:1};"],
     "prefix": "__alter-auto-increment"
   },
   "alter-change": {
@@ -84,9 +78,7 @@
     "prefix": "__alter-modify"
   },
   "alter-sort": {
-    "body": [
-      "ALTER TABLE `${1:table}` ORDER BY `${2:field}`;"
-    ],
+    "body": ["ALTER TABLE `${1:table}` ORDER BY `${2:field}`;"],
     "prefix": "__alter-sort"
   },
   "alter-table-charset": {
@@ -96,9 +88,7 @@
     "prefix": "__alter-table-charset"
   },
   "alter-table-rename": {
-    "body": [
-      "ALTER TABLE `${1:table}` RENAME TO `${2:new_name}`;"
-    ],
+    "body": ["ALTER TABLE `${1:table}` RENAME TO `${2:new_name}`;"],
     "prefix": "__alter-table-rename"
   },
   "alter-uk": {
@@ -131,9 +121,7 @@
     "prefix": "__case"
   },
   "casew": {
-    "body": [
-      "WHEN '${1:value}' THEN ${0:-- SELECT 'case $1'};"
-    ],
+    "body": ["WHEN '${1:value}' THEN ${0:-- SELECT 'case $1'};"],
     "description": "(when '...' then ...)",
     "prefix": "__casew"
   },
@@ -147,9 +135,7 @@
     "prefix": "__casewb"
   },
   "count": {
-    "body": [
-      "SELECT COUNT(${1:*}) FROM `$2` AS `${2/(.).*/$1/}`"
-    ],
+    "body": ["SELECT COUNT(${1:*}) FROM `$2` AS `${2/(.).*/$1/}`"],
     "prefix": "__count"
   },
   "createdb": {
@@ -210,31 +196,22 @@
     "prefix": "__createuser"
   },
   "cursor": {
-    "body": [
-      "DECLARE `${1:cursor_name}` FOR ${0:-- SELECT ...};"
-    ],
+    "body": ["DECLARE `${1:cursor_name}` FOR ${0:-- SELECT ...};"],
     "description": "(declare cursor)",
     "prefix": "__cursor"
   },
   "databaseslist": {
-    "body": [
-      "SELECT datname FROM pg_database",
-      "WHERE datistemplate = false;"
-    ],
+    "body": ["SELECT datname FROM pg_database", "WHERE datistemplate = false;"],
     "description": "List PostgreSQL databases",
     "prefix": "__databaseslist"
   },
   "dec": {
-    "body": [
-      "DECLARE `${1:var_name}` ${2:INT};"
-    ],
+    "body": ["DECLARE `${1:var_name}` ${2:INT};"],
     "description": "(declare ...)",
     "prefix": "__dec"
   },
   "dec-s": {
-    "body": [
-      "DECLARE `${1:var_name}` VARCHAR(${2:255});"
-    ],
+    "body": ["DECLARE `${1:var_name}` VARCHAR(${2:255});"],
     "description": "(declare ... varchar)",
     "prefix": "__dec-s"
   },
@@ -246,39 +223,23 @@
     "prefix": "__declarehandler"
   },
   "delete": {
-    "body": [
-      "DELETE FROM subject;",
-      "DELETE FROM subject WHERE id = 4;"
-    ],
+    "body": ["DELETE FROM subject;", "DELETE FROM subject WHERE id = 4;"],
     "prefix": "__delete"
   },
   "delim": {
-    "body": [
-      "DELIMITER ${1:$$}",
-      "",
-      "$2",
-      "",
-      "$1",
-      "DELIMITER ;"
-    ],
+    "body": ["DELIMITER ${1:$$}", "", "$2", "", "$1", "DELIMITER ;"],
     "prefix": "__delim"
   },
   "dropcolumn": {
-    "body": [
-      "ALTER TABLE `${1:table}` DROP COLUMN `${2:col_name}`;"
-    ],
+    "body": ["ALTER TABLE `${1:table}` DROP COLUMN `${2:col_name}`;"],
     "prefix": "__dropcolumn"
   },
   "dropdatabase": {
-    "body": [
-      "DROP DATABASE `${1:db_name}`;"
-    ],
+    "body": ["DROP DATABASE `${1:db_name}`;"],
     "prefix": "__dropdatabase"
   },
   "dropfunction": {
-    "body": [
-      "DROP FUNCTION IF EXISTS `${1:function_name}`;"
-    ],
+    "body": ["DROP FUNCTION IF EXISTS `${1:function_name}`;"],
     "prefix": "__dropfunction"
   },
   "dropindex": {
@@ -299,27 +260,19 @@
     "prefix": "__dropother"
   },
   "dropproc": {
-    "body": [
-      "DROP PROCEDURE IF EXISTS `${1:name}`;"
-    ],
+    "body": ["DROP PROCEDURE IF EXISTS `${1:name}`;"],
     "prefix": "__dropproc"
   },
   "droptable": {
-    "body": [
-      "DROP TABLE IF EXISTS `${1:name}`;"
-    ],
+    "body": ["DROP TABLE IF EXISTS `${1:name}`;"],
     "prefix": "__droptable"
   },
   "droptrigger": {
-    "body": [
-      "DROP TRIGGER IF EXISTS `${1:name}`;"
-    ],
+    "body": ["DROP TRIGGER IF EXISTS `${1:name}`;"],
     "prefix": "__droptrigger"
   },
   "dropuser": {
-    "body": [
-      "DROP USER 'username'@'localhost';"
-    ],
+    "body": ["DROP USER 'username'@'localhost';"],
     "description": "(drop user)",
     "prefix": "__dropuser"
   },
@@ -334,9 +287,7 @@
     "prefix": "__fk"
   },
   "from": {
-    "body": [
-      "FROM `$1` AS `$2`"
-    ],
+    "body": ["FROM `$1` AS `$2`"],
     "prefix": "__from"
   },
   "funclist": {
@@ -353,35 +304,25 @@
     "prefix": "__grantallprivs"
   },
   "group": {
-    "body": [
-      "GROUP BY `$1`"
-    ],
+    "body": ["GROUP BY `$1`"],
     "prefix": "__group"
   },
   "having": {
-    "body": [
-      "HAVING ( `$1` ${2:=} '$3' ) "
-    ],
+    "body": ["HAVING ( `$1` ${2:=} '$3' ) "],
     "prefix": "__having"
   },
   "hcols": {
-    "body": [
-      "${2:SHOW FULL COLUMNS FROM `${1:table}`;}"
-    ],
+    "body": ["${2:SHOW FULL COLUMNS FROM `${1:table}`;}"],
     "description": "(show columns)",
     "prefix": "__hcols"
   },
   "hcreate": {
-    "body": [
-      "${2:SHOW CREATE TABLE `${1:table}`;}"
-    ],
+    "body": ["${2:SHOW CREATE TABLE `${1:table}`;}"],
     "description": "(show create signature)",
     "prefix": "__hcreate"
   },
   "hidx": {
-    "body": [
-      "${2:SHOW INDEX FROM `${1:table}`;}"
-    ],
+    "body": ["${2:SHOW INDEX FROM `${1:table}`;}"],
     "description": "(show indexes)",
     "prefix": "__hidx"
   },
@@ -402,25 +343,16 @@
     "prefix": "__hrel"
   },
   "id_business": {
-    "body": [
-      "id_business='b2055925-1b68-459e-afed-b4c95188d008'",
-      "$0"
-    ],
+    "body": ["id_business='b2055925-1b68-459e-afed-b4c95188d008'", "$0"],
     "description": "Business ID",
     "prefix": "id_business"
   },
   "idx": {
-    "body": [
-      "INDEX `$1_idx` (`${1:email}` ASC$2)${3:,",
-      "}"
-    ],
+    "body": ["INDEX `$1_idx` (`${1:email}` ASC$2)${3:,", "}"],
     "prefix": "__idx"
   },
   "idx-txt": {
-    "body": [
-      "FULLTEXT INDEX `$1_idx` (`${1:column}` ASC$2)${3:,",
-      "}"
-    ],
+    "body": ["FULLTEXT INDEX `$1_idx` (`${1:column}` ASC$2)${3:,", "}"],
     "prefix": "__idx-txt"
   },
   "if": {
@@ -459,9 +391,7 @@
     "prefix": "__insert"
   },
   "insertfrom": {
-    "body": [
-      "INSERT INTO table SELECT cols FROM othertab;"
-    ],
+    "body": ["INSERT INTO table SELECT cols FROM othertab;"],
     "prefix": "__insertfrom"
   },
   "j": {
@@ -483,9 +413,7 @@
     "prefix": "__jright"
   },
   "lim": {
-    "body": [
-      "LIMIT ${1:0}, ${3:count}"
-    ],
+    "body": ["LIMIT ${1:0}, ${3:count}"],
     "prefix": "__lim"
   },
   "listtriggers": {
@@ -548,22 +476,15 @@
     "prefix": "__mysqldropfkchecks"
   },
   "or": {
-    "body": [
-      "OR ( $1 ) "
-    ],
+    "body": ["OR ( $1 ) "],
     "prefix": "__or"
   },
   "order": {
-    "body": [
-      "ORDER BY `$1`${2: DESC}"
-    ],
+    "body": ["ORDER BY `$1`${2: DESC}"],
     "prefix": "__order"
   },
   "pk": {
-    "body": [
-      "PRIMARY KEY `pk_${1:id}`(`$1`)${2:,",
-      "}"
-    ],
+    "body": ["PRIMARY KEY `pk_${1:id}`(`$1`)${2:,", "}"],
     "prefix": "__pk"
   },
   "priv-drop": {
@@ -574,23 +495,17 @@
     "prefix": "__priv-drop"
   },
   "priv-drop-all": {
-    "body": [
-      "REVOKE ALL ON *.* FROM '${4:user_name}'@'${5:localhost}';"
-    ],
+    "body": ["REVOKE ALL ON *.* FROM '${4:user_name}'@'${5:localhost}';"],
     "description": "(remove all privileges)",
     "prefix": "__priv-drop-all"
   },
   "priv-list": {
-    "body": [
-      "SHOW GRANTS FOR '${1:user_name}'@'${2:localhost}';"
-    ],
+    "body": ["SHOW GRANTS FOR '${1:user_name}'@'${2:localhost}';"],
     "description": "(list privileges)",
     "prefix": "__priv-list"
   },
   "priv-refresh": {
-    "body": [
-      "${0:FLUSH PRIVILEGES;}"
-    ],
+    "body": ["${0:FLUSH PRIVILEGES;}"],
     "description": "(flush privileges)",
     "prefix": "__priv-refresh"
   },
@@ -645,29 +560,20 @@
     "prefix": "__setuserpassword"
   },
   "showprocesses": {
-    "body": [
-      "SHOW processlist;",
-      "SHOW FULL processlist;"
-    ],
+    "body": ["SHOW processlist;", "SHOW FULL processlist;"],
     "description": "Show process",
     "prefix": "__showprocesses"
   },
   "sinline": {
-    "body": [
-      "SELECT `${3/(.).*/$1/}`.$1 FROM `$3` AS `${3/(.).*/$1/}`"
-    ],
+    "body": ["SELECT `${3/(.).*/$1/}`.$1 FROM `$3` AS `${3/(.).*/$1/}`"],
     "prefix": "__sinline"
   },
   "smax": {
-    "body": [
-      "SELECT MAX(${1:id}) FROM `$2` AS `${2/(.).*/$1/}`"
-    ],
+    "body": ["SELECT MAX(${1:id}) FROM `$2` AS `${2/(.).*/$1/}`"],
     "prefix": "__smax"
   },
   "smin": {
-    "body": [
-      "SELECT MIN(${1:id}) FROM `$2` AS `${2/(.).*/$1/}`"
-    ],
+    "body": ["SELECT MIN(${1:id}) FROM `$2` AS `${2/(.).*/$1/}`"],
     "prefix": "__smin"
   },
   "sone": {
@@ -681,16 +587,12 @@
     "prefix": "__sone"
   },
   "ss": {
-    "body": [
-      "SELECT '${1:My String}';"
-    ],
+    "body": ["SELECT '${1:My String}';"],
     "description": "(select '...';)",
     "prefix": "__ss"
   },
   "sv": {
-    "body": [
-      "SELECT `${1:var_name}`;"
-    ],
+    "body": ["SELECT `${1:var_name}`;"],
     "description": "(select `...`;)",
     "prefix": "__sv"
   },
@@ -720,26 +622,15 @@
     "prefix": "__trigger"
   },
   "uk": {
-    "body": [
-      "UNIQUE KEY `unique_id`(`$1`$2)$3"
-    ],
+    "body": ["UNIQUE KEY `unique_id`(`$1`$2)$3"],
     "prefix": "__uk"
   },
   "union": {
-    "body": [
-      "(",
-      "  $1",
-      ") UNION (",
-      "  $2",
-      ")"
-    ],
+    "body": ["(", "  $1", ") UNION (", "  $2", ")"],
     "prefix": "__union"
   },
   "update": {
-    "body": [
-      "UPDATE `${1:table}` SET `$2` = '$3'${4:,}",
-      "WHERE `$5` = '$6';"
-    ],
+    "body": ["UPDATE `${1:table}` SET `$2` = '$3'${4:,}", "WHERE `$5` = '$6';"],
     "prefix": "__update"
   },
   "user-add-hash": {
@@ -750,29 +641,21 @@
     "prefix": "__user-add-hash"
   },
   "user-list": {
-    "body": [
-      "SELECT `user`, `host`, `password` FROM `mysql`.`user`;"
-    ],
+    "body": ["SELECT `user`, `host`, `password` FROM `mysql`.`user`;"],
     "description": "(list users)",
     "prefix": "__user-list"
   },
   "utc": {
-    "body": [
-      "SELECT UNIX_TIMESTAMP(NOW());"
-    ],
+    "body": ["SELECT UNIX_TIMESTAMP(NOW());"],
     "prefix": "__utc"
   },
   "vardefault": {
-    "body": [
-      "DECLARE `${1:var_name}` ${2:INT} DEFAULT '${3:value}';"
-    ],
+    "body": ["DECLARE `${1:var_name}` ${2:INT} DEFAULT '${3:value}';"],
     "description": "(var with default)",
     "prefix": "__vardefault"
   },
   "where": {
-    "body": [
-      "WHERE ( `$1` ${2:=} '$3' ) "
-    ],
+    "body": ["WHERE ( `$1` ${2:=} '$3' ) "],
     "prefix": "__where"
   }
 }
