@@ -19,6 +19,7 @@ local config = function()
       "rust",
       "markdown",
       "json",
+      "rust",
       "javascript",
       "typescript",
       "yaml",
@@ -35,6 +36,20 @@ local config = function()
       enable = true,
       additional_vim_regex_highlighting = true,
     },
+    ts_context_commentstring = {
+      enable = true,
+      enable_autocmd = false,
+      config = {
+        -- Languages that have a single comment style
+        typescript = "// %s",
+        css = "/* %s */",
+        scss = "/* %s */",
+        html = "<!-- %s -->",
+        svelte = "<!-- %s -->",
+        vue = "<!-- %s -->",
+        json = "",
+      },
+    },
     incremental_selection = {
       enable = true,
       keymaps = {
@@ -48,7 +63,14 @@ local config = function()
 end
 
 return {
-  "nvim-treesitter/nvim-treesitter",
-  lazy = false,
-  config = config,
+  {
+    "nvim-treesitter/nvim-treesitter",
+    lazy = false,
+    config = config,
+  },
+  {
+    -- Lazy loaded by Comment.nvim pre_hook
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    lazy = true,
+  },
 }

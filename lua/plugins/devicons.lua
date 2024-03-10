@@ -798,6 +798,11 @@ return {
           icon = " ",
         },
       },
+      lir_folder_icon = {
+        icon = "",
+        color = "#7ebae4",
+        name = "LirFolderNode",
+      },
     }
   end,
 }
