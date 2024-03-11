@@ -9,7 +9,7 @@ return {
       ["c"] = { "<cmd>BufferKill<CR>", "Close Buffer" },
       ["f"] = {
         function()
-          require("lvim.core.telescope.custom-finders").find_project_files { previewer = false }
+          require("plugins.telescope.custom-finders").find_project_files { previewer = false }
         end,
         "Find File",
       },
@@ -79,7 +79,7 @@ return {
       -- " Debugging
       g = {
         name = "Git",
-        g = { "<cmd>lua require 'lvim.core.terminal'.lazygit_toggle()<cr>", "Lazygit" },
+        g = { "<cmd>lua require 'plugins.terminal'.lazygit_toggle()<cr>", "Lazygit" },
         j = { "<cmd>lua require 'gitsigns'.next_hunk({navigation_message = false})<cr>", "Next Hunk" },
         k = { "<cmd>lua require 'gitsigns'.prev_hunk({navigation_message = false})<cr>", "Prev Hunk" },
         l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
