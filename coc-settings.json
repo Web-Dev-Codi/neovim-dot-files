@@ -1,0 +1,53 @@
+{
+  "diagnostic.errorSign": "",
+  "diagnostic.warningSign": "",
+  "diagnostic.infoSign": "",
+  "diagnostic.hintSign": "",
+  "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+  "semanticTokens.filetypes": ["rust", "css"],
+  "sumneko-lua.enableNvimLuaDev": false,
+  "Lua.diagnostics.globals": ["vim"],
+  "codeLens.enable": true,
+  "coc.preferences.formatOnType": true,
+  "languageserver": {
+    "vim": {
+      "command": "vim-language-server",
+      "args": ["--stdio"],
+      "filetypes": ["vim"]
+    },
+    "golang": {
+      "command": "~/go/bin/gopls",
+      "args": ["-logfile", "/tmp/gopls-vim"],
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "env": {
+        "GO111MODULE": "on",
+        "GOFLAGS": "-mod=vendor",
+        "CGO_ENABLED": "1"
+      },
+      "filetypes": ["go"],
+      "initializationOptions": {
+        "usePlaceholders": true
+      }
+    },
+    "pylsp": {
+      "command": "pylsp",
+      "filetypes": ["python"],
+      "rootPatterns": []
+    },
+    "cmake": {
+      "command": "cmake-language-server",
+      "filetypes": ["cmake"],
+      "rootPatterns": ["build/Debug"],
+      "initializationOptions": {
+        "buildDirectory": "build/Debug"
+      }
+    },
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh"],
+      "ignoredRootPaths": ["~"]
+    }
+  },
+  "Lua.telemetry.enable": false
+}

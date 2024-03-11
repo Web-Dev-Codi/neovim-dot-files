@@ -1,5 +1,11 @@
 {
     "diagnostics.globals": [
-        "vim"
+        "vim",
+        "let",
+        "g"
+    ],
+    "diagnostics.disable": [
+        "undefined-field",
+        "undefined-global"
     ]
 }

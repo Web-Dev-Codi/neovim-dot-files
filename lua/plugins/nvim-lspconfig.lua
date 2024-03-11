@@ -2,9 +2,9 @@ return {
   "neovim/nvim-lspconfig",
   config = function()
     -- Setup language servers.
-    local lspconfig = require "lspconfig"
-    lspconfig.lua_ls.setup {}
-    lspconfig.tsserver.setup {}
+    -- local lspconfig = require "lspconfig"
+    --  lspconfig.lua_ls.setup {}
+    --  lspconfig.tsserver.setup {}
 
     -- Global mappings.
     -- See `:help vim.diagnostic.*` for documentation on any of the below functions
