@@ -18,7 +18,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 vim.keymap.set("n", "<c-P>", "<cmd>lua require('fzf-lua').files()<CR>", { silent = true })
-local coc = require "plugins.coc"
-require("lazy").setup("plugins", coc)
+
+require("lazy").setup "plugins"
 
 require "vim-options"

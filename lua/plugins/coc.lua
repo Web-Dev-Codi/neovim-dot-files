@@ -9,8 +9,22 @@ return {
   branch = "release",
   run = "npm clean-install",
   config = function()
+    -- Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
+    -- delays and poor user experience
+    vim.opt.updatetime = 300
+
+    -- Always show the signcolumn, otherwise it would shift the text each time
+    -- diagnostics appeared/became resolved
+    vim.opt.signcolumn = "yes"
+
     local keyset = vim.keymap.set
     -- key bind
+    --
+    -- Autocomplete
+    function _G.check_back_space()
+      local col = vim.fn.col "." - 1
+      return col == 0 or vim.fn.getline("."):sub(col, col):match "%s" ~= nil
+    end
     vim.o.hidden = true
     vim.api.nvim_set_keymap("x", "<leader>f", "<Plug>(coc-format-selected)", { noremap = false })
     local opts = { silent = true, noremap = true, expr = true, replace_keycodes = false }
@@ -32,6 +46,7 @@ return {
       end
       return "<S-Tab>"
     end, opts)
+
     vim.keymap.set("i", "<CR>", function()
       if vim.fn["coc#pum#visible"]() == 1 then
         return vim.fn["coc#pum#confirm"]()

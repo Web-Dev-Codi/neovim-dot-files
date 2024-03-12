@@ -7,5 +7,9 @@
     "diagnostics.disable": [
         "undefined-field",
         "undefined-global"
-    ]
+    ],
+   "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
+  "workspace.library": ["path/to/library/directory"],
+  "runtime.version": "LuaJIT",
+  "hint.enable": true
 }

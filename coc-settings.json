@@ -4,50 +4,72 @@
   "diagnostic.infoSign": "",
   "diagnostic.hintSign": "",
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
-  "semanticTokens.filetypes": ["rust", "css"],
+  "semanticTokens.enable": true,
   "sumneko-lua.enableNvimLuaDev": false,
+  "sumneko-lua.enable": false,
+  "sumneko-lua.prompt": false,
   "Lua.diagnostics.globals": ["vim"],
   "codeLens.enable": true,
   "coc.preferences.formatOnType": true,
+  "eslint.enable": true,
+  "eslint.format.enable": true,
+  "javascript.suggest.enabled": true,
+  "tsserver.enable": true,
+  "stylua.styluaPath": null,
+  "stylua.configPath": null,
+  "html.hover.references": true,
+  "hover.target": "float",
+  "Lua.hover.enable": true,
+  "rust-analyzer.hover.links.enable": true,
+  "rust-analyzer.hover.documentation.enable": true,
+  "css.hover.references": true,
+  "html.hover.documentation": true,
+  "html.format.enable": true,
+  "html.suggest.html5": true,
+  "html.autoClosingTags": true,
+  // Rust Config
+  "rust-analyzer.server.path": "~/.local/bin/",
+  "rust-analyzer.updates.prompt": true,
+  "rust-analyzer.cargo.cfgs": {},
+  "rust-analyzer.typing.autoClosingAngleBrackets.enable": true,
+  "rust-analyzer.diagnostics.enable": true,
+  "rust-analyzer.semanticHighlighting.strings.enable": true,
+  "rust-analyzer.enable": true,
+  "rust-analyzer.semanticHighlighting.operator.specialization.enable": true,
+  "rust-client.logToFile": true,
+  "rust-analyzer.cargo.autoreload": true,
+  "rust-analyzer.checkOnSave": true,
+  "rust-analyzer.completion.fullFunctionSignatures.enable": true,
+  "rust-analyzer.lens.enable": true,
+  "rust-analyzer.cargo.sysroot": "discover",
+  "rust-analyzer.imports.prefix": "plain",
+  "rust-analyzer.check.workspace": true,
+  "rust-analyzer.lens.run.enable": true,
+  "rust-analyzer.semanticHighlighting.doc.comment.inject.enable": true,
+  "rust-analyzer.inlayHints.lifetimeElisionHints.useParameterNames": true,
+  "workspace.ignoredFolders": ["$HOME", "$HOME/.cargo/**", "$HOME/.rustup/**"],
+  "rust-client.revealOutputChannelOn": "error",
   "languageserver": {
+    "lua": {
+      "command": "~/.config/lua-language-server/bin/lua-language-server",
+      "filetypes": ["lua"],
+      "rootPatterns": [".git/"]
+    },
     "vim": {
       "command": "vim-language-server",
       "args": ["--stdio"],
       "filetypes": ["vim"]
-    },
-    "golang": {
-      "command": "~/go/bin/gopls",
-      "args": ["-logfile", "/tmp/gopls-vim"],
-      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-      "env": {
-        "GO111MODULE": "on",
-        "GOFLAGS": "-mod=vendor",
-        "CGO_ENABLED": "1"
-      },
-      "filetypes": ["go"],
-      "initializationOptions": {
-        "usePlaceholders": true
-      }
-    },
-    "pylsp": {
-      "command": "pylsp",
-      "filetypes": ["python"],
-      "rootPatterns": []
-    },
-    "cmake": {
-      "command": "cmake-language-server",
-      "filetypes": ["cmake"],
-      "rootPatterns": ["build/Debug"],
-      "initializationOptions": {
-        "buildDirectory": "build/Debug"
-      }
     },
     "bash": {
       "command": "bash-language-server",
       "args": ["start"],
       "filetypes": ["sh"],
       "ignoredRootPaths": ["~"]
+    },
+    "rust": {
+      "command": "rust-analyzer",
+      "filetypes": ["rust"],
+      "rootPatterns": ["Cargo.toml"]
     }
-  },
-  "Lua.telemetry.enable": false
+  }
 }
