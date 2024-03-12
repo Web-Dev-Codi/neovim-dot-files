@@ -19,7 +19,7 @@ return {
 
     local keyset = vim.keymap.set
     -- key bind
-    --
+
     -- Autocomplete
     function _G.check_back_space()
       local col = vim.fn.col "." - 1

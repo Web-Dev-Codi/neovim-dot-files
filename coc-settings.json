@@ -2,14 +2,18 @@
   "diagnostic.errorSign": "",
   "diagnostic.warningSign": "",
   "diagnostic.infoSign": "",
-  "diagnostic.hintSign": "",
+  "diagnostic.hintSign": " ",
+  "Lua.hint.arrayIndex": "Disable",
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
   "semanticTokens.enable": true,
   "sumneko-lua.enableNvimLuaDev": false,
   "sumneko-lua.enable": false,
   "sumneko-lua.prompt": false,
   "Lua.diagnostics.globals": ["vim"],
+  "inlayHint.enable": true,
   "codeLens.enable": true,
+  "rust.show_hover_context": true,
+  "rust-analyzer.hover.documentation.keywords.enable": true,
   "coc.preferences.formatOnType": true,
   "eslint.enable": true,
   "eslint.format.enable": true,
@@ -28,7 +32,7 @@
   "html.suggest.html5": true,
   "html.autoClosingTags": true,
   // Rust Config
-  "rust-analyzer.server.path": "~/.local/bin/",
+  "rust-analyzer.server.path": "~/.local/share/nvim/mason/bin/rust-analyzer",
   "rust-analyzer.updates.prompt": true,
   "rust-analyzer.cargo.cfgs": {},
   "rust-analyzer.typing.autoClosingAngleBrackets.enable": true,
@@ -49,9 +53,14 @@
   "rust-analyzer.inlayHints.lifetimeElisionHints.useParameterNames": true,
   "workspace.ignoredFolders": ["$HOME", "$HOME/.cargo/**", "$HOME/.rustup/**"],
   "rust-client.revealOutputChannelOn": "error",
+  "sumneko-lua.serverDir": "~/.vscode/extensions/sumneko.lua-3.7.4-linux-x64/server/bin/",
   "languageserver": {
     "lua": {
-      "command": "~/.config/lua-language-server/bin/lua-language-server",
+      "command": "~/.vscode/extensions/sumneko.lua-3.7.4-linux-x64/server/bin/lua-language-server",
+      "args": [
+        "-E",
+        "~/.vscode/extensions/sumneko.lua-3.7.4-linux-x64/server/bin/main.lua"
+      ],
       "filetypes": ["lua"],
       "rootPatterns": [".git/"]
     },
