@@ -31,6 +31,22 @@
   "html.format.enable": true,
   "html.suggest.html5": true,
   "html.autoClosingTags": true,
+  // Tailwind
+  "tailwindCSS.enable": true,
+  "tailwindCSS.trace.server": "messages",
+  "tailwindCSS.custom.serverPath": "",
+  "tailwindCSS.emmetCompletions": true,
+  "tailwindCSS.suggestions": true,
+  "tailwindCSS.hovers": true,
+  "tailwindCSS.codeActions": true,
+  "tailwindCSS.validate": true,
+  "tailwindCSS.lint.cssConflict": "error",
+  "tailwindCSS.lint.recommendedVariantOrder": "warning",
+  "tailwindCSS.headwind.runOnSave": true,
+  "tailwindCSS.headwind.removeDuplicates": true,
+  "tailwindCSS.headwind.prependCustomClasses": true,
+  "tailwindCSS.headwind.customTailwindPrefix": "",
+
   // Rust Config
   "rust-analyzer.server.path": "~/.local/share/nvim/mason/bin/rust-analyzer",
   "rust-analyzer.updates.prompt": true,
