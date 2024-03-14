@@ -26,7 +26,7 @@ return {
         centralize_selection = true,
         width = 30,
         side = "left",
-        preserve_window_proportions = false,
+        preserve_window_proportions = true,
         number = false,
         relativenumber = false,
         signcolumn = "yes",

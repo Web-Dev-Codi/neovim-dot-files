@@ -4,6 +4,8 @@
   "diagnostic.infoSign": "",
   "diagnostic.hintSign": " ",
   "Lua.hint.arrayIndex": "Disable",
+  "prettier.requireConfig": true,
+  "vimlsp.diagnostic.enable": true,
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
   "semanticTokens.enable": true,
   "sumneko-lua.enableNvimLuaDev": false,
@@ -46,7 +48,8 @@
   "tailwindCSS.headwind.removeDuplicates": true,
   "tailwindCSS.headwind.prependCustomClasses": true,
   "tailwindCSS.headwind.customTailwindPrefix": "",
-
+  "eslint.codeActionsOnSave.mode": "all",
+  "callHierarchy.enableTooltip": true,
   // Rust Config
   "rust-analyzer.server.path": "~/.local/share/nvim/mason/bin/rust-analyzer",
   "rust-analyzer.updates.prompt": true,

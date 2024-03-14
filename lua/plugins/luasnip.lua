@@ -12,6 +12,7 @@ return {
     -- add vscode exported completions
     require("luasnip.loaders.from_vscode").lazy_load()
     require("luasnip.loaders.from_vscode").lazy_load "./snippets/"
+
     local r = require "util.remaps"
 
     r.map({ "i", "s" }, "<c-n>", function()

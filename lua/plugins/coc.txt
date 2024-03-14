@@ -13,6 +13,14 @@ return {
     -- delays and poor user experience
     vim.opt.updatetime = 300
 
+    -- Enable coc.nvim
+    vim.g.coc_start_at_startup = true
+
+    -- Enable coc-explorer for file explorer
+    vim.g.coc_explorer_disable_netrw = 0
+
+    -- Enable coc-explorer breadcrumbs
+    vim.g.coc_explorer_breadcrumbs = 1
     -- Always show the signcolumn, otherwise it would shift the text each time
     -- diagnostics appeared/became resolved
     vim.opt.signcolumn = "yes"
@@ -35,9 +43,9 @@ return {
       if vim.fn["coc#pum#visible"]() == 1 then
         return vim.fn["coc#pum#next"](1)
       end
-      if require("plugin.coc").check_back_space() then
-        return vim.fn["coc#refresh"]()
-      end
+      -- if require("plugin.coc").check_back_space() then
+      --   return vim.fn["coc#refresh"]()
+      -- end
       return "<Tab>"
     end, { noremap = true, expr = true })
     vim.keymap.set("i", "<S-Tab>", function()
