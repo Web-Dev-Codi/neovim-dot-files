@@ -76,7 +76,7 @@ return {
         { name = "nvim_lsp", max_item_count = 20, group_index = 1 },
         { name = "nvim_lua", group_index = 1 },
         { name = "vim-dadbod-completion", group_index = 1 },
-        { name = "path", group_index = 2 },
+        { name = "path", group_index = 2, get_cwd = true, label_trailing_slash = true, trailing_slash = true },
         { name = "buffer", keyword_length = 2, max_item_count = 5, group_index = 2 },
       },
     }
