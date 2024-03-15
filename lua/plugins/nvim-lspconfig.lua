@@ -4,6 +4,7 @@ return {
   config = function()
     -- Setup language servers.
     local lspconfig = require "lspconfig"
+    vim.lsp.set_log_level "debug"
     lspconfig.pyls.setup { on_attach = require("lsp_compl").attach }
     lspconfig.lua_ls.setup {}
     lspconfig.tsserver.setup {}
@@ -17,7 +18,6 @@ return {
         ["rust-analyzer"] = {},
       },
     }
-    vim.lsp.set_log_level "debug"
     -- Global mappings.
     -- See `:help vim.diagnostic.*` for documentation on any of the below functions
     vim.keymap.set("n", "<space>e", vim.diagnostic.open_float)
