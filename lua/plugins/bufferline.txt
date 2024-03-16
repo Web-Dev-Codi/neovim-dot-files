@@ -6,8 +6,8 @@ return {
     config = function()
       require("bufferline").setup {
         options = {
-          numbers = "buffer_id",
-          close_command = "bdelete! %d",
+          -- numbers = "buffer_id",
+          -- close_command = "bdelete! %d",
           right_mouse_command = nil,
           left_mouse_command = "buffer %d",
           middle_mouse_command = nil,
@@ -24,21 +24,21 @@ return {
           max_prefix_length = 15,
           tab_size = 10,
           diagnostics = false,
-          custom_filter = function(bufnr)
-            -- if the result is false, this buffer will be shown, otherwise, this
-            -- buffer will be hidden.
-
-            -- filter out filetypes you don't want to see
-            local exclude_ft = { "qf", "fugitive", "git" }
-            local cur_ft = vim.bo[bufnr].filetype
-            local should_filter = vim.tbl_contains(exclude_ft, cur_ft)
-
-            if should_filter then
-              return false
-            end
-
-            return true
-          end,
+          -- custom_filter = function(bufnr)
+          --   -- if the result is false, this buffer will be shown, otherwise, this
+          --   -- buffer will be hidden.
+          --
+          --   -- filter out filetypes you don't want to see
+          --   local exclude_ft = { "qf", "fugitive", "git" }
+          --   local cur_ft = vim.bo[bufnr].filetype
+          --   local should_filter = vim.tbl_contains(exclude_ft, cur_ft)
+          --
+          --   if should_filter then
+          --     return false
+          --   end
+          --
+          --   return true
+          -- end,
           show_buffer_icons = false,
           show_buffer_close_icons = true,
           show_close_icon = true,

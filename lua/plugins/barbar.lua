@@ -5,7 +5,6 @@ return {
   end,
   opts = {
     animation = true,
-    insert_at_start = true,
     clickable = true,
     icons = {
       -- Configure the base icons on the bufferline.
