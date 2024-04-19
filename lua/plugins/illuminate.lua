@@ -1,7 +1,7 @@
 return {
   "RRethy/vim-illuminate",
   event = "VeryLazy",
-  copnfig = function()
+  config = function()
     require("illuminate").configure {
       filetypes_denylist = {
         "mason",
