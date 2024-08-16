@@ -43,10 +43,7 @@ return {
           relative = "cursor",
           row = 0,
           col = 1,
-        },
-        yadm = {
-          enable = false,
-        },
+        }
       }
       vim.keymap.set("n", "<leader>ph", ":Gitsigns preview_hunk<CR>", {})
     end,
