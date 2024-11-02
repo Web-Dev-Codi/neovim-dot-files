@@ -16,7 +16,7 @@ return {
       "Whitespace",
     }
 
-    local hooks = require "ibl.hooks"
+    local hooks = require("ibl.hooks")
     -- create the highlight groups in the highlight setup hook, so they are reset
     -- every time the colorscheme changes
     hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
@@ -30,7 +30,7 @@ return {
     end)
     local exclude_ft = { "help", "git", "markdown", "snippets", "text", "gitconfig", "alpha", "dashboard" }
     vim.g.rainbow_delimiters = { highlight = highlight }
-    require("ibl").setup {
+    require("ibl").setup({
       indent = {
         highlight = highlight,
         -- -- U+2502 may also be a good choice, it will be on the middle of cursor.
@@ -47,7 +47,7 @@ return {
         filetypes = exclude_ft,
         buftypes = { "terminal" },
       },
-    }
+    })
     hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
     local gid = api.nvim_create_augroup("indent_blankline", { clear = true })
     api.nvim_create_autocmd("InsertEnter", {
@@ -61,7 +61,7 @@ return {
       group = gid,
       callback = function()
         if not vim.tbl_contains(exclude_ft, vim.bo.filetype) then
-          vim.cmd [[IBLEnable]]
+          vim.cmd([[IBLEnable]])
         end
       end,
     })
