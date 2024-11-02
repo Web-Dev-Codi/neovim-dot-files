@@ -215,22 +215,10 @@ return {
     -- Optional: Lazy load Incline
     event = "VeryLazy",
   },
-  {
-    "j-hui/fidget.nvim",
-    opts = {
-      notification = {
-        window = {
-          winblend = 0,
-          border = "rounded",
-        },
-      },
-    },
-    event = "VeryLazy",
-  },
   { -- https://github.com/lukas-reineke/virt-column.nvim
     "lukas-reineke/virt-column.nvim",
     opts = {
-      char = { "┆" },
+      char = { "|" },
       virtcolumn = "80",
       highlight = { "NonText" },
     },
