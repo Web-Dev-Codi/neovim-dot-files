@@ -19,3 +19,4 @@ opt.autoindent = true
 opt.incsearch = true
 opt.ignorecase = true
 opt.smartcase = true
+opt.swapfile = false

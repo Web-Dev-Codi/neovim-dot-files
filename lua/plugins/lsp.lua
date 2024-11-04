@@ -168,6 +168,7 @@ return {
       tailwindcss = {},
       jsonls = {},
       yamlls = {},
+      biome = {},
 
       lua_ls = {
         -- cmd = {...},
@@ -207,8 +208,7 @@ return {
     -- for you, so that they are available from within Neovim.
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
-      "stylua",
-      "biome", -- Used to format Lua code
+      "stylua", -- Used to format Lua code
     })
     require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

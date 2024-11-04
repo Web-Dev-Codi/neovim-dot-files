@@ -307,4 +307,13 @@ return {
       require("lsp_signature").setup(opts)
     end,
   },
+  {
+    "windwp/nvim-autopairs",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("nvim-autopairs").setup({
+        --[[ map_cr = false, ]]
+      })
+    end,
+  },
 }
