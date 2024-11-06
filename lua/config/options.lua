@@ -23,7 +23,6 @@ opt.swapfile = false
 
 --Editor
 opt.virtualedit = "block"
-opt.scrolloff = 999
 opt.inccommand = "split"
 opt.ignorecase = true
 
