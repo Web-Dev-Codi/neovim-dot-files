@@ -8,7 +8,8 @@ vim.g.maplocalleader = " "
 vim.g.have_nerd_font = true
 
 local opt = vim.opt
-
+opt.winblend = 0
+opt.pumblend = 0
 opt.termguicolors = true
 
 vim.schedule(function()
@@ -36,7 +37,6 @@ opt.smartcase = true
 opt.swapfile = false
 
 --Editor
-opt.virtualedit = "block"
 opt.inccommand = "split"
 opt.ignorecase = true
 opt.syntax = "on"
