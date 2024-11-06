@@ -20,10 +20,12 @@ require("lazy").setup({
       "LazyVim/LazyVim",
       import = "lazyvim.plugins",
     },
+
     { import = "lazyvim.plugins.extras.vscode" },
-    {
-      import = "lazyvim.plugins.extras.coding.copilot",
-    },
+    { import = "lazyvim.plugins.extras.util.startuptime" },
+
+    -- { import = "lazyvim.plugins.extras.coding.copilot",},
+    { import = "lazyvim.plugins.extras.coding.luasnip" },
     { import = "lazyvim.plugins.extras.linting.eslint" },
     { import = "lazyvim.plugins.extras.editor.aerial" },
     { import = "lazyvim.plugins.extras.editor.navic" },
@@ -32,9 +34,9 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.ui.treesitter-context" },
     { import = "lazyvim.plugins.extras.vscode" },
     { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
-    {
-      import = "lazyvim.plugins.extras.coding.copilot-chat",
-    }, -- { import = "lazyvim.plugins.extras.ui.alpha" },
+    { import = "lazyvim.plugins.extras.util.startuptime" },
+    { import = "lazyvim.plugins.extras.lsp.none-ls" },
+    -- {import = "lazyvim.plugins.extras.coding.copilot-chat",}, -- { import = "lazyvim.plugins.extras.ui.alpha" },
     -- import/override with your plugins
     {
       import = "plugins",
