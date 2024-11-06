@@ -8,13 +8,15 @@ vim.g.maplocalleader = " "
 vim.g.have_nerd_font = true
 
 local opt = vim.opt
-
+opt.winblend = 0
+opt.pumblend = 0
 opt.termguicolors = true
 
 vim.schedule(function()
   vim.opt.clipboard = "unnamedplus"
 end)
-
+-- views can only be fully collapsed with the global statusline
+vim.opt.laststatus = 3
 opt.tabstop = 4
 opt.shiftwidth = 4
 opt.softtabstop = 4
@@ -35,7 +37,6 @@ opt.smartcase = true
 opt.swapfile = false
 
 --Editor
-opt.virtualedit = "block"
 opt.inccommand = "split"
 opt.ignorecase = true
 opt.syntax = "on"
