@@ -7,6 +7,7 @@ return {
       opts.transparent = true
       opts.italic_comments = true
       opts.borderless_telescope = false
+      opts.italic_keywords = true
     end,
   },
   {
