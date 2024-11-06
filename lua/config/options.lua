@@ -14,7 +14,8 @@ opt.termguicolors = true
 vim.schedule(function()
   vim.opt.clipboard = "unnamedplus"
 end)
-
+-- views can only be fully collapsed with the global statusline
+vim.opt.laststatus = 3
 opt.tabstop = 4
 opt.shiftwidth = 4
 opt.softtabstop = 4
