@@ -23,14 +23,13 @@ return {
 
     return {
       options = {
-        theme = "auto",
+        theme = "16color",
         globalstatus = true,
         disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
       },
       sections = {
         lualine_a = { "mode" },
         lualine_b = { "branch" },
-
         lualine_c = {
           Util.lualine.root_dir(),
           {
