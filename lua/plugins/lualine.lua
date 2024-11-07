@@ -23,7 +23,7 @@ return {
 
     return {
       options = {
-        theme = "16color",
+        theme = "eldritch",
         globalstatus = true,
         disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
       },
