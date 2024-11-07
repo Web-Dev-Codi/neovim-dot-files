@@ -67,7 +67,7 @@ require("lazy").setup({
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
   install = {
-    colorscheme = { "eldritch" },
+    colorscheme = {},
   },
   checker = {
     enabled = true, -- check for plugin updates periodically
