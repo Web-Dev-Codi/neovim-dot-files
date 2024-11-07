@@ -23,6 +23,7 @@ opt.softtabstop = 4
 opt.expandtab = true
 opt.smartindent = true
 opt.autoindent = true
+opt.updatetime = 100 -- faster completion (4000ms default)
 
 -- Enable break indent
 vim.opt.breakindent = true
