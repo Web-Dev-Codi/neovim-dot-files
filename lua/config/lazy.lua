@@ -37,14 +37,17 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.editor.telescope" },
     { import = "lazyvim.plugins.extras.editor.overseer" },
     { import = "lazyvim.plugins.extras.editor.illuminate" },
+    { import = "lazyvim.plugins.extras.editor.dial" },
     { import = "lazyvim.plugins.extras.lang.tailwind" },
     { import = "lazyvim.plugins.extras.lsp.neoconf" },
     { import = "lazyvim.plugins.extras.ui.treesitter-context" },
+    { import = "lazyvim.plugins.extras.ui.mini-indentscope" },
     -- { import = "lazyvim.plugins.extras.ui.mini-starter" },
     { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
     { import = "lazyvim.plugins.extras.coding.mini-surround" },
     { import = "lazyvim.plugins.extras.coding.mini-comment" },
     { import = "lazyvim.plugins.extras.editor.mini-move" },
+    { import = "lazyvim.plugins.extras.editor.mini-files" },
     { import = "lazyvim.plugins.extras.lsp.none-ls" },
     -- {import = "lazyvim.plugins.extras.coding.copilot-chat",}, -- { import = "lazyvim.plugins.extras.ui.alpha" },
     -- import/override with your plugins
@@ -64,7 +67,7 @@ require("lazy").setup({
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
   install = {
-    colorscheme = { "cyberdream" },
+    colorscheme = { "eldritch" },
   },
   checker = {
     enabled = true, -- check for plugin updates periodically

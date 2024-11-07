@@ -8,8 +8,8 @@ vim.g.maplocalleader = " "
 vim.g.have_nerd_font = true
 
 local opt = vim.opt
-opt.winblend = 0
-opt.pumblend = 0
+-- opt.winblend = 0
+-- opt.pumblend = 0
 opt.termguicolors = true
 
 vim.schedule(function()
@@ -23,7 +23,7 @@ opt.softtabstop = 4
 opt.expandtab = true
 opt.smartindent = true
 opt.autoindent = true
-opt.updatetime = 100 -- faster completion (4000ms default)
+-- opt.updatetime = 100 -- faster completion (4000ms default)
 
 -- Enable break indent
 vim.opt.breakindent = true
