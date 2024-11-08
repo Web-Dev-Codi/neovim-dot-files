@@ -23,7 +23,7 @@ return {
 
     return {
       options = {
-        theme = "cyberdream",
+        theme = "16color",
         globalstatus = true,
         disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
       },
