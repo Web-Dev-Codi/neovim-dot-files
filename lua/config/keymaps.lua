@@ -1,7 +1,7 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
-
+local map = vim.keymap.set
 -- Disable the spacebar key's default behavior in Normal and Visual modes
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
@@ -9,7 +9,7 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 local opts = { noremap = true, silent = true }
 
 -- save file
-vim.keymap.set("n", "<C-s>", "<cmd> w <CR>", opts)
+map("n", "<C-s>", "<cmd> w <CR>", opts)
 
 -- save file without auto-formatting
 vim.keymap.set("n", "<leader>sn", "<cmd>noautocmd w <CR>", opts)

@@ -8,28 +8,28 @@ vim.g.maplocalleader = " "
 vim.g.have_nerd_font = true
 
 local opt = vim.opt
--- opt.winblend = 0
--- opt.pumblend = 0
+opt.winblend = 0
+opt.pumblend = 0
 opt.termguicolors = true
 
 vim.schedule(function()
   vim.opt.clipboard = "unnamedplus"
 end)
 -- views can only be fully collapsed with the global statusline
-vim.opt.laststatus = 3
+opt.laststatus = 3
 opt.tabstop = 4
 opt.shiftwidth = 4
 opt.softtabstop = 4
 opt.expandtab = true
 opt.smartindent = true
 opt.autoindent = true
--- opt.updatetime = 100 -- faster completion (4000ms default)
+opt.updatetime = 100 -- faster completion (4000ms default)
 
 -- Enable break indent
-vim.opt.breakindent = true
+opt.breakindent = true
 
 -- Save undo history
-vim.opt.undofile = true
+opt.undofile = true
 
 -- Search
 opt.incsearch = true
@@ -43,5 +43,4 @@ opt.ignorecase = true
 opt.syntax = "on"
 
 vim.g.root_spec = { "cwd" }
-vim.g.omni_sql_no_default_maps = 1
 vim.g.python3_host_prog = "/usr/bin/python3"
