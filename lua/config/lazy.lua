@@ -47,6 +47,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.coding.mini-surround" },
     { import = "lazyvim.plugins.extras.coding.mini-comment" },
     { import = "lazyvim.plugins.extras.editor.mini-move" },
+    { import = "lazyvim.plugins.extras.ui.mini-animate" },
     --  { import = "lazyvim.plugins.extras.editor.mini-files" },
     { import = "lazyvim.plugins.extras.lsp.none-ls" },
     -- {import = "lazyvim.plugins.extras.coding.copilot-chat",}, -- { import = "lazyvim.plugins.extras.ui.alpha" },

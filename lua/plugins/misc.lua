@@ -6,13 +6,18 @@ return {
     ft = "lua",
     lazy = true,
     opts = {
-      library = {
-        -- Load luvit types when the `vim.uv` word is found
-        { path = "luvit-meta/library", words = { "vim%.uv" } },
+      library = { -- Load luvit types when the `vim.uv` word is found
+        {
+          path = "luvit-meta/library",
+          words = { "vim%.uv" },
+        },
       },
     },
   },
-  { "Bilal2453/luvit-meta", lazy = true },
+  {
+    "Bilal2453/luvit-meta",
+    lazy = true,
+  },
   { -- https://github.com/smjonas/inc-rename.nvim
     "smjonas/inc-rename.nvim",
     cmd = "IncRename",
@@ -30,9 +35,15 @@ return {
         return math.floor(vim.o.columns * 0.25)
       end,
       on_open = function(win)
-        vim.api.nvim_win_set_config(win, {
-          zindex = 100,
-        })
+        return {
+          "nvim-telescope/telescope.nvim",
+          tag = "0.1.8",
+          -- or                              , branch = '0.1.x',
+          dependencies = { "nvim-lua/plenary.nvim" },
+        },
+          vim.api.nvim_win_set_config(win, {
+            zindex = 100,
+          })
       end,
     },
   },
@@ -75,15 +86,6 @@ return {
         },
       },
     },
-  },
-  {
-    "s1n7ax/nvim-window-picker",
-    name = "window-picker",
-    event = "VeryLazy",
-    version = "2.*",
-    config = function()
-      require("window-picker").setup()
-    end,
   },
   { -- https://github.com/mg979/vim-visual-multi
     "mg979/vim-visual-multi",
@@ -208,8 +210,7 @@ return {
     "windwp/nvim-autopairs",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-      require("nvim-autopairs").setup({
-        --[[ map_cr = false, ]]
+      require("nvim-autopairs").setup({ --[[ map_cr = false, ]]
       })
     end,
   },
