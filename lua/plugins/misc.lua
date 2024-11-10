@@ -15,6 +15,17 @@ return {
     },
   },
   {
+    "j-hui/fidget.nvim",
+    opts = {
+      notification = {
+        window = {
+          winblend = 0,
+          border = "rounded",
+        },
+      },
+    },
+  },
+  {
     "Bilal2453/luvit-meta",
     lazy = true,
   },
@@ -26,7 +37,7 @@ return {
   {
     "rcarriga/nvim-notify",
     opts = {
-      timeout = 500,
+      timeout = 1000,
       render = "compact",
       max_height = function()
         return math.floor(vim.o.lines * 0.75)
@@ -38,7 +49,6 @@ return {
         return {
           "nvim-telescope/telescope.nvim",
           tag = "0.1.8",
-          -- or                              , branch = '0.1.x',
           dependencies = { "nvim-lua/plenary.nvim" },
         },
           vim.api.nvim_win_set_config(win, {
@@ -52,23 +62,6 @@ return {
     opts = {
       context = 0,
       expand = { "function", "method", "table", "if_statement", "function_declaration", "method_declaration", "pair" },
-    },
-  },
-  { -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-move.md
-    "echasnovski/mini.move",
-    event = "VeryLazy",
-    opts = {
-      mappings = {
-        left = "H",
-        right = "L",
-        down = "J",
-        up = "K",
-
-        line_left = "",
-        line_right = "",
-        line_down = "",
-        line_up = "",
-      },
     },
   },
   { -- https://github.com/folke/zen-mode.nvim
