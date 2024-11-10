@@ -16,14 +16,18 @@ vim.schedule(function()
   vim.opt.clipboard = "unnamedplus"
 end)
 -- views can only be fully collapsed with the global statusline
-opt.laststatus = 3
-opt.tabstop = 4
-opt.shiftwidth = 4
-opt.softtabstop = 4
+opt.laststatus = 2
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.softtabstop = 2
 opt.expandtab = true
 opt.smartindent = true
 opt.autoindent = true
-opt.updatetime = 100 -- faster completion (4000ms default)
+opt.updatetime = 300 -- faster completion (4000ms default)
+vim.o.cmdheight = 1
+vim.o.wrap = true
+vim.o.cursorline = true
+vim.o.completeopt = "menuone,noselect"
 
 -- Enable break indent
 opt.breakindent = true

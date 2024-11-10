@@ -38,7 +38,7 @@ require("lazy").setup({
     --{ import = "lazyvim.plugins.extras.editor.overseer" },
     { import = "lazyvim.plugins.extras.editor.illuminate" },
     --{ import = "lazyvim.plugins.extras.editor.dial" },
-    --{ import = "lazyvim.plugins.extras.lang.tailwind" },
+    { import = "lazyvim.plugins.extras.lang.tailwind" },
     { import = "lazyvim.plugins.extras.lsp.neoconf" },
     { import = "lazyvim.plugins.extras.ui.treesitter-context" },
     -- { import = "lazyvim.plugins.extras.ui.mini-indentscope" },
