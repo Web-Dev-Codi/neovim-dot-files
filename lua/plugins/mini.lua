@@ -38,4 +38,5 @@ return {
       ["yarn.lock"] = { glyph = "", hl = "MiniIconsBlue" },
     },
   },
+  { "echasnovski/mini.align", version = "*" },
 }

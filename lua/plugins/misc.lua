@@ -26,6 +26,31 @@ return {
     },
   },
   {
+    "HiPhish/rainbow-delimiters.nvim",
+    config = function()
+      require("rainbow-delimiters.setup").setup({
+        strategy = {},
+        query = {
+          [""] = "rainbow-delimiters",
+          lua = "rainbow-blocks",
+        },
+        priority = {
+          [""] = 110,
+          lua = 210,
+        },
+        highlight = {
+          "RainbowDelimiterRed",
+          "RainbowDelimiterYellow",
+          "RainbowDelimiterBlue",
+          "RainbowDelimiterOrange",
+          "RainbowDelimiterGreen",
+          "RainbowDelimiterViolet",
+          "RainbowDelimiterCyan",
+        },
+      })
+    end,
+  },
+  {
     "Bilal2453/luvit-meta",
     lazy = true,
   },
@@ -206,5 +231,25 @@ return {
       require("nvim-autopairs").setup({ --[[ map_cr = false, ]]
       })
     end,
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    event = { "BufReadPre", "BufNewFile" },
+    require("nvim-ts-autotag").setup({
+      opts = {
+        -- Defaults
+        enable_close = true, -- Auto close tags
+        enable_rename = true, -- Auto rename pairs of tags
+        enable_close_on_slash = false, -- Auto close on trailing </
+      },
+      -- Also override individual filetype configs, these take priority.
+      -- Empty by default, useful if one of the "opts" global settings
+      -- doesn't work well in a specific filetype
+      per_filetype = {
+        ["html"] = {
+          enable_close = false,
+        },
+      },
+    }),
   },
 }
