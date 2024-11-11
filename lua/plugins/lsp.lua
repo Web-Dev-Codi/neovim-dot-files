@@ -80,7 +80,16 @@ return {
         jsonls = {},
         yamlls = {},
         biome = {},
-        eslint = {},
+        eslint = {
+          filetypes = {
+            "javascript",
+            "javascriptreact",
+            "javascript.jsx",
+            "typescript",
+            "typescriptreact",
+            "typescript.tsx",
+          },
+        },
         emmet_ls = {},
         vtsls = {
           -- explicitly add default filetypes, so that we can extend

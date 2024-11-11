@@ -96,6 +96,7 @@ return {
             end,
           },
         },
+        lualine_y = { "" },
       },
       extensions = { "neo-tree", "lazy" },
     }
