@@ -35,18 +35,6 @@ return {
           spacing = 4,
           source = "if_many",
           prefix = "●",
-          float = {
-            border = {
-              { "┌", "FloatBorder" },
-              { "─", "FloatBorder" },
-              { "┐", "FloatBorder" },
-              { "│", "FloatBorder" },
-              { "┘", "FloatBorder" },
-              { "─", "FloatBorder" },
-              { "└", "FloatBorder" },
-              { "│", "FloatBorder" },
-            },
-          },
         },
         severity_sort = true,
         signs = {
