@@ -33,6 +33,13 @@ return { -- Autocompletion
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
+    {
+      "garymjr/nvim-snippets",
+      opts = {
+        friendly_snippets = true,
+      },
+      dependencies = { "rafamadriz/friendly-snippets" },
+    },
   },
   config = function()
     -- See `:help cmp`

@@ -1,6 +1,23 @@
 ---@diagnostic disable: missing-fields
+local nvim_0_10 = vim.fn.has("nvim-0.10")
+local prefix = "<leader>cl"
+
 return {
   "neovim/nvim-lspconfig",
+  init = function()
+    local keys = require("lazyvim.plugins.lsp.keymaps").get()
+
+    keys[#keys + 1] = { "<leader>cl", false }
+    keys[#keys + 1] = { "<leader>cil", "<cmd>LspInfo<cr>", desc = "Lsp" }
+    keys[#keys + 1] = { prefix .. "r", "<cmd>LspRestart<cr>", desc = "Restart Lsp" }
+    keys[#keys + 1] = { prefix .. "s", "<cmd>LspStart<cr>", desc = "Start Lsp" }
+    keys[#keys + 1] = { prefix .. "S", "<cmd>LspStop<cr>", desc = "Stop Lsp" }
+
+      -- stylua: ignore start
+      keys[#keys + 1] = { prefix .. "r", function() vim.lsp.buf.remove_workspace_folder() end, desc = "Remove workspace" }
+      keys[#keys + 1] = { prefix .. "a", function() vim.lsp.buf.add_workspace_folder() end, desc = "Add workspace" }
+    -- stylua: ignore end
+  end,
   event = "LazyFile",
   dependencies = {
     "mason.nvim",
@@ -18,9 +35,18 @@ return {
           spacing = 4,
           source = "if_many",
           prefix = "●",
-          -- this will set set the prefix to a function that returns the diagnostics icon based on the severity
-          -- this only works on a recent 0.10.0 build. Will be set to "●" when not supported
-          -- prefix = "icons",
+          float = {
+            border = {
+              { "┌", "FloatBorder" },
+              { "─", "FloatBorder" },
+              { "┐", "FloatBorder" },
+              { "│", "FloatBorder" },
+              { "┘", "FloatBorder" },
+              { "─", "FloatBorder" },
+              { "└", "FloatBorder" },
+              { "│", "FloatBorder" },
+            },
+          },
         },
         severity_sort = true,
         signs = {
@@ -36,14 +62,14 @@ return {
       -- Be aware that you also will need to properly configure your LSP server to
       -- provide the inlay hints.
       inlay_hints = {
-        enabled = true,
+        enabled = nvim_0_10,
         exclude = { "vue" }, -- filetypes for which you don't want to enable inlay hints
       },
       -- Enable this to enable the builtin LSP code lenses on Neovim >= 0.10.0
       -- Be aware that you also will need to properly configure your LSP server to
       -- provide the code lenses.
       codelens = {
-        enabled = false,
+        enabled = true,
       },
       -- Enable lsp cursor word highlighting
       document_highlight = {
