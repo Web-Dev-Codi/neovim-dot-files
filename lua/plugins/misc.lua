@@ -289,4 +289,9 @@ return {
       require("tiny-devicons-auto-colors").setup()
     end,
   },
+  {
+    "dgagn/diagflow.nvim",
+    event = "LspAttach",
+    opts = {},
+  },
 }
