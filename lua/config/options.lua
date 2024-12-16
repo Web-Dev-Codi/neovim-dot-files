@@ -8,7 +8,11 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
-
+vim.o.cursorline = true
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.api.nvim_set_hl(0, "CursorLine", { fg = "NONE" })
+vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#ffffff" })
 local opt = vim.opt
 opt.winblend = 0
 opt.pumblend = 0
@@ -27,9 +31,20 @@ opt.smartindent = true
 opt.autoindent = true
 opt.updatetime = 300 -- faster completion (4000ms default)
 opt.cmdheight = 1
+opt.spell = true
+opt.spelllang:append("en")
 opt.wrap = true
-opt.cursorline = true
 opt.completeopt = "menuone,noselect"
+
+-- Enable EditorConfig integration
+vim.g.editorconfig = true
+
+-- Root dir detection
+vim.g.root_spec = {
+  "lsp",
+  { ".git", "lua", ".obsidian", "package.json", "Makefile", "go.mod", "cargo.toml", "pyproject.toml", "src" },
+  "cwd",
+}
 
 -- Enable break indent
 opt.breakindent = true
@@ -47,6 +62,11 @@ opt.swapfile = false
 opt.inccommand = "split"
 opt.ignorecase = true
 opt.syntax = "on"
+
+-- Smoothscroll
+if vim.fn.has("nvim-0.10") == 1 then
+  opt.smoothscroll = true
+end
 
 vim.g.root_spec = { "cwd" }
 vim.g.python3_host_prog = "/usr/bin/python3"

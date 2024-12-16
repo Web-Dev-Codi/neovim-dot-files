@@ -92,8 +92,13 @@ return {
         cssls = {},
         tailwindcss = {},
         jsonls = {},
+        rust_analyzer = {
+          enabled = true,
+        },
         yamlls = {},
-        biome = {},
+        biome = {
+          enabled = true,
+        },
         eslint = {
           filetypes = {
             "javascript",
@@ -137,6 +142,19 @@ return {
                 functionLikeReturnTypes = { enabled = true },
                 parameterNames = { enabled = "literals" },
                 parameterTypes = { enabled = true },
+                propertyDeclarationTypes = { enabled = true },
+                variableTypes = { enabled = false },
+              },
+            },
+            javascript = {
+              updateImportsOnFileMove = { enabled = "always" },
+              suggest = {
+                completeFunctionCalls = true,
+              },
+              inlayHints = {
+                functionLikeReturnTypes = { enabled = false },
+                parameterNames = { enabled = "none" },
+                parameterTypes = { enabled = false },
                 propertyDeclarationTypes = { enabled = true },
                 variableTypes = { enabled = false },
               },

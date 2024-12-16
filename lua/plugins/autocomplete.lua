@@ -93,15 +93,16 @@ return { -- Autocompletion
           winhighlight = "Normal:Normal,FloatBorder:Normal,CursorLine:Visual,Search:None",
           scrollbar = false,
         },
+        performance = {
+          debounce = 0,
+          throttle = 0,
+          fetching_timeout = 20,
+          confirm_resolve_timeout = 20,
+          async_budget = 1,
+          max_view_entries = 50,
+        },
       },
-      performance = {
-        -- debounce = 0,
-        -- throttle = 0,
-        -- fetching_timeout = 20,
-        -- confirm_resolve_timeout = 20,
-        -- async_budget = 1,
-        -- max_view_entries = 50,
-      },
+
       -- For an understanding of why these mappings were
       -- chosen, you will need to read `:help ins-completion`
       --
