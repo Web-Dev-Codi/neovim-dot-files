@@ -13,6 +13,7 @@ return {
         "delve",
         "sql-formatter",
         "biome",
+        "codelldb",
       },
     },
   },

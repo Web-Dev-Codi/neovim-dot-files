@@ -84,7 +84,7 @@ require("lazy").setup({
   },
   local_spec = true,
   install = {
-    colorscheme = { "vscode" },
+    colorscheme = { "cyberdream" },
   },
   cache = {
     enabled = true,

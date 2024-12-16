@@ -65,6 +65,8 @@ return {
       "python",
       "query",
       "regex",
+      "rust",
+      "ron",
       "sql",
       "toml",
       "tsx",
