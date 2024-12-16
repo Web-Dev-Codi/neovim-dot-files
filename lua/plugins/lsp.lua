@@ -85,6 +85,17 @@ return {
         tsserver = {
           enabled = false,
         },
+        emmet_language_server = {
+          enabled = true,
+          filetypes = {
+            "css",
+            "html",
+            "json",
+            "jsonc",
+            "javascript",
+            "javascriptreact",
+          },
+        },
         ts_ls = {
           enabled = false,
         },
@@ -109,7 +120,7 @@ return {
             "typescript.tsx",
           },
         },
-        emmet_ls = {},
+        -- emmet_ls = {},
         vtsls = {
           -- explicitly add default filetypes, so that we can extend
           -- them in related extras
@@ -213,7 +224,6 @@ return {
             },
           },
         },
-        emmet_language_server = {},
         lua_ls = {
           -- mason = false, -- set to false if you don't want this server to be installed with mason
           -- Use this to add any additional keymaps
