@@ -20,6 +20,7 @@ return {
   end,
   event = "LazyFile",
   dependencies = {
+    "saghen/blink.cmp",
     "mason.nvim",
     { "williamboman/mason-lspconfig.nvim", config = function() end },
   },
@@ -92,8 +93,6 @@ return {
             "html",
             "json",
             "jsonc",
-            "javascript",
-            "javascriptreact",
           },
         },
         ts_ls = {
@@ -152,7 +151,7 @@ return {
                 enumMemberValues = { enabled = true },
                 functionLikeReturnTypes = { enabled = true },
                 parameterNames = { enabled = "literals" },
-                parameterTypes = { enabled = true },
+                parameterTypes = { enabled = false },
                 propertyDeclarationTypes = { enabled = true },
                 variableTypes = { enabled = false },
               },
@@ -166,7 +165,7 @@ return {
                 functionLikeReturnTypes = { enabled = false },
                 parameterNames = { enabled = "none" },
                 parameterTypes = { enabled = false },
-                propertyDeclarationTypes = { enabled = true },
+                propertyDeclarationTypes = { enabled = false },
                 variableTypes = { enabled = false },
               },
             },
@@ -247,7 +246,7 @@ return {
               hint = {
                 enable = true,
                 setType = false,
-                paramType = true,
+                paramType = false,
                 paramName = "Disable",
                 semicolon = "Disable",
                 arrayIndex = "Disable",
