@@ -21,6 +21,65 @@ return {
     -- your own keymap.
     keymap = { preset = "super-tab" },
 
+    completion = {
+    keyword = {
+      -- 'prefix' will fuzzy match on the text before the cursor
+      -- 'full' will fuzzy match on the text before *and* after the cursor
+      -- example: 'foo_|_bar' will match 'foo_' for 'prefix' and 'foo__bar' for 'full'
+      range = 'prefix',
+      -- Regex used to get the text when fuzzy matching
+      regex = '[-_]\\|\\k',
+      -- After matching with regex, any characters matching this regex at the prefix will be excluded
+      exclude_from_prefix_regex = '[\\-]',
+    },
+
+    trigger = {
+      -- When false, will not show the completion window automatically when in a snippet
+      show_in_snippet = false,
+      -- When true, will show the completion window after typing a character that matches the `keyword.regex`
+      show_on_keyword = true,
+      -- When true, will show the completion window after typing a trigger character
+      show_on_trigger_character = true,
+      -- LSPs can indicate when to show the completion window via trigger characters
+      -- however, some LSPs (i.e. tsserver) return characters that would essentially
+      -- always show the window. We block these by default.
+      show_on_blocked_trigger_characters = { ' ', '\n', '\t' },
+      -- When both this and show_on_trigger_character are true, will show the completion window
+      -- when the cursor comes after a trigger character after accepting an item
+      show_on_accept_on_trigger_character = false,
+      -- When both this and show_on_trigger_character are true, will show the completion window
+      -- when the cursor comes after a trigger character when entering insert mode
+      show_on_insert_on_trigger_character = true,
+      -- List of trigger characters (on top of `show_on_blocked_trigger_characters`) that won't trigger
+      -- the completion window when the cursor comes after a trigger character when
+      -- entering insert mode/accepting an item
+      show_on_x_blocked_trigger_characters = { "'", '"', '(' },
+    },
+
+    list = {
+      -- Maximum number of items to display
+      max_items = 200,
+      -- Controls if completion items will be selected automatically,
+      -- and whether selection automatically inserts
+      selection = 'preselect',
+      -- Controls how the completion items are selected
+      -- 'preselect' will automatically select the first item in the completion list
+      -- 'manual' will not select any item by default
+      -- 'auto_insert' will not select any item by default, and insert the completion items automatically
+      -- when selecting them
+      --
+      -- You may want to bind a key to the `cancel` command, which will undo the selection
+      -- when using 'auto_insert'
+      cycle = {
+        -- When `true`, calling `select_next` at the *bottom* of the completion list
+        -- will select the *first* completion item.
+        from_bottom = true,
+        -- When `true`, calling `select_prev` at the *top* of the completion list
+        -- will select the *last* completion item.
+        from_top = true,
+      },
+    },
+
     appearance = {
       -- Sets the fallback highlight groups to nvim-cmp's highlight groups
       -- Useful for when your theme doesn't support blink.cmp
