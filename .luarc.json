@@ -6,5 +6,8 @@
     "Lua.runtime.path": [
         "lua/?.lua",
         "lua/?/init.lua"
+    ],
+    "diagnostics.disable": [
+        "missing-fields"
     ]
 }
