@@ -23,9 +23,9 @@ return {
 
     local opts = {
       options = {
-        theme = "auto",
+        theme = "16color",
         globalstatus = vim.o.laststatus == 3,
-        disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter", "snacks_dashboard" } },
+        disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter", "snacks_dashboard", "neo-tree" } },
       },
       sections = {
         lualine_a = { "mode" },
