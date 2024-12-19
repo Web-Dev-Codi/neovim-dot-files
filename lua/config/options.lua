@@ -17,7 +17,7 @@ local opt = vim.opt
 opt.winblend = 0
 opt.pumblend = 0
 opt.termguicolors = true
-
+vim.g.lazyvim_eslint_auto_format = true
 vim.schedule(function()
   vim.opt.clipboard = "unnamedplus"
 end)
