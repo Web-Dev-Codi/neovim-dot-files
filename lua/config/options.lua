@@ -3,7 +3,8 @@
 -- Add any additional options here
 
 vim.loader.enable()
-
+vim.g.lazyvim_picker = "fzf"
+vim.g.lazyvim_picker = "telescope"
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 -- Set to true if you have a Nerd Font installed and selected in the terminal
