@@ -93,6 +93,10 @@ return {
             "html",
             "json",
             "jsonc",
+            "javascript",
+            "typescript",
+            "javascriptreact",
+            "typescriptreact",
           },
         },
         ts_ls = {
