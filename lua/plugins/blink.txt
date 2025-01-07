@@ -83,43 +83,43 @@ return {
         },
       },
 
-      appearance = {
-        -- Sets the fallback highlight groups to nvim-cmp's highlight groups
-        -- Useful for when your theme doesn't support blink.cmp
-        -- will be removed in a future release
-        use_nvim_cmp_as_default = true,
-        -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-        -- Adjusts spacing to ensure icons are aligned
-        nerd_font_variant = "normal",
-        kind_icons = {
-          Text = "󰉿",
-          Method = "m",
-          Function = "󰊕",
-          Constructor = "",
-          Field = "",
-          Variable = "󰆧",
-          Class = "󰌗",
-          Interface = "",
-          Module = "",
-          Property = "",
-          Unit = "",
-          Value = "󰎠",
-          Enum = "",
-          Keyword = "󰌋",
-          Snippet = "",
-          Color = "󰏘",
-          File = "󰈙",
-          Reference = "",
-          Folder = "󰉋",
-          EnumMember = "",
-          Constant = "󰇽",
-          Struct = "",
-          Event = "",
-          Operator = "󰆕",
-          TypeParameter = "󰊄",
-        },
-      },
-
+      -- appearance = {
+      --   -- Sets the fallback highlight groups to nvim-cmp's highlight groups
+      --   -- Useful for when your theme doesn't support blink.cmp
+      --   -- will be removed in a future release
+      --   use_nvim_cmp_as_default = true,
+      --   -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+      --   -- Adjusts spacing to ensure icons are aligned
+      --   nerd_font_variant = "normal",
+      --   kind_icons = {
+      --     Text = "󰉿",
+      --     Method = "m",
+      --     Function = "󰊕",
+      --     Constructor = "",
+      --     Field = "",
+      --     Variable = "󰆧",
+      --     Class = "󰌗",
+      --     Interface = "",
+      --     Module = "",
+      --     Property = "",
+      --     Unit = "",
+      --     Value = "󰎠",
+      --     Enum = "",
+      --     Keyword = "󰌋",
+      --     Snippet = "",
+      --     Color = "󰏘",
+      --     File = "󰈙",
+      --     Reference = "",
+      --     Folder = "󰉋",
+      --     EnumMember = "",
+      --     Constant = "󰇽",
+      --     Struct = "",
+      --     Event = "",
+      --     Operator = "󰆕",
+      --     TypeParameter = "󰊄",
+      --   },
+      -- },
+      --
       menu = {
         enabled = true,
         scrolloff = 2,
@@ -168,6 +168,5 @@ return {
     },
     -- allows extending the providers array elsewhere in your config
     -- without having to redefine it
-    opts_extend = { "sources.default" },
   },
 }
