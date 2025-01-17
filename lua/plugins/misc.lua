@@ -213,4 +213,7 @@ return {
     end,
   },
   { "roobert/tailwindcss-colorizer-cmp.nvim", opts = {} },
+  {
+    "tjdevries/present.nvim",
+  },
 }
