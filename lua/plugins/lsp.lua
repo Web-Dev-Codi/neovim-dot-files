@@ -139,11 +139,11 @@ return {
                 completeFunctionCalls = true,
               },
               inlayHints = {
-                enumMemberValues = { enabled = true },
+                enumMemberValues = { enabled = false },
                 functionLikeReturnTypes = { enabled = false },
                 parameterNames = { enabled = "literals" },
                 parameterTypes = { enabled = false },
-                propertyDeclarationTypes = { enabled = true },
+                propertyDeclarationTypes = { enabled = false },
                 variableTypes = { enabled = false },
               },
             },
