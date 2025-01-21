@@ -26,6 +26,10 @@ return {
     },
   },
   {
+    "folke/neoconf.nvim",
+    dependencies = { "neovim/nvim-lspconfig" },
+  },
+  {
     "folke/noice.nvim",
     optional = true,
     opts = {
@@ -180,24 +184,6 @@ return {
     end,
   },
   {
-    "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "eslint-lsp",
-        "hadolint",
-        "prettierd",
-        "shfmt",
-        "stylua",
-        "selene",
-        "shellcheck",
-        "delve",
-        "sql-formatter",
-        "biome",
-        "codelldb",
-      },
-    },
-  },
-  {
     "hrsh7th/nvim-cmp",
     optional = true,
     dependencies = {
@@ -213,4 +199,28 @@ return {
     end,
   },
   { "roobert/tailwindcss-colorizer-cmp.nvim", opts = {} },
+  {
+    "vuki656/package-info.nvim",
+    ft = "json",
+    dependencies = { "MunifTanjim/nui.nvim" },
+    config = function()
+      require("package-info").setup({
+        autostart = false,
+        package_manager = "npm",
+        colors = {
+          outdated = "#db4b4b",
+        },
+        hide_up_to_date = true,
+      })
+    end,
+  },
+  {
+    "rachartier/tiny-inline-diagnostic.nvim",
+    event = "VeryLazy", -- Or `LspAttach`
+    priority = 1000, -- needs to be loaded in first
+    config = function()
+      require("tiny-inline-diagnostic").setup()
+      vim.diagnostic.config({ virtual_text = false }) -- Only if needed in your configuration, if you already have native LSP diagnostics
+    end,
+  },
 }

@@ -1,0 +1,68 @@
+-- biome.lua
+return {
+  setup = function(opts)
+    opts = {}
+
+    -- Check if biome is installed
+    local function biome_is_installed()
+      local handle = io.popen("which biome")
+      if handle then
+        local result = handle:read("*a")
+        handle:close()
+        return result and result:len() > 0
+      end
+      return false
+    end
+
+    -- Set up null-ls sources
+    local null_ls = require("null-ls")
+
+    -- Register biome as a formatting source
+    null_ls.register(null_ls.builtins.formatting.biome.with({
+      condition = function(utils)
+        return utils.root_has_file({ "biome.json" })
+      end,
+    }))
+
+    -- Register biome as a diagnostics source
+    null_ls.register(null_ls.builtins.diagnostics.biome.with({
+      condition = function(utils)
+        return utils.root_has_file({ "biome.json" })
+      end,
+    }))
+
+    -- Set up autocommands for supported file types
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = { "javascript", "typescript", "javascriptreact", "typescriptreact", "json" },
+      callback = function()
+        -- Check if biome is installed
+        if not biome_is_installed() then
+          vim.notify(
+            "Biome is not installed. Please install it globally using 'npm install -g @biomejs/biome'",
+            vim.log.levels.WARN
+          )
+          return
+        end
+
+        -- Set up formatting command
+        vim.api.nvim_buf_create_user_command(0, "BiomeFormat", function()
+          vim.lsp.buf.format({
+            filter = function(client)
+              return client.name == "null-ls"
+            end,
+          })
+        end, {})
+
+        -- Enable format on save if not disabled in opts
+        if opts.format_on_save ~= false then
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = 0,
+            callback = function()
+              vim.cmd("BiomeFormat")
+            end,
+          })
+        end
+      end,
+    })
+  end,
+}

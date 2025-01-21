@@ -92,7 +92,15 @@ return {
           -- to fully override the default_config, change the below
           -- filetypes = {}
         },
-        jsonls = {},
+        jsonls = {
+          settings = {
+            completion = true,
+            comments = {
+              enable = true,
+            },
+          },
+          filetypes = { "json", "jsonc" },
+        },
         rust_analyzer = {
           enabled = true,
         },
