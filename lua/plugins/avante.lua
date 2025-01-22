@@ -51,6 +51,9 @@ return {
         switch_windows = "<Tab>",
         reverse_switch_windows = "<S-Tab>",
       },
+      ask = "<leader>ua", -- ask
+      edit = "<leader>ue", -- edit
+      refresh = "<leader>ur", -- refresh
     },
     hints = { enabled = true },
     windows = {
