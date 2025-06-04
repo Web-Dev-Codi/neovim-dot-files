@@ -8,6 +8,8 @@ local map = vim.keymap.set
 -- Disable the spacebar key's default behavior in Normal and Visual modes
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
+-- Lua
+vim.keymap.set("n", "<leader>mr", require("micropython_nvim").run)
 -- For conciseness
 local opts = { noremap = true, silent = true }
 

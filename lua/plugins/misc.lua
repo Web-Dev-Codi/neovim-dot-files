@@ -180,6 +180,9 @@ return {
     end,
   },
   {
+    "tpope/vim-sleuth", -- Automatically detects which indents should be used in the current buffer
+  },
+  {
     "hrsh7th/nvim-cmp",
     optional = true,
     dependencies = {
@@ -263,5 +266,9 @@ return {
       -- idle time if user input is required.
       silent = false,
     },
+  },
+  {
+    "jim-at-jibba/micropython.nvim",
+    dependencies = { "akinsho/toggleterm.nvim", "stevearc/dressing.nvim" },
   },
 }

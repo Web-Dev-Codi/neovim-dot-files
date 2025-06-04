@@ -95,9 +95,10 @@ return {
           { "location", padding = { left = 0, right = 1 } },
         },
         lualine_z = {
-          function()
-            return " " .. os.date("%R")
-          end,
+          {
+            require("micropython_nvim").statusline,
+            cond = package.loaded["micropython_nvim"] and require("micropython_nvim").exists,
+          },
         },
       },
       extensions = { "neo-tree", "lazy" },

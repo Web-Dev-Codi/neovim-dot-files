@@ -1,18 +1,21 @@
 return {
   {
     "smoka7/multicursors.nvim",
+    event = "VeryLazy",
     dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "smoka7/hydra.nvim",
+      "nvimtools/hydra.nvim",
     },
     cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
-    -- stylua: ignore
     keys = {
-      { mode = { "v", "n" }, "<leader>M", "<cmd>MCstart<cr>", desc = "Multicursor" },
+      {
+        mode = { "v", "n" },
+        "<Leader>M",
+        "<cmd>MCstart<cr>",
+        desc = "Create a selection for selected text or word under the cursor",
+      },
     },
     opts = {
       hint_config = {
-        border = "rounded",
         position = "bottom-right",
       },
       generate_hints = {

@@ -82,8 +82,14 @@ return {
         ts_ls = {
           enabled = false,
         },
-        html = { filetypes = { "html" } },
-        cssls = {},
+        html = {
+          enabled = true,
+          filetypes = { "html" },
+        },
+        cssls = {
+          enabled = true,
+          filetypes = { "css", "scss", "less" },
+        },
         tailwindcss = {
           -- exclude a filetype from the default_config
           filetypes_exclude = { "markdown" },
@@ -147,9 +153,9 @@ return {
                 completeFunctionCalls = true,
               },
               inlayHints = {
-                enumMemberValues = { enabled = true },
+                enumMemberValues = { enabled = false },
                 functionLikeReturnTypes = { enabled = false },
-                parameterNames = { enabled = "literals" },
+                parameterNames = { enabled = "none" },
                 parameterTypes = { enabled = false },
                 propertyDeclarationTypes = { enabled = true },
                 variableTypes = { enabled = false },
