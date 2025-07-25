@@ -37,9 +37,9 @@ return {
               },
               schema = {
                 model = {
-                  default = "llama3.2:8b",
+                  default = "llama3:8b",
                   choices = {
-                    "llama3.2:8b",
+                    "llama3:8b",
                     "codellama:7b",
                     "codellama:13b",
                     "deepseek-coder:6.7b",
@@ -87,7 +87,7 @@ return {
               },
               schema = {
                 model = {
-                  default = "llama3.2:8b", -- Better reasoning for reviews
+                  default = "llama3:8b", -- Better reasoning for reviews
                 },
                 num_ctx = {
                   default = 8192,

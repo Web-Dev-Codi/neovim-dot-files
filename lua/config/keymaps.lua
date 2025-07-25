@@ -42,13 +42,13 @@ vim.keymap.set("n", "<Right>", ":vertical resize +2<CR>", opts)
 -- Buffers
 vim.keymap.set("n", "<Tab>", ":bnext<CR>", opts)
 vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", opts)
-vim.keymap.set("n", "<leader>x", ":bdelete!<CR>", opts) -- close buffer
+vim.keymap.set("n", "<leader>x", ":bdelete!<CR>", opts)   -- close buffer
 vim.keymap.set("n", "<leader>b", "<cmd> enew <CR>", opts) -- new buffer
 
 -- Window management
-vim.keymap.set("n", "<leader>v", "<C-w>v", opts) -- split window vertically
-vim.keymap.set("n", "<leader>h", "<C-w>s", opts) -- split window horizontally
-vim.keymap.set("n", "<leader>se", "<C-w>=", opts) -- make split windows equal width & height
+vim.keymap.set("n", "<leader>v", "<C-w>v", opts)      -- split window vertically
+vim.keymap.set("n", "<leader>h", "<C-w>s", opts)      -- split window horizontally
+vim.keymap.set("n", "<leader>se", "<C-w>=", opts)     -- make split windows equal width & height
 vim.keymap.set("n", "<leader>xs", ":close<CR>", opts) -- close current split window
 
 -- Navigate between splits
@@ -58,10 +58,10 @@ vim.keymap.set("n", "<C-h>", ":wincmd h<CR>", opts)
 vim.keymap.set("n", "<C-l>", ":wincmd l<CR>", opts)
 
 -- Tabs
-vim.keymap.set("n", "<leader>to", ":tabnew<CR>", opts) -- open new tab
+vim.keymap.set("n", "<leader>to", ":tabnew<CR>", opts)   -- open new tab
 vim.keymap.set("n", "<leader>tx", ":tabclose<CR>", opts) -- close current tab
-vim.keymap.set("n", "<leader>tn", ":tabn<CR>", opts) --  go to next tab
-vim.keymap.set("n", "<leader>tp", ":tabp<CR>", opts) --  go to previous tab
+vim.keymap.set("n", "<leader>tn", ":tabn<CR>", opts)     --  go to next tab
+vim.keymap.set("n", "<leader>tp", ":tabp<CR>", opts)     --  go to previous tab
 
 -- Toggle line wrapping
 vim.keymap.set("n", "<leader>lw", "<cmd>set wrap!<CR>", opts)
@@ -87,18 +87,18 @@ map({ "n", "v" }, "<Leader>aa", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "T
 map({ "n", "v" }, "<Leader>ac", "<cmd>CodeCompanionChat<cr>", { desc = "Open CodeCompanion Chat" })
 
 -- Code-specific actions (work in visual mode)
-map("v", "<Leader>cr", "", { desc = "Code Review" }) -- Handled by prompt library
+map("v", "<Leader>cr", "", { desc = "Code Review" })    -- Handled by prompt library
 map("v", "<Leader>ct", "", { desc = "Generate Tests" }) -- Handled by prompt library
-map("v", "<Leader>ce", "", { desc = "Explain Code" }) -- Handled by prompt library
-map("v", "<Leader>cf", "", { desc = "Fix Code" }) -- Handled by prompt library
-map("v", "<Leader>co", "", { desc = "Optimize Code" }) -- Handled by prompt library
-map("v", "<Leader>cc", "", { desc = "Add Comments" }) -- Handled by prompt library
+map("v", "<Leader>ce", "", { desc = "Explain Code" })   -- Handled by prompt library
+map("v", "<Leader>cf", "", { desc = "Fix Code" })       -- Handled by prompt library
+map("v", "<Leader>co", "", { desc = "Optimize Code" })  -- Handled by prompt library
+map("v", "<Leader>cc", "", { desc = "Add Comments" })   -- Handled by prompt library
 
 -- Quick inline completions
 map("n", "<Leader>ai", function()
   require("codecompanion").prompt("Complete this code", {
     adapter = "code_completion",
-    strategy = "inline",
+    strategy = "inline"
   })
 end, { desc = "Inline Code Completion" })
 
@@ -111,7 +111,7 @@ map("n", "<Leader>as", function()
   local content = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n")
   local filetype = vim.bo.filetype
   require("codecompanion").chat({
-    context = "Current file content:\n```" .. filetype .. "\n" .. content .. "\n```",
+    context = "Current file content:\n```" .. filetype .. "\n" .. content .. "\n```"
   })
 end, { desc = "Send File to Chat" })
 
@@ -122,7 +122,7 @@ map("n", "<Leader>al", function()
     if result and result.contents then
       local hover_content = vim.lsp.util.convert_input_to_markdown_lines(result.contents)
       require("codecompanion").chat({
-        context = "LSP hover information:\n" .. table.concat(hover_content, "\n"),
+        context = "LSP hover information:\n" .. table.concat(hover_content, "\n")
       })
     end
   end)
@@ -130,7 +130,8 @@ end, { desc = "Send LSP Hover to Chat" })
 
 -- Model switching
 map("n", "<Leader>am", function()
-  local models = { "llama3.2:8b", "codellama:7b", "codellama:13b", "deepseek-coder:6.7b" }
+  local models = { "llama3.1:8b", "llama3:8b", "llama3.2:3b", "codellama:7b", "codellama:13b", "deepseek-coder:6.7b",
+    "qwen2.5-coder:7b", "codegemma:7b" }
   vim.ui.select(models, {
     prompt = "Select model:",
   }, function(choice)
