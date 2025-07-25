@@ -18,7 +18,7 @@ return {
     -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
     -- See the full "keymap" documentation for information on defining your own keymap.
     keymap = {
-      preset = "super-tab",
+      preset = "enter",
       ["<Up>"] = { "select_prev", "fallback" },
       ["<Down>"] = { "select_next", "fallback" },
     },

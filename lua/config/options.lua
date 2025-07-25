@@ -25,6 +25,7 @@ vim.g.lazyvim_eslint_auto_format = true
 vim.schedule(function()
   vim.opt.clipboard = "unnamedplus"
 end)
+
 -- views can only be fully collapsed with the global statusline
 opt.laststatus = 2
 opt.tabstop = 2
@@ -39,6 +40,7 @@ opt.spell = true
 opt.spelllang:append("en")
 opt.wrap = true
 opt.completeopt = "menuone,noselect"
+opt.foldenable = false -- Disable folding completely
 
 -- Enable EditorConfig integration
 vim.g.editorconfig = true

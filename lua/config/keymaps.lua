@@ -74,11 +74,70 @@ vim.keymap.set("v", ">", ">gv", opts)
 vim.keymap.set("v", "p", '"_dP', opts)
 
 -- Diagnostic keymaps
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
 vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 -- Save and load session
 vim.keymap.set("n", "<leader>ss", ":mksession! .session.vim<CR>", { noremap = true, silent = false })
 vim.keymap.set("n", "<leader>sl", ":source .session.vim<CR>", { noremap = true, silent = false })
+
+-- CodeCompanion Chat
+map({ "n", "v" }, "<Leader>a", "<cmd>CodeCompanionActions<cr>", { desc = "CodeCompanion Actions" })
+map({ "n", "v" }, "<Leader>aa", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Toggle CodeCompanion Chat" })
+map({ "n", "v" }, "<Leader>ac", "<cmd>CodeCompanionChat<cr>", { desc = "Open CodeCompanion Chat" })
+
+-- Code-specific actions (work in visual mode)
+map("v", "<Leader>cr", "", { desc = "Code Review" }) -- Handled by prompt library
+map("v", "<Leader>ct", "", { desc = "Generate Tests" }) -- Handled by prompt library
+map("v", "<Leader>ce", "", { desc = "Explain Code" }) -- Handled by prompt library
+map("v", "<Leader>cf", "", { desc = "Fix Code" }) -- Handled by prompt library
+map("v", "<Leader>co", "", { desc = "Optimize Code" }) -- Handled by prompt library
+map("v", "<Leader>cc", "", { desc = "Add Comments" }) -- Handled by prompt library
+
+-- Quick inline completions
+map("n", "<Leader>ai", function()
+  require("codecompanion").prompt("Complete this code", {
+    adapter = "code_completion",
+    strategy = "inline",
+  })
+end, { desc = "Inline Code Completion" })
+
+-- LSP Integration commands
+map("n", "<Leader>ad", "<cmd>CodeCompanionFixDiagnostics<cr>", { desc = "Fix LSP Diagnostics" })
+
+-- Advanced features
+map("n", "<Leader>as", function()
+  -- Send current file context to chat
+  local content = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n")
+  local filetype = vim.bo.filetype
+  require("codecompanion").chat({
+    context = "Current file content:\n```" .. filetype .. "\n" .. content .. "\n```",
+  })
+end, { desc = "Send File to Chat" })
+
+map("n", "<Leader>al", function()
+  -- Send LSP hover info to chat
+  local params = vim.lsp.util.make_position_params()
+  vim.lsp.buf_request(0, "textDocument/hover", params, function(err, result)
+    if result and result.contents then
+      local hover_content = vim.lsp.util.convert_input_to_markdown_lines(result.contents)
+      require("codecompanion").chat({
+        context = "LSP hover information:\n" .. table.concat(hover_content, "\n"),
+      })
+    end
+  end)
+end, { desc = "Send LSP Hover to Chat" })
+
+-- Model switching
+map("n", "<Leader>am", function()
+  local models = { "llama3.2:8b", "codellama:7b", "codellama:13b", "deepseek-coder:6.7b" }
+  vim.ui.select(models, {
+    prompt = "Select model:",
+  }, function(choice)
+    if choice then
+      -- Update the default model for current session
+      require("codecompanion.adapters").get("ollama").schema.model.default = choice
+      print("Switched to model: " .. choice)
+    end
+  end)
+end, { desc = "Switch Model" })
