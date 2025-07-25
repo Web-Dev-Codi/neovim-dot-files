@@ -271,4 +271,33 @@ return {
     "jim-at-jibba/micropython.nvim",
     dependencies = { "akinsho/toggleterm.nvim", "stevearc/dressing.nvim" },
   },
+  {
+    "OXY2DEV/markview.nvim",
+    lazy = true,
+    opts = {
+      preview = {
+        filetypes = { "markdown", "codecompanion" },
+        ignore_buftypes = {},
+      },
+    },
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    dependencies = { "OXY2DEV/markview.nvim" },
+    lazy = false,
+
+    -- ... All other options.
+  },
+  {
+    "HakonHarnes/img-clip.nvim",
+    opts = {
+      filetypes = {
+        codecompanion = {
+          prompt_for_file_name = false,
+          template = "[Image]($FILE_PATH)",
+          use_absolute_path = true,
+        },
+      },
+    },
+  },
 }

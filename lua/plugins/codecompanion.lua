@@ -10,6 +10,19 @@ return {
       "stevearc/dressing.nvim", -- Optional but recommended for better UI
     },
     config = function()
+      require("mason").setup({
+        ui = {
+          icons = {
+            show_repository = false,
+          },
+        },
+      })
+
+      local mason_lspconfig = require("mason-lspconfig")
+      mason_lspconfig.setup({
+        ensure_installed = { "sumneko_lua" }, -- Ensure Lua language server is installed
+      })
+
       require("codecompanion").setup({
         strategies = {
           chat = {
@@ -37,13 +50,17 @@ return {
               },
               schema = {
                 model = {
-                  default = "llama3:8b",
+                  default = "llama3.1:8b",
                   choices = {
-                    "llama3:8b",
+                    "llama3.1:8b",
+                    "llama3.2:3b",
                     "codellama:7b",
                     "codellama:13b",
                     "deepseek-coder:6.7b",
+                    "qwen2.5-coder:7b",
+                    "codegemma:7b",
                     "phind-codellama:34b",
+                    "fastcode:latest",
                   },
                 },
                 num_ctx = {
@@ -87,7 +104,7 @@ return {
               },
               schema = {
                 model = {
-                  default = "llama3:8b", -- Better reasoning for reviews
+                  default = "llama3.1:8b", -- Better reasoning for reviews
                 },
                 num_ctx = {
                   default = 8192,
@@ -244,6 +261,37 @@ Use the appropriate testing framework for the language.]],
                 content = function(context)
                   local code = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
                   return "Add comments to this code:\n\n```" .. context.filetype .. "\n" .. code .. "\n```"
+                end,
+              },
+            },
+          },
+          ["Generate documentation"] = {
+            strategy = "chat",
+            adapter = "ollama",
+            description = "Generate documentation for the selected code",
+            opts = {
+              mapping = "<Leader>cd",
+              modes = { "v" },
+            },
+            prompts = {
+              {
+                role = "system",
+                content = [[You are an expert technical writer specializing in code documentation. Create comprehensive and clear documentation for the provided code that follows these guidelines:
+1. Begin with a brief overview of what the code does
+2. Document function parameters, return values, and types
+3. Explain key algorithms or logic flows
+4. Note any side effects or important behaviors
+5. Include usage examples where appropriate
+6. Document any dependencies or requirements
+7. Follow language-specific documentation standards (JSDoc, docstrings, etc.)
+
+Adapt your documentation style to match the language and context of the code.]],
+              },
+              {
+                role = "user",
+                content = function(context)
+                  local code = require("codecompanion.helpers.actions").get_code(context.start_line, context.end_line)
+                  return "Generate documentation for this code:\n\n```" .. context.filetype .. "\n" .. code .. "\n```"
                 end,
               },
             },
