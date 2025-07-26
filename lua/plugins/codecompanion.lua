@@ -50,17 +50,20 @@ return {
               },
               schema = {
                 model = {
-                  default = "llama3.1:8b",
+                  default = "phind-codellama:34b",
                   choices = {
-                    "llama3.1:8b",
-                    "llama3.2:3b",
+                    "codegemma:7b",
                     "codellama:7b",
                     "codellama:13b",
+                    "codellama:34b",
+                    "deepcoder:14b",
                     "deepseek-coder:6.7b",
-                    "qwen2.5-coder:7b",
-                    "codegemma:7b",
-                    "phind-codellama:34b",
+                    "deepseek-r1:32b",
                     "fastcode:latest",
+                    "llama3.1:8b",
+                    "llama3.2:3b",
+                    "phind-codellama:34b",
+                    "qwen2.5-coder:7b",
                   },
                 },
                 num_ctx = {
@@ -265,7 +268,7 @@ Use the appropriate testing framework for the language.]],
               },
             },
           },
-          ["Generate documentation"] = {
+          ["Generate Documentation"] = {
             strategy = "chat",
             adapter = "ollama",
             description = "Generate documentation for the selected code",

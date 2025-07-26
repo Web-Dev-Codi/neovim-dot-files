@@ -429,9 +429,9 @@ Code to refactor:
           return d.severity == vim.diagnostic.severity.ERROR
         end, diagnostics)
 
-        if #errors > 0 and #errors <= 3 then -- Don't spam for too many errors
-          vim.notify(string.format("Found %d errors. Use <Leader>ad to get AI suggestions", #errors))
-        end
+        -- if #errors > 0 and #errors <= 3 then -- Don't spam for too many errors
+        --   vim.notify(string.format("Found %d errors. Use <Leader>ad to get AI suggestions", #errors))
+        -- end
       end,
     })
 

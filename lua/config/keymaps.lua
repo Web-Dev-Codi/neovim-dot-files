@@ -87,13 +87,13 @@ map({ "n", "v" }, "<Leader>aa", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "T
 map({ "n", "v" }, "<Leader>ac", "<cmd>CodeCompanionChat<cr>", { desc = "Open CodeCompanion Chat" })
 
 -- Code-specific actions (work in visual mode)
-map("v", "<Leader>cr", "", { desc = "Code Review" }) -- Handled by prompt library
-map("v", "<Leader>ct", "", { desc = "Generate Tests" }) -- Handled by prompt library
-map("v", "<Leader>ce", "", { desc = "Explain Code" }) -- Handled by prompt library
-map("v", "<Leader>cf", "", { desc = "Fix Code" }) -- Handled by prompt library
-map("v", "<Leader>co", "", { desc = "Optimize Code" }) -- Handled by prompt library
-map("v", "<Leader>cc", "", { desc = "Add Comments" }) -- Handled by prompt library
-map("v", "<Leader>cd", "", { desc = "Generate Documentation" }) -- Handled by prompt library
+map("v", "<Leader>cr", "", opts) -- Handled by prompt library
+map("v", "<Leader>ct", "", opts) -- Handled by prompt library
+map("v", "<Leader>ce", "", opts) -- Handled by prompt library
+map("v", "<Leader>cf", "", opts) -- Handled by prompt library
+map("v", "<Leader>co", "", opts) -- Handled by prompt library
+map("v", "<Leader>cc", "", opts) -- Handled by prompt library
+map("v", "<Leader>cd", "", opts) -- Handled by prompt library
 
 -- Quick inline completions
 map("n", "<Leader>ai", function()
@@ -132,13 +132,18 @@ end, { desc = "Send LSP Hover to Chat" })
 -- Model switching
 map("n", "<Leader>am", function()
   local models = {
-    "llama3.1:8b",
-    "llama3.2:3b",
+    "codegemma:7b",
     "codellama:7b",
     "codellama:13b",
+    "codellama:34b",
+    "deepcoder:14b",
     "deepseek-coder:6.7b",
+    "deepseek-r1:32b",
+    "fastcode:latest",
+    "llama3.1:8b",
+    "llama3.2:3b",
+    "phind-codellama:34b",
     "qwen2.5-coder:7b",
-    "codegemma:7b",
   }
   vim.ui.select(models, {
     prompt = "Select model:",
