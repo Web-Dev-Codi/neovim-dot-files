@@ -128,6 +128,7 @@ return {
       })
     end,
   },
+  { "roobert/tailwindcss-colorizer-cmp.nvim", opts = {} },
   {
     "akinsho/bufferline.nvim",
     version = "*",
@@ -176,34 +177,6 @@ return {
           },
           sort_by = "insert_after_current",
         }
-      })
-    end,
-  },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
-    config = function()
-      require("ibl").setup({
-        indent = {
-          char = "│",
-          tab_char = "│",
-        },
-        scope = { enabled = false },
-        exclude = {
-          filetypes = {
-            "help",
-            "alpha",
-            "dashboard",
-            "neo-tree",
-            "Trouble",
-            "trouble",
-            "lazy",
-            "mason",
-            "notify",
-            "toggleterm",
-            "lazyterm",
-          },
-        },
       })
     end,
   },
