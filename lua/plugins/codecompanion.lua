@@ -20,7 +20,7 @@ return {
 
       local mason_lspconfig = require("mason-lspconfig")
       mason_lspconfig.setup({
-        ensure_installed = { "sumneko_lua" }, -- Ensure Lua language server is installed
+        ensure_installed = { "lua_ls" }, -- Ensure Lua language server is installed
       })
 
       require("codecompanion").setup({
@@ -378,6 +378,8 @@ Adapt your documentation style to match the language and context of the code.]],
     "hrsh7th/nvim-cmp",
     optional = true,
     opts = function(_, opts)
+      -- Ensure opts.sources exists
+      opts.sources = opts.sources or {}
       -- Add codecompanion as a completion source
       table.insert(opts.sources, {
         name = "codecompanion",

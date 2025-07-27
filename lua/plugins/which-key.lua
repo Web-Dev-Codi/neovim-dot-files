@@ -81,6 +81,12 @@ return {
         { "<",          "<gv",                                            desc = "Indent left (stay in visual)",     mode = "v" },
         { ">",          ">gv",                                            desc = "Indent right (stay in visual)",    mode = "v" },
         { "p",          '"_dP',                                           desc = "Paste (keep register)",            mode = "v" },
+        { "J",          ":m '>+1<CR>gv=gv",                              desc = "Move line down",                   mode = "v" },
+        { "K",          ":m '<-2<CR>gv=gv",                              desc = "Move line up",                     mode = "v" },
+
+        -- Special character mappings
+        { "J",          "mzJ`z",                                         desc = "Join lines (keep cursor)" },
+        { "Q",          "<nop>",                                          desc = "Disable Ex mode" },
 
         -- File operations (Telescope)
         { "<leader>f",  group = "file" },
@@ -100,7 +106,7 @@ return {
         { "<leader>bp", "<cmd>bprevious<cr>",                             desc = "Previous Buffer" },
         { "<leader>bb", "<cmd>Telescope buffers<cr>",                     desc = "Switch Buffer" },
         { "<leader>x",  ":bdelete!<CR>",                                  desc = "Close Buffer" },
-        { "<leader>b",  "<cmd>enew<CR>",                                  desc = "New Buffer" },
+        { "<leader>be", "<cmd>enew<CR>",                                  desc = "New Buffer" },
 
         -- Window management
         { "<leader>w",  group = "window" },
@@ -124,6 +130,7 @@ return {
         { "<leader>s",  group = "session" },
         { "<leader>ss", ":mksession! .session.vim<CR>",                   desc = "Save Session" },
         { "<leader>sl", ":source .session.vim<CR>",                       desc = "Load Session" },
+        { "<leader>sn", "<cmd>noautocmd w<CR>",                           desc = "Save Without Formatting" },
 
         -- Diagnostics
         { "<leader>d",  vim.diagnostic.open_float,                        desc = "Open Diagnostic Float" },
@@ -131,6 +138,26 @@ return {
 
         -- MicroPython
         { "<leader>mr", function() require("micropython_nvim").run() end, desc = "Run MicroPython" },
+        { "<leader>mx", "<cmd>!chmod +x %<CR>",                          desc = "Make File Executable" },
+
+        -- Clipboard operations
+        { "<leader>y",  group = "yank/clipboard" },
+        { "<leader>y",  [["+y]],                                          desc = "Yank to System Clipboard",        mode = { "n", "v" } },
+        { "<leader>Y",  [["+Y]],                                          desc = "Yank Line to System Clipboard" },
+        { "<leader>p",  [['"_dP']],                                       desc = "Paste Without Losing Register",    mode = "x" },
+        { "<leader>D",  [['"_d']],                                        desc = "Delete to Black Hole Register",    mode = { "n", "v" } },
+
+        -- Navigation and search
+        { "<leader>pv", function() vim.cmd.Ex() end,                     desc = "File Explorer (Ex)" },
+        { "<leader>sr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], desc = "Search and Replace Word" },
+        { "<C-f>",      "<cmd>silent !tmux neww tmux-sessionizer<CR>",   desc = "Tmux Sessionizer" },
+
+        -- Quickfix and Location List
+        { "<leader>c",  group = "quickfix" },
+        { "<leader>cn", "<cmd>cnext<CR>zz",                             desc = "Next Quickfix Item" },
+        { "<leader>cp", "<cmd>cprev<CR>zz",                             desc = "Previous Quickfix Item" },
+        { "<leader>ln", "<cmd>lnext<CR>zz",                             desc = "Next Location List Item" },
+        { "<leader>lp", "<cmd>lprev<CR>zz",                             desc = "Previous Location List Item" },
 
         -- CodeCompanion
         { "<leader>a",  group = "ai/codecompanion" },
@@ -230,13 +257,13 @@ return {
         { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>",                     desc = "Code Action" },
         { "<leader>ld", "<cmd>Telescope diagnostics bufnr=0<cr>",                     desc = "Document Diagnostics" },
         { "<leader>lw", "<cmd>Telescope diagnostics<cr>",                             desc = "Workspace Diagnostics" },
-        { "<leader>lf", "<cmd>lua vim.lsp.buf.format{async=true}<cr>",                desc = "Format" },
+        { "<leader>lf", function() vim.lsp.buf.format() end,                          desc = "Format Code" },
         { "<leader>li", "<cmd>LspInfo<cr>",                                           desc = "Info" },
         { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>",                          desc = "Rename" },
         { "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>",                    desc = "Document Symbols" },
         { "<leader>lS", "<cmd>Telescope lsp_workspace_symbols<cr>",                   desc = "Workspace Symbols" },
 
-        -- Git operations (Gitsigns)
+        -- Git operations (Gitsigns + LazyGit)
         { "<leader>g",  group = "git" },
         { "<leader>gb", "<cmd>Gitsigns blame_line<cr>",                               desc = "Blame Line" },
         { "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>",                             desc = "Preview Hunk" },
@@ -246,6 +273,9 @@ return {
         { "<leader>gS", "<cmd>Gitsigns stage_buffer<cr>",                             desc = "Stage Buffer" },
         { "<leader>gu", "<cmd>Gitsigns undo_stage_hunk<cr>",                          desc = "Undo Stage Hunk" },
         { "<leader>gd", "<cmd>Gitsigns diffthis<cr>",                                 desc = "Diff This" },
+        { "<leader>lg", "<cmd>LazyGit<cr>",                                           desc = "LazyGit" },
+        { "<leader>gc", "<cmd>LazyGitCurrentFile<cr>",                                desc = "LazyGit Current File" },
+        { "<leader>gf", "<cmd>LazyGitFilter<cr>",                                     desc = "LazyGit Filter" },
 
         -- File Explorer
         { "<leader>e",  group = "explorer" },

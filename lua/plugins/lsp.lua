@@ -53,16 +53,36 @@ return {
       lsp_zero.on_attach(function(client, bufnr)
         local opts = { buffer = bufnr, remap = false }
 
-        vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-        vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-        vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
-        vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
-        vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-        vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
-        vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
-        vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
-        vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
-        vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+        vim.keymap.set("n", "gd", function()
+          vim.lsp.buf.definition()
+        end, opts)
+        vim.keymap.set("n", "K", function()
+          vim.lsp.buf.hover()
+        end, opts)
+        vim.keymap.set("n", "<leader>vws", function()
+          vim.lsp.buf.workspace_symbol()
+        end, opts)
+        vim.keymap.set("n", "<leader>vd", function()
+          vim.diagnostic.open_float()
+        end, opts)
+        vim.keymap.set("n", "[d", function()
+          vim.diagnostic.goto_next()
+        end, opts)
+        vim.keymap.set("n", "]d", function()
+          vim.diagnostic.goto_prev()
+        end, opts)
+        vim.keymap.set("n", "<leader>vca", function()
+          vim.lsp.buf.code_action()
+        end, opts)
+        vim.keymap.set("n", "<leader>vrr", function()
+          vim.lsp.buf.references()
+        end, opts)
+        vim.keymap.set("n", "<leader>vrn", function()
+          vim.lsp.buf.rename()
+        end, opts)
+        vim.keymap.set("i", "<C-h>", function()
+          vim.lsp.buf.signature_help()
+        end, opts)
       end)
     end,
   },
@@ -73,6 +93,8 @@ return {
       "mason.nvim",
       { "williamboman/mason-lspconfig.nvim", config = function() end },
     },
+
+    -- Additional LSP configuration
     opts = {
       on_attach = function(client, bufnr)
         -- LSP Diagnostics context helper
@@ -85,12 +107,12 @@ return {
           local context = "LSP Diagnostics:\n"
           for _, diagnostic in ipairs(diagnostics) do
             context = context
-                .. string.format(
-                  "• Line %d (%s): %s\n",
-                  diagnostic.lnum + 1,
-                  vim.diagnostic.severity[diagnostic.severity],
-                  diagnostic.message
-                )
+              .. string.format(
+                "• Line %d (%s): %s\n",
+                diagnostic.lnum + 1,
+                vim.diagnostic.severity[diagnostic.severity],
+                diagnostic.message
+              )
           end
           return context
         end
@@ -201,7 +223,7 @@ Code to refactor:
           --   vim.notify(string.format("Found %d errors. Use <Leader>ad to get AI suggestions", #errors))
           -- end
         end,
-      })
+      }),
     },
     {
       "williamboman/mason.nvim",
@@ -212,9 +234,9 @@ Code to refactor:
             icons = {
               package_installed = "✓",
               package_pending = "➜",
-              package_uninstalled = "✗"
-            }
-          }
+              package_uninstalled = "✗",
+            },
+          },
         })
       end,
     },
@@ -245,15 +267,15 @@ Code to refactor:
         require("lsp_signature").setup({
           bind = true,
           handler_opts = {
-            border = "rounded"
-          }
+            border = "rounded",
+          },
         })
       end,
     },
     {
       "lewis6991/hover.nvim",
       config = function()
-        require("hover").setup {
+        require("hover").setup({
           init = function()
             require("hover.providers.lsp")
             require("hover.providers.gh")
@@ -263,19 +285,19 @@ Code to refactor:
             require("hover.providers.dictionary")
           end,
           preview_opts = {
-            border = 'rounded'
+            border = "rounded",
           },
           preview_window = false,
           title = true,
           mouse_providers = {
-            'LSP'
+            "LSP",
           },
-          mouse_delay = 1000
-        }
+          mouse_delay = 1000,
+        })
 
         vim.keymap.set("n", "K", require("hover").hover, { desc = "hover.nvim" })
         vim.keymap.set("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
-      end
-    }
-  }
+      end,
+    },
+  },
 }
