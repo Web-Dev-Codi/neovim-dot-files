@@ -16,7 +16,7 @@ return {
       -- LSP servers configuration
       local lspconfig = require("lspconfig")
       -- Use blink.cmp capabilities instead of cmp_nvim_lsp
-      local capabilities = require('blink.cmp').get_lsp_capabilities()
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
 
       local servers = {
         -- TypeScript/JavaScript - use ts_ls only (remove biome to avoid conflicts)
@@ -108,12 +108,12 @@ return {
           local context = "LSP Diagnostics:\n"
           for _, diagnostic in ipairs(diagnostics) do
             context = context
-                .. string.format(
-                  "• Line %d (%s): %s\n",
-                  diagnostic.lnum + 1,
-                  vim.diagnostic.severity[diagnostic.severity],
-                  diagnostic.message
-                )
+              .. string.format(
+                "• Line %d (%s): %s\n",
+                diagnostic.lnum + 1,
+                vim.diagnostic.severity[diagnostic.severity],
+                diagnostic.message
+              )
           end
           return context
         end
