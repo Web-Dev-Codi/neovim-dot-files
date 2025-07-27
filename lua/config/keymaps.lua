@@ -142,7 +142,7 @@ map("n", "<Leader>am", function()
     "fastcode:latest",
     "llama3.1:8b",
     "llama3.2:3b",
-    "phind-codellama:34b",
+    "phind-codellama:latest",
     "qwen2.5-coder:7b",
   }
   vim.ui.select(models, {

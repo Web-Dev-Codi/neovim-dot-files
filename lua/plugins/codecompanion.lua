@@ -50,7 +50,7 @@ return {
               },
               schema = {
                 model = {
-                  default = "phind-codellama:34b",
+                  default = "phind-codellama:latest",
                   choices = {
                     "codegemma:7b",
                     "codellama:7b",
@@ -62,7 +62,7 @@ return {
                     "fastcode:latest",
                     "llama3.1:8b",
                     "llama3.2:3b",
-                    "phind-codellama:34b",
+                    "phind-codellama:latest",
                     "qwen2.5-coder:7b",
                   },
                 },
