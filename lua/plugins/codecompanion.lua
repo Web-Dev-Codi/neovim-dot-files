@@ -5,9 +5,9 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
-      "hrsh7th/nvim-cmp",              -- For completions
+      "hrsh7th/nvim-cmp", -- For completions
       "nvim-telescope/telescope.nvim", -- Optional
-      "stevearc/dressing.nvim",        -- Optional but recommended for better UI
+      "stevearc/dressing.nvim", -- Optional but recommended for better UI
     },
     config = function()
       require("mason").setup({
@@ -191,8 +191,7 @@ Use the appropriate testing framework for the language.]],
             prompts = {
               {
                 role = "system",
-                content =
-                "You are an expert programmer. Explain code clearly and concisely, including the purpose, how it works, and any important details.",
+                content = "You are an expert programmer. Explain code clearly and concisely, including the purpose, how it works, and any important details.",
               },
               {
                 role = "user",
@@ -214,8 +213,7 @@ Use the appropriate testing framework for the language.]],
             prompts = {
               {
                 role = "system",
-                content =
-                "You are an expert programmer. Fix any bugs, syntax errors, or logical issues in the provided code. Return only the corrected code without explanations.",
+                content = "You are an expert programmer. Fix any bugs, syntax errors, or logical issues in the provided code. Return only the corrected code without explanations.",
               },
               {
                 role = "user",
@@ -237,8 +235,7 @@ Use the appropriate testing framework for the language.]],
             prompts = {
               {
                 role = "system",
-                content =
-                "You are an expert programmer. Optimize the provided code for better performance while maintaining the same functionality. Return only the optimized code.",
+                content = "You are an expert programmer. Optimize the provided code for better performance while maintaining the same functionality. Return only the optimized code.",
               },
               {
                 role = "user",
@@ -260,8 +257,7 @@ Use the appropriate testing framework for the language.]],
             prompts = {
               {
                 role = "system",
-                content =
-                "Add helpful, concise comments to the provided code to explain what it does. Keep the original code intact and only add comments.",
+                content = "Add helpful, concise comments to the provided code to explain what it does. Keep the original code intact and only add comments.",
               },
               {
                 role = "user",
@@ -283,8 +279,7 @@ Use the appropriate testing framework for the language.]],
             prompts = {
               {
                 role = "system",
-                content =
-                [[You are an expert technical writer specializing in code documentation. Create comprehensive and clear documentation for the provided code that follows these guidelines:
+                content = [[You are an expert technical writer specializing in code documentation. Create comprehensive and clear documentation for the provided code that follows these guidelines:
 1. Begin with a brief overview of what the code does
 2. Document function parameters, return values, and types
 3. Explain key algorithms or logic flows
@@ -351,9 +346,9 @@ Adapt your documentation style to match the language and context of the code.]],
           },
         },
         opts = {
-          log_level = "ERROR",                -- TRACE|DEBUG|ERROR|INFO
-          send_code = true,                   -- Send code context with requests
-          use_default_actions = true,         -- Use default actions
+          log_level = "ERROR", -- TRACE|DEBUG|ERROR|INFO
+          send_code = true, -- Send code context with requests
+          use_default_actions = true, -- Use default actions
           use_default_prompt_library = false, -- We're defining our own
         },
         -- Integration with LSP and diagnostics
@@ -365,7 +360,7 @@ Adapt your documentation style to match the language and context of the code.]],
               local diagnostic_text = "Current diagnostics:\n"
               for _, diagnostic in ipairs(diagnostics) do
                 diagnostic_text = diagnostic_text
-                    .. string.format("Line %d: %s\n", diagnostic.lnum + 1, diagnostic.message)
+                  .. string.format("Line %d: %s\n", diagnostic.lnum + 1, diagnostic.message)
               end
               return diagnostic_text
             end

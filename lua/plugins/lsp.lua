@@ -108,12 +108,12 @@ return {
           local context = "LSP Diagnostics:\n"
           for _, diagnostic in ipairs(diagnostics) do
             context = context
-              .. string.format(
-                "• Line %d (%s): %s\n",
-                diagnostic.lnum + 1,
-                vim.diagnostic.severity[diagnostic.severity],
-                diagnostic.message
-              )
+                .. string.format(
+                  "• Line %d (%s): %s\n",
+                  diagnostic.lnum + 1,
+                  vim.diagnostic.severity[diagnostic.severity],
+                  diagnostic.message
+                )
           end
           return context
         end
@@ -288,7 +288,7 @@ Code to refactor:
           preview_opts = {
             border = "rounded",
           },
-          preview_window = false,
+          preview_window = true,
           title = true,
           mouse_providers = {
             "LSP",
