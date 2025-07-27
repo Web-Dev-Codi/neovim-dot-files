@@ -9,6 +9,7 @@ local opts = { noremap = true, silent = true }
 
 -- save file
 map("n", "<C-s>", "<cmd> w <CR>", opts)
+map("i", "<C-s>", "<Esc><cmd> w <CR>", opts) -- Save in insert mode
 
 -- save file without auto-formatting
 vim.keymap.set("n", "<leader>sn", "<cmd>noautocmd w <CR>", opts)
