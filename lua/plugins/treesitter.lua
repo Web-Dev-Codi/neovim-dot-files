@@ -118,22 +118,23 @@ return {
           enable_close = true,
           enable_close_on_slash = true,
           filetypes = {
-            'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx', 'rescript',
+            'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx',
+            'rescript',
             'xml',
             'php',
             'markdown',
             'astro', 'glimmer', 'handlebars', 'hbs'
           },
           skip_tags = {
-            'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr','menuitem'
+            'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source',
+            'track', 'wbr', 'menuitem'
           },
         },
-        context_commentstring = {
-          enable = true,
-          enable_autocmd = false,
-        },
       })
-      
+
+      -- Skip the deprecated treesitter module for better performance
+      vim.g.skip_ts_context_commentstring_module = true
+
       require('ts_context_commentstring').setup {
         enable_autocmd = false,
       }
