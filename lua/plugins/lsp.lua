@@ -3,6 +3,7 @@ return {
   {
     "VonHeikemen/lsp-zero.nvim",
     branch = "v3.x",
+    event = { "BufReadPre", "BufNewFile" }, -- Load when opening files
     dependencies = {
       "neovim/nvim-lspconfig",
       "williamboman/mason.nvim",

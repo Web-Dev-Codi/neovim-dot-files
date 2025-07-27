@@ -160,14 +160,22 @@ return {
 
         -- Diagnostics
         { "<leader>d",  vim.diagnostic.open_float,       desc = "Open Diagnostic Float" },
-        { "<leader>q",  function()
+        {
+          "<leader>q",
+          function()
             if vim.api.nvim_buf_get_name(0) == "" then
               vim.cmd("qa!")
             else
+              -- Check if buffer has unsaved changes
+              if vim.bo.modified then
+                -- Save the buffer first, then close
+                vim.cmd("w")
+              end
               vim.cmd("bd")
             end
           end,
-          desc = "Close Buffer or Quit" },
+          desc = "Close Buffer or Quit"
+        },
 
         -- MicroPython
         {

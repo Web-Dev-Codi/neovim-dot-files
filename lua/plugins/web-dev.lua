@@ -1,5 +1,33 @@
 return {
   {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    event = "VeryLazy", -- Load after startup
+    dependencies = { "williamboman/mason.nvim" },
+    config = function()
+      require("mason-tool-installer").setup({
+        ensure_installed = {
+          -- Formatters
+          "prettier",
+          "prettierd",
+          "stylua",
+          "black",
+          "isort",
+          "shfmt",
+
+          -- Linters
+          "eslint_d",
+          "pylint",
+          "shellcheck",
+          "markdownlint",
+          "yamllint",
+          "jsonlint",
+        },
+        auto_update = false,
+        run_on_start = true,
+      })
+    end,
+  },
+  {
     "mattn/emmet-vim",
     ft = {
       "html",
@@ -176,31 +204,31 @@ return {
       vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)
     end,
   },
-  {
-    "mfussenegger/nvim-lint",
-    config = function()
-      require("lint").linters_by_ft = {
-        javascript = { "eslint_d" },
-        typescript = { "eslint_d" },
-        javascriptreact = { "eslint_d" },
-        typescriptreact = { "eslint_d" },
-        python = { "pylint" },
-        lua = { "luacheck" },
-        sh = { "shellcheck" },
-        bash = { "shellcheck" },
-        zsh = { "shellcheck" },
-        markdown = { "markdownlint" },
-        yaml = { "yamllint" },
-        json = { "jsonlint" },
-      }
+  -- {
+  --   "mfussenegger/nvim-lint",
+  --   config = function()
+  --     require("lint").linters_by_ft = {
+  --       javascript = { "prettierd" },
+  --       typescript = { "prettierd" },
+  --       javascriptreact = { "prettierd" },
+  --       typescriptreact = { "prettierd" },
+  --       python = { "pylint" },
+  --       lua = { "luacheck" },
+  --       sh = { "shellcheck" },
+  --       bash = { "shellcheck" },
+  --       zsh = { "shellcheck" },
+  --       markdown = { "markdownlint" },
+  --       yaml = { "yamllint" },
+  --       json = { "jsonlint" },
+  --     }
 
-      vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-        callback = function()
-          require("lint").try_lint()
-        end,
-      })
-    end,
-  },
+  --     vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  --       callback = function()
+  --         require("lint").try_lint()
+  --       end,
+  --     })
+  --   end,
+  -- },
   {
     "stevearc/conform.nvim",
     config = function()
