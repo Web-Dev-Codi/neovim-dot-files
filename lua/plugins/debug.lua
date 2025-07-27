@@ -6,6 +6,7 @@ return {
       "theHamsta/nvim-dap-virtual-text",
       "jay-babu/mason-nvim-dap.nvim",
     },
+    lazy = false,
     config = function()
       local dap = require("dap")
       local dapui = require("dapui")
@@ -33,6 +34,7 @@ return {
   {
     "rcarriga/nvim-dap-ui",
     dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"},
+    lazy = false,
     config = function()
       require("dapui").setup({
         icons = { expanded = "", collapsed = "", current_frame = "" },
@@ -97,6 +99,7 @@ return {
   },
   {
     "theHamsta/nvim-dap-virtual-text",
+    lazy = false,
     config = function()
       require("nvim-dap-virtual-text").setup({
         enabled = true,
@@ -124,6 +127,7 @@ return {
   },
   {
     "jay-babu/mason-nvim-dap.nvim",
+    lazy = false,
     dependencies = {
       "williamboman/mason.nvim",
       "mfussenegger/nvim-dap",

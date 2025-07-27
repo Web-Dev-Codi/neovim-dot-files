@@ -701,6 +701,7 @@ return {
       "sindrets/diffview.nvim",
       "nvim-telescope/telescope.nvim",
     },
+    lazy = false,
     config = function()
       require("neogit").setup({
         disable_signs = false,
