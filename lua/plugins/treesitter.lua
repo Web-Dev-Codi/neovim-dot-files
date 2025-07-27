@@ -6,6 +6,7 @@ return {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "windwp/nvim-ts-autotag",
       "JoosepAlviste/nvim-ts-context-commentstring",
+      "OXY2DEV/markview.nvim",
     },
     config = function()
       require("nvim-treesitter.configs").setup({

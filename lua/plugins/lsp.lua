@@ -18,7 +18,10 @@ return {
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       local servers = {
-        ts_ls = {},
+        -- TypeScript/JavaScript - use ts_ls only (remove biome to avoid conflicts)
+        ts_ls = {
+          filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+        },
         pyright = {},
         lua_ls = {
           settings = {
@@ -31,9 +34,8 @@ return {
           },
         },
         emmet_ls = {
-          filetypes = { "html", "css", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact" },
+          filetypes = { "html", "css", "scss" }, -- Remove JS/TS to avoid conflicts with ts_ls
         },
-        biome = {},
         html = {},
         cssls = {},
         jsonls = {},
@@ -94,7 +96,6 @@ return {
           "pyright",
           "lua_ls",
           "emmet_ls",
-          "biome",
           "html",
           "cssls",
           "jsonls",
@@ -103,7 +104,7 @@ return {
           "dockerls",
           "yamlls",
         },
-        automatic_installation = true,
+        automatic_installation = false,
       })
     end,
   },

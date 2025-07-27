@@ -14,13 +14,6 @@ return {
     },
   },
   {
-    "nvim-treesitter/nvim-treesitter",
-    dependencies = { "OXY2DEV/markview.nvim" },
-    lazy = false,
-
-    -- ... All other options.
-  },
-  {
     "HakonHarnes/img-clip.nvim",
     opts = {
       filetypes = {
@@ -36,6 +29,7 @@ return {
   { "wakatime/vim-wakatime", lazy = false },
   {
     "rachartier/tiny-inline-diagnostic.nvim",
+    enabled = false,    -- Temporarily disabled to check for conflicts
     event = "VeryLazy", -- Or `LspAttach`
     priority = 1000,    -- needs to be loaded in first
     config = function()

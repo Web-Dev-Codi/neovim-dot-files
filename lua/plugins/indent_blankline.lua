@@ -29,6 +29,7 @@ return {
       vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
     end)
     local exclude_ft = { "help", "git", "markdown", "snippets", "text", "gitconfig", "alpha", "dashboard" }
+    ---@diagnostic disable-next-line: inject-field
     vim.g.rainbow_delimiters = { highlight = highlight }
     require("ibl").setup({
       indent = {
