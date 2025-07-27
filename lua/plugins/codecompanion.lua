@@ -309,6 +309,26 @@ Adapt your documentation style to match the language and context of the code.]],
           action_palette = {
             width = 95,
             height = 10,
+            -- Fix UI shifting issues
+            border = "rounded",
+            relative = "editor",
+            row = "50%",
+            col = "50%",
+            anchor = "NW",
+            style = "minimal",
+            focusable = true,
+            zindex = 1000,
+            -- Additional UI stability settings
+            noautocmd = true,
+            title = "Select Model",
+            title_pos = "center",
+          },
+          -- Add selection menu specific configuration
+          selection = {
+            -- Prevent UI shifting during navigation
+            stable_positioning = true,
+            preserve_cursor = true,
+            redraw_on_change = false,
           },
           chat = {
             window = {

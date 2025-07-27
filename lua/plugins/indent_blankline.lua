@@ -41,7 +41,7 @@ return {
         remove_blankline_trail = false,
       },
       scope = {
-        enabled = false, -- Disable scope highlighting to show colorful indent lines
+        enabled = true,
       },
       exclude = {
         filetypes = exclude_ft,
