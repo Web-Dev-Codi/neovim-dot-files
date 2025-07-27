@@ -50,118 +50,231 @@ return {
       })
 
       wk.add({
+        -- Basic operations
+        { "<C-s>",      "<cmd>w<CR>",                                     desc = "Save File" },
+        { "<C-q>",      "<cmd>q<CR>",                                     desc = "Quit" },
+        { "x",          '"_x',                                            desc = "Delete char (no register)" },
+
+        -- Navigation and scrolling
+        { "<C-d>",      "<C-d>zz",                                        desc = "Scroll down and center" },
+        { "<C-u>",      "<C-u>zz",                                        desc = "Scroll up and center" },
+        { "n",          "nzzzv",                                          desc = "Next search result (centered)" },
+        { "N",          "Nzzzv",                                          desc = "Previous search result (centered)" },
+
+        -- Window resizing
+        { "<Up>",       ":resize -2<CR>",                                 desc = "Resize window up" },
+        { "<Down>",     ":resize +2<CR>",                                 desc = "Resize window down" },
+        { "<Left>",     ":vertical resize -2<CR>",                        desc = "Resize window left" },
+        { "<Right>",    ":vertical resize +2<CR>",                        desc = "Resize window right" },
+
+        -- Window navigation
+        { "<C-k>",      ":wincmd k<CR>",                                  desc = "Move to window above" },
+        { "<C-j>",      ":wincmd j<CR>",                                  desc = "Move to window below" },
+        { "<C-h>",      ":wincmd h<CR>",                                  desc = "Move to window left" },
+        { "<C-l>",      ":wincmd l<CR>",                                  desc = "Move to window right" },
+
+        -- Buffer navigation
+        { "<Tab>",      ":bnext<CR>",                                     desc = "Next buffer" },
+        { "<S-Tab>",    ":bprevious<CR>",                                 desc = "Previous buffer" },
+
+        -- Visual mode mappings
+        { "<",          "<gv",                                            desc = "Indent left (stay in visual)",     mode = "v" },
+        { ">",          ">gv",                                            desc = "Indent right (stay in visual)",    mode = "v" },
+        { "p",          '"_dP',                                           desc = "Paste (keep register)",            mode = "v" },
+
         -- File operations (Telescope)
         { "<leader>f",  group = "file" },
-        { "<leader>ff", "<cmd>Telescope find_files<cr>",                    desc = "Find File" },
-        { "<leader>fr", "<cmd>Telescope oldfiles<cr>",                      desc = "Recent Files" },
-        { "<leader>fg", "<cmd>Telescope live_grep<cr>",                     desc = "Find Text" },
-        { "<leader>fb", "<cmd>Telescope buffers<cr>",                       desc = "Find Buffer" },
-        { "<leader>fh", "<cmd>Telescope help_tags<cr>",                     desc = "Help Tags" },
-        { "<leader>fc", "<cmd>Telescope commands<cr>",                      desc = "Commands" },
-        { "<leader>fk", "<cmd>Telescope keymaps<cr>",                       desc = "Keymaps" },
-        { "<leader>fn", "<cmd>enew<cr>",                                    desc = "New File" },
+        { "<leader>ff", "<cmd>Telescope find_files<cr>",                  desc = "Find File" },
+        { "<leader>fr", "<cmd>Telescope oldfiles<cr>",                    desc = "Recent Files" },
+        { "<leader>fg", "<cmd>Telescope live_grep<cr>",                   desc = "Find Text" },
+        { "<leader>fb", "<cmd>Telescope buffers<cr>",                     desc = "Find Buffer" },
+        { "<leader>fh", "<cmd>Telescope help_tags<cr>",                   desc = "Help Tags" },
+        { "<leader>fc", "<cmd>Telescope commands<cr>",                    desc = "Commands" },
+        { "<leader>fk", "<cmd>Telescope keymaps<cr>",                     desc = "Keymaps" },
+        { "<leader>fn", "<cmd>enew<cr>",                                  desc = "New File" },
 
         -- Buffer operations
         { "<leader>b",  group = "buffer" },
-        { "<leader>bd", "<cmd>bdelete<cr>",                                 desc = "Delete Buffer" },
-        { "<leader>bn", "<cmd>bnext<cr>",                                   desc = "Next Buffer" },
-        { "<leader>bp", "<cmd>bprevious<cr>",                               desc = "Previous Buffer" },
-        { "<leader>bb", "<cmd>Telescope buffers<cr>",                       desc = "Switch Buffer" },
+        { "<leader>bd", "<cmd>bdelete<cr>",                               desc = "Delete Buffer" },
+        { "<leader>bn", "<cmd>bnext<cr>",                                 desc = "Next Buffer" },
+        { "<leader>bp", "<cmd>bprevious<cr>",                             desc = "Previous Buffer" },
+        { "<leader>bb", "<cmd>Telescope buffers<cr>",                     desc = "Switch Buffer" },
+        { "<leader>x",  ":bdelete!<CR>",                                  desc = "Close Buffer" },
+        { "<leader>b",  "<cmd>enew<CR>",                                  desc = "New Buffer" },
+
+        -- Window management
+        { "<leader>w",  group = "window" },
+        { "<leader>v",  "<C-w>v",                                         desc = "Split Vertically" },
+        { "<leader>h",  "<C-w>s",                                         desc = "Split Horizontally" },
+        { "<leader>se", "<C-w>=",                                         desc = "Equal Window Size" },
+        { "<leader>xs", ":close<CR>",                                     desc = "Close Split" },
+
+        -- Tab management
+        { "<leader>t",  group = "tabs" },
+        { "<leader>to", ":tabnew<CR>",                                    desc = "Open New Tab" },
+        { "<leader>tx", ":tabclose<CR>",                                  desc = "Close Tab" },
+        { "<leader>tn", ":tabn<CR>",                                      desc = "Next Tab" },
+        { "<leader>tp", ":tabp<CR>",                                      desc = "Previous Tab" },
+
+        -- Utility
+        { "<leader>lw", "<cmd>set wrap!<CR>",                             desc = "Toggle Line Wrap" },
+        { "<leader>sn", "<cmd>noautocmd w<CR>",                           desc = "Save Without Formatting" },
+
+        -- Session management
+        { "<leader>s",  group = "session" },
+        { "<leader>ss", ":mksession! .session.vim<CR>",                   desc = "Save Session" },
+        { "<leader>sl", ":source .session.vim<CR>",                       desc = "Load Session" },
+
+        -- Diagnostics
+        { "<leader>d",  vim.diagnostic.open_float,                        desc = "Open Diagnostic Float" },
+        { "<leader>q",  vim.diagnostic.setloclist,                        desc = "Diagnostic List" },
+
+        -- MicroPython
+        { "<leader>mr", function() require("micropython_nvim").run() end, desc = "Run MicroPython" },
+
+        -- CodeCompanion
+        { "<leader>a",  group = "ai/codecompanion" },
+        { "<leader>a",  "<cmd>CodeCompanionActions<cr>",                  desc = "CodeCompanion Actions",            mode = { "n", "v" } },
+        { "<leader>aa", "<cmd>CodeCompanionChat Toggle<cr>",              desc = "Toggle CodeCompanion Chat",        mode = { "n", "v" } },
+        { "<leader>ac", "<cmd>CodeCompanionChat<cr>",                     desc = "Open CodeCompanion Chat",          mode = { "n", "v" } },
+        {
+          "<leader>ai",
+          function()
+            require("codecompanion").prompt("Complete this code", {
+              adapter = "code_completion",
+              strategy = "inline",
+            })
+          end,
+          desc = "Inline Code Completion"
+        },
+        { "<leader>ad", "<cmd>CodeCompanionFixDiagnostics<cr>",                       desc = "Fix LSP Diagnostics" },
+        {
+          "<leader>as",
+          function()
+            local content = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n")
+            local filetype = vim.bo.filetype
+            require("codecompanion").chat({
+              context = "Current file content:\n```" .. filetype .. "\n" .. content .. "\n```",
+            })
+          end,
+          desc = "Send File to Chat"
+        },
+        {
+          "<leader>al",
+          function()
+            local params = vim.lsp.util.make_position_params()
+            vim.lsp.buf_request(0, "textDocument/hover", params, function(err, result)
+              if result and result.contents then
+                local hover_content = vim.lsp.util.convert_input_to_markdown_lines(result.contents)
+                require("codecompanion").chat({
+                  context = "LSP hover information:\n" .. table.concat(hover_content, "\n"),
+                })
+              end
+            end)
+          end,
+          desc = "Send LSP Hover to Chat"
+        },
+        {
+          "<leader>am",
+          function()
+            local models = {
+              "codegemma:7b",
+              "codellama:7b",
+              "codellama:13b",
+              "codellama:34b",
+              "deepcoder:14b",
+              "deepseek-coder:6.7b",
+              "deepseek-r1:32b",
+              "fastcode:latest",
+              "llama3.1:8b",
+              "llama3.2:3b",
+              "phind-codellama:latest",
+              "qwen2.5-coder:7b",
+            }
+            vim.ui.select(models, {
+              prompt = "Select model:",
+            }, function(choice)
+              if choice then
+                local codecompanion = require("codecompanion")
+                local config = codecompanion.config or {}
+                if config.adapters and config.adapters.ollama then
+                  if type(config.adapters.ollama) == "function" then
+                    local adapter = config.adapters.ollama()
+                    if adapter and adapter.schema and adapter.schema.model then
+                      adapter.schema.model.default = choice
+                    end
+                  else
+                    if config.adapters.ollama.schema and config.adapters.ollama.schema.model then
+                      config.adapters.ollama.schema.model.default = choice
+                    end
+                  end
+                end
+                print("Switched to model: " .. choice)
+              end
+            end)
+          end,
+          desc = "Switch Model"
+        },
+
+        -- Code-specific actions (visual mode)
+        { "<leader>cr", "",                                                           desc = "Code Review",                                 mode = "v" },
+        { "<leader>ct", "",                                                           desc = "Generate Tests",                              mode = "v" },
+        { "<leader>ce", "",                                                           desc = "Explain Code",                                mode = "v" },
+        { "<leader>cf", "",                                                           desc = "Fix Code",                                    mode = "v" },
+        { "<leader>co", "",                                                           desc = "Optimize Code",                               mode = "v" },
+        { "<leader>cc", "",                                                           desc = "Add Comments",                                mode = "v" },
+        { "<leader>cd", "",                                                           desc = "Generate Documentation",                      mode = "v" },
 
         -- LSP operations
         { "<leader>l",  group = "lsp" },
-        { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>",           desc = "Code Action" },
-        { "<leader>ld", "<cmd>Telescope diagnostics bufnr=0<cr>",           desc = "Document Diagnostics" },
-        { "<leader>lw", "<cmd>Telescope diagnostics<cr>",                   desc = "Workspace Diagnostics" },
-        { "<leader>lf", "<cmd>lua vim.lsp.buf.format{async=true}<cr>",      desc = "Format" },
-        { "<leader>li", "<cmd>LspInfo<cr>",                                 desc = "Info" },
-        { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>",                desc = "Rename" },
-        { "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>",          desc = "Document Symbols" },
-        { "<leader>lS", "<cmd>Telescope lsp_workspace_symbols<cr>",         desc = "Workspace Symbols" },
+        { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>",                     desc = "Code Action" },
+        { "<leader>ld", "<cmd>Telescope diagnostics bufnr=0<cr>",                     desc = "Document Diagnostics" },
+        { "<leader>lw", "<cmd>Telescope diagnostics<cr>",                             desc = "Workspace Diagnostics" },
+        { "<leader>lf", "<cmd>lua vim.lsp.buf.format{async=true}<cr>",                desc = "Format" },
+        { "<leader>li", "<cmd>LspInfo<cr>",                                           desc = "Info" },
+        { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>",                          desc = "Rename" },
+        { "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>",                    desc = "Document Symbols" },
+        { "<leader>lS", "<cmd>Telescope lsp_workspace_symbols<cr>",                   desc = "Workspace Symbols" },
 
         -- Git operations (Gitsigns)
         { "<leader>g",  group = "git" },
-        { "<leader>gb", "<cmd>Gitsigns blame_line<cr>",                     desc = "Blame Line" },
-        { "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>",                   desc = "Preview Hunk" },
-        { "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>",                     desc = "Reset Hunk" },
-        { "<leader>gR", "<cmd>Gitsigns reset_buffer<cr>",                   desc = "Reset Buffer" },
-        { "<leader>gs", "<cmd>Gitsigns stage_hunk<cr>",                     desc = "Stage Hunk" },
-        { "<leader>gS", "<cmd>Gitsigns stage_buffer<cr>",                   desc = "Stage Buffer" },
-        { "<leader>gu", "<cmd>Gitsigns undo_stage_hunk<cr>",                desc = "Undo Stage Hunk" },
-        { "<leader>gd", "<cmd>Gitsigns diffthis<cr>",                       desc = "Diff This" },
+        { "<leader>gb", "<cmd>Gitsigns blame_line<cr>",                               desc = "Blame Line" },
+        { "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>",                             desc = "Preview Hunk" },
+        { "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>",                               desc = "Reset Hunk" },
+        { "<leader>gR", "<cmd>Gitsigns reset_buffer<cr>",                             desc = "Reset Buffer" },
+        { "<leader>gs", "<cmd>Gitsigns stage_hunk<cr>",                               desc = "Stage Hunk" },
+        { "<leader>gS", "<cmd>Gitsigns stage_buffer<cr>",                             desc = "Stage Buffer" },
+        { "<leader>gu", "<cmd>Gitsigns undo_stage_hunk<cr>",                          desc = "Undo Stage Hunk" },
+        { "<leader>gd", "<cmd>Gitsigns diffthis<cr>",                                 desc = "Diff This" },
 
         -- File Explorer
         { "<leader>e",  group = "explorer" },
-        { "<leader>ee", "<cmd>NvimTreeToggle<cr>",                          desc = "Toggle Nvim-Tree" },
-        { "<leader>ef", "<cmd>NvimTreeFindFile<cr>",                        desc = "Find File in Tree" },
-        { "<leader>en", "<cmd>Neotree toggle<cr>",                          desc = "Toggle Neo-Tree" },
-        { "<leader>eo", "<cmd>Oil<cr>",                                     desc = "Open Oil" },
+        { "<leader>ee", "<cmd>NvimTreeToggle<cr>",                                    desc = "Toggle Nvim-Tree" },
+        { "<leader>ef", "<cmd>NvimTreeFindFile<cr>",                                  desc = "Find File in Tree" },
+        { "<leader>en", "<cmd>Neotree toggle<cr>",                                    desc = "Toggle Neo-Tree" },
+        { "<leader>eo", "<cmd>Oil<cr>",                                               desc = "Open Oil" },
 
         -- Search operations
-        { "<leader>s",  group = "search" },
-        { "<leader>sb", "<cmd>Telescope buffers<cr>",                       desc = "Search Buffers" },
-        { "<leader>sc", "<cmd>Telescope commands<cr>",                      desc = "Search Commands" },
-        { "<leader>sh", "<cmd>Telescope help_tags<cr>",                     desc = "Search Help" },
-        { "<leader>sk", "<cmd>Telescope keymaps<cr>",                       desc = "Search Keymaps" },
-        { "<leader>sm", "<cmd>Telescope marks<cr>",                         desc = "Search Marks" },
-        { "<leader>sr", "<cmd>Telescope registers<cr>",                     desc = "Search Registers" },
-        { "<leader>ss", "<cmd>Telescope lsp_document_symbols<cr>",          desc = "Search Symbols" },
-        { "<leader>st", "<cmd>Telescope live_grep<cr>",                     desc = "Search Text" },
+        { "<leader>/",  group = "search" },
+        { "<leader>/f", "<cmd>Telescope find_files<cr>",                              desc = "Find Files" },
+        { "<leader>/g", "<cmd>Telescope live_grep<cr>",                               desc = "Live Grep" },
+        { "<leader>/b", "<cmd>Telescope buffers<cr>",                                 desc = "Buffers" },
+        { "<leader>/h", "<cmd>Telescope help_tags<cr>",                               desc = "Help Tags" },
 
-        -- Diagnostics/Trouble
-        { "<leader>x",  group = "diagnostics" },
-        { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>",              desc = "Diagnostics (Trouble)" },
-        { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)" },
-        { "<leader>xl", "<cmd>Trouble loclist toggle<cr>",                  desc = "Location List (Trouble)" },
-        { "<leader>xq", "<cmd>Trouble qflist toggle<cr>",                   desc = "Quickfix List (Trouble)" },
+        -- Trouble
+        { "<leader>x",  group = "trouble" },
+        { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>",                        desc = "Diagnostics (Trouble)" },
+        { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",           desc = "Buffer Diagnostics (Trouble)" },
+        { "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>",                desc = "Symbols (Trouble)" },
+        { "<leader>cl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "LSP Definitions / references / ... (Trouble)" },
+        { "<leader>xL", "<cmd>Trouble loclist toggle<cr>",                            desc = "Location List (Trouble)" },
+        { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>",                             desc = "Quickfix List (Trouble)" },
 
         -- Terminal
         { "<leader>t",  group = "terminal" },
-        { "<leader>tf", "<cmd>ToggleTerm direction=float<cr>",              desc = "Float Terminal" },
-        { "<leader>th", "<cmd>ToggleTerm size=10 direction=horizontal<cr>", desc = "Horizontal Terminal" },
-        { "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>",   desc = "Vertical Terminal" },
-
-        -- Code operations
-        { "<leader>c",  group = "code" },
-        { "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>",           desc = "Code Action" },
-        { "<leader>cf", "<cmd>lua vim.lsp.buf.format{async=true}<cr>",      desc = "Format Code" },
-        { "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<cr>",                desc = "Rename" },
-
-        -- Mason
-        { "<leader>m",  group = "mason" },
-        { "<leader>mm", "<cmd>Mason<cr>",                                   desc = "Mason" },
-        { "<leader>mi", "<cmd>MasonInstall<cr>",                            desc = "Mason Install" },
-        { "<leader>mu", "<cmd>MasonUpdate<cr>",                             desc = "Mason Update" },
-
-        -- Window operations
-        { "<leader>w",  group = "window" },
-        { "<leader>wh", "<C-w>h",                                           desc = "Go to Left Window" },
-        { "<leader>wj", "<C-w>j",                                           desc = "Go to Lower Window" },
-        { "<leader>wk", "<C-w>k",                                           desc = "Go to Upper Window" },
-        { "<leader>wl", "<C-w>l",                                           desc = "Go to Right Window" },
-        { "<leader>ws", "<C-w>s",                                           desc = "Split Window Below" },
-        { "<leader>wv", "<C-w>v",                                           desc = "Split Window Right" },
-        { "<leader>wd", "<C-w>c",                                           desc = "Delete Window" },
-        { "<leader>wo", "<C-w>o",                                           desc = "Delete Other Windows" },
-
-        -- Quit operations
-        { "<leader>q",  group = "quit" },
-        { "<leader>qq", "<cmd>qa<cr>",                                      desc = "Quit All" },
-        { "<leader>qw", "<cmd>wqa<cr>",                                     desc = "Save and Quit All" },
-        { "<leader>q!", "<cmd>qa!<cr>",                                     desc = "Force Quit All" },
-
-        -- UI toggles
-        { "<leader>u",  group = "ui" },
-        { "<leader>ub", "<cmd>set background=dark<cr>",                     desc = "Dark Background" },
-        { "<leader>ul", "<cmd>set number!<cr>",                             desc = "Toggle Line Numbers" },
-        { "<leader>ur", "<cmd>set relativenumber!<cr>",                     desc = "Toggle Relative Numbers" },
-        { "<leader>us", "<cmd>set spell!<cr>",                              desc = "Toggle Spelling" },
-        { "<leader>uw", "<cmd>set wrap!<cr>",                               desc = "Toggle Wrap" },
-        { "<leader>uc", "<cmd>set conceallevel=2<cr>",                      desc = "Set Conceal Level" },
-
-        -- Alpha dashboard
-        { "<leader>a",  group = "alpha" },
-        { "<leader>aa", "<cmd>Alpha<cr>",                                   desc = "Alpha Dashboard" },
+        { "<leader>tf", "<cmd>ToggleTerm direction=float<cr>",                        desc = "Float Terminal" },
+        { "<leader>th", "<cmd>ToggleTerm size=10 direction=horizontal<cr>",           desc = "Horizontal Terminal" },
+        { "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>",             desc = "Vertical Terminal" },
       })
     end,
   },
