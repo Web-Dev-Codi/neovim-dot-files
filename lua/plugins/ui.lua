@@ -1,81 +1,43 @@
 return {
   {
-    "folke/tokyonight.nvim",
+    "scottmckendry/cyberdream.nvim",
     lazy = false,
     priority = 1000,
-    config = function()
-      require("tokyonight").setup({
-        style = "night",
-        light_style = "day",
-        transparent = true,
-        terminal_colors = true,
-        styles = {
-          comments = { italic = true },
-          keywords = { italic = true },
-          functions = {},
-          variables = {},
-          sidebars = "transparent",
-          floats = "transparent",
+    opts = function(_, opts)
+      opts.transparent = true
+      opts.italic_comments = true
+      opts.borderless_telescope = false
+      opts.italic_keywords = true
+      opts.theme = {
+        variant = "default", -- use "light" for the light variant. Also accepts "auto" to set dark or light colors based on the current value of `vim.o.background`
+        saturation = 1, -- accepts a value between 0 and 1. 0 will be fully desaturated (greyscale) and 1 will be the full color (default)
+        highlights = {
+          -- Highlight groups to override, adding new groups is also possible
+          -- See `:h highlight-groups` for a list of highlight groups or run `:hi` to see all groups and their current values
+
+          -- Example:
+          Comment = { fg = "#696969", bg = "NONE", italic = true, bold = true },
+
+          -- Complete list can be found in `lua/cyberdream/theme.lua`
         },
-        sidebars = { "qf", "help" },
-        day_brightness = 0.3,
-        hide_inactive_statusline = false,
-        dim_inactive = false,
-        lualine_bold = false,
-      })
-      vim.cmd [[colorscheme tokyonight]]
-    end,
-  },
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000,
-    config = function()
-      require("catppuccin").setup({
-        flavour = "mocha",
-        background = {
-          light = "latte",
-          dark = "mocha",
+
+        -- Override a highlight group entirely using the color palette
+        overrides = function(colors) -- NOTE: This function nullifies the `highlights` option
+          -- Example:
+          return {
+            Comment = { fg = colors.gray, bg = "NONE", italic = true },
+            ["@property"] = { fg = colors.magenta, bold = true },
+          }
+        end,
+
+        -- Override a color entirely
+        colors = {
+          -- For a list of colors see `lua/cyberdream/colours.lua`
+          -- Example:
+          green = "#00ff00",
+          magenta = "#ff00ff",
         },
-        transparent_background = true,
-        show_end_of_buffer = false,
-        term_colors = false,
-        dim_inactive = {
-          enabled = false,
-          shade = "dark",
-          percentage = 0.15,
-        },
-        no_italic = false,
-        no_bold = false,
-        no_underline = false,
-        styles = {
-          comments = { "italic" },
-          conditionals = { "italic" },
-          loops = {},
-          functions = {},
-          keywords = {},
-          strings = {},
-          variables = {},
-          numbers = {},
-          booleans = {},
-          properties = {},
-          types = {},
-          operators = {},
-        },
-        color_overrides = {},
-        custom_highlights = {},
-        integrations = {
-          cmp = true,
-          gitsigns = true,
-          nvimtree = true,
-          treesitter = true,
-          notify = false,
-          mini = {
-            enabled = true,
-            indentscope_color = "",
-          },
-        },
-      })
+      }
     end,
   },
   {
@@ -84,31 +46,31 @@ return {
     config = function()
       require("nvim-navic").setup({
         icons = {
-          File          = "󰈙 ",
-          Module        = " ",
-          Namespace     = "󰌗 ",
-          Package       = " ",
-          Class         = "󰌗 ",
-          Method        = "󰆧 ",
-          Property      = " ",
-          Field         = " ",
-          Constructor   = " ",
-          Enum          = "󰕘",
-          Interface     = "󰕘",
-          Function      = "󰊕 ",
-          Variable      = "󰆧 ",
-          Constant      = "󰏿 ",
-          String        = "󰀬 ",
-          Number        = "󰎠 ",
-          Boolean       = "◩ ",
-          Array         = "󰅪 ",
-          Object        = "󰅩 ",
-          Key           = "󰌋 ",
-          Null          = "󰟢 ",
-          EnumMember    = " ",
-          Struct        = "󰌗 ",
-          Event         = " ",
-          Operator      = "󰆕 ",
+          File = "󰈙 ",
+          Module = " ",
+          Namespace = "󰌗 ",
+          Package = " ",
+          Class = "󰌗 ",
+          Method = "󰆧 ",
+          Property = " ",
+          Field = " ",
+          Constructor = " ",
+          Enum = "󰕘",
+          Interface = "󰕘",
+          Function = "󰊕 ",
+          Variable = "󰆧 ",
+          Constant = "󰏿 ",
+          String = "󰀬 ",
+          Number = "󰎠 ",
+          Boolean = "◩ ",
+          Array = "󰅪 ",
+          Object = "󰅩 ",
+          Key = "󰌋 ",
+          Null = "󰟢 ",
+          EnumMember = " ",
+          Struct = "󰌗 ",
+          Event = " ",
+          Operator = "󰆕 ",
           TypeParameter = "󰊄 ",
         },
         lsp = {
@@ -183,15 +145,15 @@ return {
           move_wraps_at_ends = false,
 
           -- Slanted separator style
-          separator_style = "slant",    -- Already set, keeping slanted tabs
+          separator_style = "slant", -- Already set, keeping slanted tabs
           enforce_regular_tabs = false, -- Allow slanted tabs to work properly
           always_show_bufferline = true,
 
           -- Enhanced hover events
           hover = {
             enabled = true,
-            delay = 150,         -- Faster response
-            reveal = { "close" } -- Show close button on hover
+            delay = 150, -- Faster response
+            reveal = { "close" }, -- Show close button on hover
           },
 
           -- Sidebar offsets for NeoTree and other sidebars
@@ -200,20 +162,20 @@ return {
               filetype = "neo-tree",
               text = "File Explorer",
               text_align = "center",
-              separator = true
+              separator = true,
             },
             {
               filetype = "NvimTree",
               text = "File Explorer",
               text_align = "center",
-              separator = true
+              separator = true,
             },
             {
               filetype = "Outline",
               text = "Symbols",
               text_align = "center",
-              separator = true
-            }
+              separator = true,
+            },
           },
 
           -- Custom areas for additional functionality
@@ -251,281 +213,281 @@ return {
         -- Enhanced highlights for better visual appeal
         highlights = {
           fill = {
-            fg = '#7c7d83',
-            bg = '#181825',
+            fg = "#7c7d83",
+            bg = "#181825",
           },
           background = {
-            fg = '#7c7d83',
-            bg = '#181825',
+            fg = "#7c7d83",
+            bg = "#181825",
           },
           tab = {
-            fg = '#7c7d83',
-            bg = '#181825',
+            fg = "#7c7d83",
+            bg = "#181825",
           },
           tab_selected = {
-            fg = '#cdd6f4',
-            bg = '#1e1e2e',
+            fg = "#cdd6f4",
+            bg = "#1e1e2e",
           },
           tab_separator = {
-            fg = '#181825',
-            bg = '#181825',
+            fg = "#181825",
+            bg = "#181825",
           },
           tab_separator_selected = {
-            fg = '#181825',
-            bg = '#1e1e2e',
+            fg = "#181825",
+            bg = "#1e1e2e",
           },
           tab_close = {
-            fg = '#7c7d83',
-            bg = '#181825',
+            fg = "#7c7d83",
+            bg = "#181825",
           },
           close_button = {
-            fg = '#7c7d83',
-            bg = '#181825',
+            fg = "#7c7d83",
+            bg = "#181825",
           },
           close_button_visible = {
-            fg = '#7c7d83',
-            bg = '#313244',
+            fg = "#7c7d83",
+            bg = "#313244",
           },
           close_button_selected = {
-            fg = '#f38ba8',
-            bg = '#1e1e2e',
+            fg = "#f38ba8",
+            bg = "#1e1e2e",
           },
           buffer_visible = {
-            fg = '#cdd6f4',
-            bg = '#313244',
+            fg = "#cdd6f4",
+            bg = "#313244",
           },
           buffer_selected = {
-            fg = '#cdd6f4',
-            bg = '#1e1e2e',
+            fg = "#cdd6f4",
+            bg = "#1e1e2e",
             bold = true,
             italic = false,
           },
           numbers = {
-            fg = '#7c7d83',
-            bg = '#181825',
+            fg = "#7c7d83",
+            bg = "#181825",
           },
           numbers_visible = {
-            fg = '#7c7d83',
-            bg = '#313244',
+            fg = "#7c7d83",
+            bg = "#313244",
           },
           numbers_selected = {
-            fg = '#cdd6f4',
-            bg = '#1e1e2e',
+            fg = "#cdd6f4",
+            bg = "#1e1e2e",
             bold = true,
             italic = false,
           },
           diagnostic = {
-            fg = '#7c7d83',
-            bg = '#181825',
+            fg = "#7c7d83",
+            bg = "#181825",
           },
           diagnostic_visible = {
-            fg = '#7c7d83',
-            bg = '#313244',
+            fg = "#7c7d83",
+            bg = "#313244",
           },
           diagnostic_selected = {
-            fg = '#fab387',
-            bg = '#1e1e2e',
+            fg = "#fab387",
+            bg = "#1e1e2e",
             bold = true,
             italic = false,
           },
           hint = {
-            fg = '#94e2d5',
-            sp = '#94e2d5',
-            bg = '#181825',
+            fg = "#94e2d5",
+            sp = "#94e2d5",
+            bg = "#181825",
           },
           hint_visible = {
-            fg = '#94e2d5',
-            bg = '#313244',
+            fg = "#94e2d5",
+            bg = "#313244",
           },
           hint_selected = {
-            fg = '#94e2d5',
-            bg = '#1e1e2e',
-            sp = '#94e2d5',
+            fg = "#94e2d5",
+            bg = "#1e1e2e",
+            sp = "#94e2d5",
             bold = true,
             italic = false,
           },
           hint_diagnostic = {
-            fg = '#94e2d5',
-            sp = '#94e2d5',
-            bg = '#181825',
+            fg = "#94e2d5",
+            sp = "#94e2d5",
+            bg = "#181825",
           },
           hint_diagnostic_visible = {
-            fg = '#94e2d5',
-            bg = '#313244',
+            fg = "#94e2d5",
+            bg = "#313244",
           },
           hint_diagnostic_selected = {
-            fg = '#94e2d5',
-            bg = '#1e1e2e',
-            sp = '#94e2d5',
+            fg = "#94e2d5",
+            bg = "#1e1e2e",
+            sp = "#94e2d5",
             bold = true,
             italic = false,
           },
           info = {
-            fg = '#89b4fa',
-            sp = '#89b4fa',
-            bg = '#181825',
+            fg = "#89b4fa",
+            sp = "#89b4fa",
+            bg = "#181825",
           },
           info_visible = {
-            fg = '#89b4fa',
-            bg = '#313244',
+            fg = "#89b4fa",
+            bg = "#313244",
           },
           info_selected = {
-            fg = '#89b4fa',
-            bg = '#1e1e2e',
-            sp = '#89b4fa',
+            fg = "#89b4fa",
+            bg = "#1e1e2e",
+            sp = "#89b4fa",
             bold = true,
             italic = false,
           },
           info_diagnostic = {
-            fg = '#89b4fa',
-            sp = '#89b4fa',
-            bg = '#181825',
+            fg = "#89b4fa",
+            sp = "#89b4fa",
+            bg = "#181825",
           },
           info_diagnostic_visible = {
-            fg = '#89b4fa',
-            bg = '#313244',
+            fg = "#89b4fa",
+            bg = "#313244",
           },
           info_diagnostic_selected = {
-            fg = '#89b4fa',
-            bg = '#1e1e2e',
-            sp = '#89b4fa',
+            fg = "#89b4fa",
+            bg = "#1e1e2e",
+            sp = "#89b4fa",
             bold = true,
             italic = false,
           },
           warning = {
-            fg = '#fab387',
-            sp = '#fab387',
-            bg = '#181825',
+            fg = "#fab387",
+            sp = "#fab387",
+            bg = "#181825",
           },
           warning_visible = {
-            fg = '#fab387',
-            bg = '#313244',
+            fg = "#fab387",
+            bg = "#313244",
           },
           warning_selected = {
-            fg = '#fab387',
-            bg = '#1e1e2e',
-            sp = '#fab387',
+            fg = "#fab387",
+            bg = "#1e1e2e",
+            sp = "#fab387",
             bold = true,
             italic = false,
           },
           warning_diagnostic = {
-            fg = '#fab387',
-            sp = '#fab387',
-            bg = '#181825',
+            fg = "#fab387",
+            sp = "#fab387",
+            bg = "#181825",
           },
           warning_diagnostic_visible = {
-            fg = '#fab387',
-            bg = '#313244',
+            fg = "#fab387",
+            bg = "#313244",
           },
           warning_diagnostic_selected = {
-            fg = '#fab387',
-            bg = '#1e1e2e',
-            sp = '#fab387',
+            fg = "#fab387",
+            bg = "#1e1e2e",
+            sp = "#fab387",
             bold = true,
             italic = false,
           },
           error = {
-            fg = '#f38ba8',
-            sp = '#f38ba8',
-            bg = '#181825',
+            fg = "#f38ba8",
+            sp = "#f38ba8",
+            bg = "#181825",
           },
           error_visible = {
-            fg = '#f38ba8',
-            bg = '#313244',
+            fg = "#f38ba8",
+            bg = "#313244",
           },
           error_selected = {
-            fg = '#f38ba8',
-            bg = '#1e1e2e',
-            sp = '#f38ba8',
+            fg = "#f38ba8",
+            bg = "#1e1e2e",
+            sp = "#f38ba8",
             bold = true,
             italic = false,
           },
           error_diagnostic = {
-            fg = '#f38ba8',
-            sp = '#f38ba8',
-            bg = '#181825',
+            fg = "#f38ba8",
+            sp = "#f38ba8",
+            bg = "#181825",
           },
           error_diagnostic_visible = {
-            fg = '#f38ba8',
-            bg = '#313244',
+            fg = "#f38ba8",
+            bg = "#313244",
           },
           error_diagnostic_selected = {
-            fg = '#f38ba8',
-            bg = '#1e1e2e',
-            sp = '#f38ba8',
+            fg = "#f38ba8",
+            bg = "#1e1e2e",
+            sp = "#f38ba8",
             bold = true,
             italic = false,
           },
           modified = {
-            fg = '#fab387',
-            bg = '#181825',
+            fg = "#fab387",
+            bg = "#181825",
           },
           modified_visible = {
-            fg = '#fab387',
-            bg = '#313244',
+            fg = "#fab387",
+            bg = "#313244",
           },
           modified_selected = {
-            fg = '#fab387',
-            bg = '#1e1e2e',
+            fg = "#fab387",
+            bg = "#1e1e2e",
           },
           duplicate_selected = {
-            fg = '#7c7d83',
-            bg = '#1e1e2e',
+            fg = "#7c7d83",
+            bg = "#1e1e2e",
             italic = true,
           },
           duplicate_visible = {
-            fg = '#7c7d83',
-            bg = '#313244',
+            fg = "#7c7d83",
+            bg = "#313244",
             italic = true,
           },
           duplicate = {
-            fg = '#7c7d83',
-            bg = '#181825',
+            fg = "#7c7d83",
+            bg = "#181825",
             italic = true,
           },
           separator_selected = {
-            fg = '#1e1e2e',
-            bg = '#1e1e2e',
+            fg = "#1e1e2e",
+            bg = "#1e1e2e",
           },
           separator_visible = {
-            fg = '#313244',
-            bg = '#313244',
+            fg = "#313244",
+            bg = "#313244",
           },
           separator = {
-            fg = '#181825',
-            bg = '#181825',
+            fg = "#181825",
+            bg = "#181825",
           },
           indicator_visible = {
-            fg = '#313244',
-            bg = '#313244',
+            fg = "#313244",
+            bg = "#313244",
           },
           indicator_selected = {
-            fg = '#89b4fa',
-            bg = '#1e1e2e',
+            fg = "#89b4fa",
+            bg = "#1e1e2e",
           },
           pick_selected = {
-            fg = '#f38ba8',
-            bg = '#1e1e2e',
+            fg = "#f38ba8",
+            bg = "#1e1e2e",
             bold = true,
             italic = false,
           },
           pick_visible = {
-            fg = '#f38ba8',
-            bg = '#313244',
+            fg = "#f38ba8",
+            bg = "#313244",
             bold = true,
             italic = false,
           },
           pick = {
-            fg = '#f38ba8',
-            bg = '#181825',
+            fg = "#f38ba8",
+            bg = "#181825",
             bold = true,
             italic = false,
           },
           offset_separator = {
-            fg = '#45475a',
-            bg = '#181825',
+            fg = "#45475a",
+            bg = "#181825",
           },
-        }
+        },
       })
     end,
   },
@@ -536,20 +498,20 @@ return {
       require("colorizer").setup({
         filetypes = { "*" },
         user_default_options = {
-          RGB = true,                                      -- #RGB hex codes
-          RRGGBB = true,                                   -- #RRGGBB hex codes
-          names = true,                                    -- "Name" codes like Blue or blue
-          RRGGBBAA = false,                                -- #RRGGBBAA hex codes
-          AARRGGBB = true,                                 -- 0xAARRGGBB hex codes
-          rgb_fn = false,                                  -- CSS rgb() and rgba() functions
-          hsl_fn = false,                                  -- CSS hsl() and hsla() functions
-          css = false,                                     -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-          css_fn = false,                                  -- Enable all CSS *functions*: rgb_fn, hsl_fn
-          mode = "background",                             -- Set the display mode.
-          tailwind = false,                                -- Enable tailwind colors
-          sass = { enable = false, parsers = { "css" }, }, -- Enable sass colors
+          RGB = true, -- #RGB hex codes
+          RRGGBB = true, -- #RRGGBB hex codes
+          names = true, -- "Name" codes like Blue or blue
+          RRGGBBAA = false, -- #RRGGBBAA hex codes
+          AARRGGBB = true, -- 0xAARRGGBB hex codes
+          rgb_fn = false, -- CSS rgb() and rgba() functions
+          hsl_fn = false, -- CSS hsl() and hsla() functions
+          css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+          css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+          mode = "background", -- Set the display mode.
+          tailwind = false, -- Enable tailwind colors
+          sass = { enable = false, parsers = { "css" } }, -- Enable sass colors
           virtualtext = "■",
-          always_update = false
+          always_update = false,
         },
         buftypes = {},
       })
@@ -566,7 +528,7 @@ return {
       -- refer to the configuration section below
       animate = { enabled = true },
       bigfile = { enabled = true },
-      explorer = { enabled = true },
+      explorer = { enabled = false },
       indent = { enabled = true },
       input = { enabled = true },
       picker = { enabled = true },
@@ -610,7 +572,7 @@ return {
           },
           { section = "startup" },
         },
-      }
+      },
     },
   },
   {
@@ -878,5 +840,5 @@ return {
       end
       require("mini.hipatterns").setup(opts)
     end,
-  }
+  },
 }

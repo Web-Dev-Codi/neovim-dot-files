@@ -244,7 +244,7 @@ return {
           },
         },
         follow_current_file = {
-          enabled = false,                  -- This will find and focus the file in the active buffer every time
+          enabled = true,                  -- This will find and focus the file in the active buffer every time
           --               -- the current file is changed while the tree is open.
           leave_dirs_open = false,          -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
         },
@@ -253,7 +253,7 @@ return {
         use_libuv_file_watcher = true,     -- This will use the OS level file watchers to detect changes
         -- instead of relying on nvim autocmd events.
         -- Ensure files open to the right of neo-tree
-        bind_to_cwd = false, -- true creates a 2-way binding between vim's cwd and neo-tree's root
+        bind_to_cwd = true, -- true creates a 2-way binding between vim's cwd and neo-tree's root
         window = {
           position = "left",
           -- Force files to open in a new window to the right
