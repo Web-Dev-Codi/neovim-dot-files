@@ -2,6 +2,13 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.8",
+    lazy = true,
+    cmd = "Telescope",
+    keys = {
+      { "<leader>ff" }, { "<leader>fg" }, { "<leader>fb" }, { "<leader>fh" },
+      { "<leader>fs" }, { "<leader>fw" }, { "<leader>fd" }, { "<leader>fr" },
+      { "<leader>fi" }, { "<leader>ft" }
+    },
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-fzf-native.nvim",
@@ -120,6 +127,7 @@ return {
   },
   {
     "nvim-telescope/telescope-fzf-native.nvim",
+    lazy = true,
     build = function()
       -- Try different build methods
       local handle = io.popen("which make")
@@ -196,6 +204,9 @@ return {
   },
   {
     "stevearc/oil.nvim",
+    lazy = true,
+    cmd = "Oil",
+    keys = { { "-" }, { "<leader>-" } },
     config = function()
       require("oil").setup({
         columns = {
@@ -306,6 +317,8 @@ return {
   },
   {
     "ggandor/leap.nvim",
+    lazy = true,
+    keys = { "s", "S", "gs" },
     config = function()
       require("leap").add_default_mappings()
     end,
@@ -332,6 +345,8 @@ return {
   },
   {
     "numToStr/Comment.nvim",
+    lazy = true,
+    event = { "BufReadPost", "BufNewFile" },
     config = function()
       require("Comment").setup()
     end
@@ -346,6 +361,9 @@ return {
   {
     "akinsho/toggleterm.nvim",
     version = "*",
+    lazy = true,
+    cmd = { "ToggleTerm", "TermExec" },
+    keys = { { "<c-\\>" } },
     config = function()
       require("toggleterm").setup({
         size = 20,

@@ -1,6 +1,7 @@
 return {
   {
     "neovim/nvim-lspconfig",
+    lazy = true,
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       -- Configure diagnostic signs and display globally
