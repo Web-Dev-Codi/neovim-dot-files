@@ -102,6 +102,7 @@ return {
   {
     "stevearc/overseer.nvim",
     version = "*",
+    event = "LspAttach",
     config = function()
       -- Suppress deprecation warnings for now
       local old_notify = vim.notify
@@ -141,7 +142,7 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("trouble").setup({
-        position = "bottom",
+        position = "top",
         height = 10,
         width = 50,
         icons = true,
@@ -188,13 +189,13 @@ return {
           "lsp_definitions",
         },
         signs = {
-          error = "",
-          warning = "",
+          error = " ",
+          warning = " ",
           hint = "",
-          information = "",
+          information = " ",
           other = "",
         },
-        use_diagnostic_signs = false,
+        use_diagnostic_signs = true,
       })
 
       vim.keymap.set("n", "<leader>xx", function()
@@ -244,6 +245,7 @@ return {
   -- },
   {
     "stevearc/conform.nvim",
+    event = "VeryLazy",
     config = function()
       require("conform").setup({
         formatters_by_ft = {

@@ -79,7 +79,6 @@ return {
           gitsigns = true,
           grapple = true,
           grugfar = true,
-          heirline = true,
           helpview = true,
           hop = true,
           indentblankline = true,
@@ -90,7 +89,6 @@ return {
           markview = true,
           mini = true,
           noice = true,
-          neogit = true,
           notify = true,
           rainbow_delimiters = true,
           snacks = true,
@@ -108,9 +106,51 @@ return {
   },
   { "roobert/tailwindcss-colorizer-cmp.nvim", opts = {} },
   {
+    "stevearc/aerial.nvim", -- Toggled list of classes, methods etc in current file
+    event = "VeryLazy",
+    opts = {
+      attach_mode = "global",
+      close_on_select = true,
+      layout = {
+        min_width = 30,
+        default_direction = "prefer_right",
+      },
+      -- Use nvim-navic icons
+      icons = {
+        File = "󰈙 ",
+        Module = " ",
+        Namespace = "󰌗 ",
+        Package = " ",
+        Class = "󰌗 ",
+        Method = "󰆧 ",
+        Property = " ",
+        Field = " ",
+        Constructor = " ",
+        Enum = "󰕘",
+        Interface = "󰕘",
+        Function = "󰊕 ",
+        Variable = "󰆧 ",
+        Constant = "󰏿 ",
+        String = "󰀬 ",
+        Number = "󰎠 ",
+        Boolean = "◩ ",
+        Array = "󰅪 ",
+        Object = "󰅩 ",
+        Key = "󰌋 ",
+        Null = "󰟢 ",
+        EnumMember = " ",
+        Struct = "󰌗 ",
+        Event = " ",
+        Operator = "󰆕 ",
+        TypeParameter = "󰊄 ",
+      },
+    },
+  },
+  {
     "akinsho/bufferline.nvim",
     version = "*",
     dependencies = "nvim-tree/nvim-web-devicons",
+    event = "VeryLazy",
     config = function()
       require("bufferline").setup({
         options = {
@@ -132,7 +172,7 @@ return {
           -- Enhanced icons
           buffer_close_icon = "󰅖",
           modified_icon = "●",
-          close_icon = "",
+          close_icon = "󰅖",
           left_trunc_marker = "",
           right_trunc_marker = "",
 
@@ -161,14 +201,14 @@ return {
           move_wraps_at_ends = false,
 
           -- Slanted separator style
-          separator_style = "slant",    -- Already set, keeping slanted tabs
+          separator_style = "slant", -- Already set, keeping slanted tabs
           enforce_regular_tabs = false, -- Allow slanted tabs to work properly
           always_show_bufferline = true,
 
           -- Enhanced hover events
           hover = {
             enabled = true,
-            delay = 150,          -- Faster response
+            delay = 150, -- Faster response
             reveal = { "close" }, -- Show close button on hover
           },
 
@@ -514,17 +554,17 @@ return {
       require("colorizer").setup({
         filetypes = { "*" },
         user_default_options = {
-          RGB = true,                                     -- #RGB hex codes
-          RRGGBB = true,                                  -- #RRGGBB hex codes
-          names = true,                                   -- "Name" codes like Blue or blue
-          RRGGBBAA = false,                               -- #RRGGBBAA hex codes
-          AARRGGBB = true,                                -- 0xAARRGGBB hex codes
-          rgb_fn = false,                                 -- CSS rgb() and rgba() functions
-          hsl_fn = false,                                 -- CSS hsl() and hsla() functions
-          css = false,                                    -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-          css_fn = false,                                 -- Enable all CSS *functions*: rgb_fn, hsl_fn
-          mode = "background",                            -- Set the display mode.
-          tailwind = false,                               -- Enable tailwind colors
+          RGB = true, -- #RGB hex codes
+          RRGGBB = true, -- #RRGGBB hex codes
+          names = true, -- "Name" codes like Blue or blue
+          RRGGBBAA = false, -- #RRGGBBAA hex codes
+          AARRGGBB = true, -- 0xAARRGGBB hex codes
+          rgb_fn = false, -- CSS rgb() and rgba() functions
+          hsl_fn = false, -- CSS hsl() and hsla() functions
+          css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+          css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+          mode = "background", -- Set the display mode.
+          tailwind = false, -- Enable tailwind colors
           sass = { enable = false, parsers = { "css" } }, -- Enable sass colors
           virtualtext = "■",
           always_update = false,
@@ -714,6 +754,18 @@ return {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
           ["vim.lsp.util.stylize_markdown"] = true,
           ["cmp.entry.get_documentation"] = true,
+        },
+      },
+      notify = {
+        enabled = false,
+        view = "notify",
+        opts = {
+          timeout = 3000,
+          max_height = 10,
+          max_width = 80,
+          render = "compact",
+          stages = "fade_in_slide_out",
+          background_colour = "#000000",
         },
       },
       routes = {

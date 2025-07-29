@@ -5,9 +5,16 @@ return {
     lazy = true,
     cmd = "Telescope",
     keys = {
-      { "<leader>ff" }, { "<leader>fg" }, { "<leader>fb" }, { "<leader>fh" },
-      { "<leader>fs" }, { "<leader>fw" }, { "<leader>fd" }, { "<leader>fr" },
-      { "<leader>fi" }, { "<leader>ft" }
+      { "<leader>ff" },
+      { "<leader>fg" },
+      { "<leader>fb" },
+      { "<leader>fh" },
+      { "<leader>fs" },
+      { "<leader>fw" },
+      { "<leader>fd" },
+      { "<leader>fr" },
+      { "<leader>fi" },
+      { "<leader>ft" },
     },
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -102,8 +109,8 @@ return {
             case_mode = "smart_case",
           },
           ["ui-select"] = {
-            require("telescope.themes").get_dropdown({})
-          }
+            require("telescope.themes").get_dropdown({}),
+          },
         },
       })
 
@@ -139,67 +146,6 @@ return {
       else
         return "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release"
       end
-    end,
-  },
-  {
-    "nvim-tree/nvim-tree.lua",
-    version = "*",
-    lazy = true,
-    cmd = { "NvimTreeToggle", "NvimTreeOpen", "NvimTreeFocus", "NvimTreeFindFile", "NvimTreeCollapse" },
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-    },
-    config = function()
-      require("nvim-tree").setup({
-        sort_by = "case_sensitive",
-        view = {
-          width = 30,
-        },
-        renderer = {
-          group_empty = true,
-        },
-        filters = {
-          dotfiles = false,
-        },
-        git = {
-          enable = true,
-          ignore = false,
-          timeout = 500,
-        },
-        actions = {
-          open_file = {
-            quit_on_open = false,
-            resize_window = true,
-            window_picker = {
-              enable = true,
-              picker = "default",
-              chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
-              exclude = {
-                filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
-                buftype = { "nofile", "terminal", "help" },
-              },
-            },
-          },
-        },
-        update_focused_file = {
-          enable = true,
-          update_cwd = true,
-          ignore_list = {},
-        },
-        diagnostics = {
-          enable = true,
-          show_on_dirs = true,
-          icons = {
-            hint = "",
-            info = "",
-            warning = "",
-            error = "",
-          },
-        },
-      })
-
-      vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { silent = true })
-      vim.keymap.set("n", "<leader>o", ":NvimTreeFocus<CR>", { silent = true })
     end,
   },
   {
@@ -328,11 +274,46 @@ return {
     event = "VeryLazy",
     opts = {},
     keys = {
-      { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
-      { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
-      { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
-      { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-      { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
+      {
+        "s",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump()
+        end,
+        desc = "Flash",
+      },
+      {
+        "S",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").treesitter()
+        end,
+        desc = "Flash Treesitter",
+      },
+      {
+        "r",
+        mode = "o",
+        function()
+          require("flash").remote()
+        end,
+        desc = "Remote Flash",
+      },
+      {
+        "R",
+        mode = { "o", "x" },
+        function()
+          require("flash").treesitter_search()
+        end,
+        desc = "Treesitter Search",
+      },
+      {
+        "<c-s>",
+        mode = { "c" },
+        function()
+          require("flash").toggle()
+        end,
+        desc = "Toggle Flash Search",
+      },
     },
   },
   {
@@ -341,7 +322,7 @@ return {
     event = "VeryLazy",
     config = function()
       require("nvim-surround").setup({})
-    end
+    end,
   },
   {
     "numToStr/Comment.nvim",
@@ -349,14 +330,14 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     config = function()
       require("Comment").setup()
-    end
+    end,
   },
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
     config = function()
       require("nvim-autopairs").setup({})
-    end
+    end,
   },
   {
     "akinsho/toggleterm.nvim",

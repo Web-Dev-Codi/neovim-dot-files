@@ -20,15 +20,15 @@ return {
     -- Define icons locally instead of using LazyVim.config.icons
     local icons = {
       diagnostics = {
-        Error = " ",
-        Warn = " ",
-        Info = " ",
+        Error = " ",
+        Warn = " ",
+        Info = " ",
         Hint = "󰌵 ",
       },
       git = {
         added = " ",
-        modified = " ",
-        removed = " ",
+        modified = " ",
+        removed = "✖ ",
       },
     }
 

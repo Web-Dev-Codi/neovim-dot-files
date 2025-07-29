@@ -16,7 +16,7 @@ return {
   },
   {
     "HakonHarnes/img-clip.nvim",
-    lazy = false,
+    lazy = "VeryLazy",
     opts = {
       filetypes = {
         codecompanion = {
@@ -40,6 +40,7 @@ return {
   },
   {
     "HiPhish/rainbow-delimiters.nvim",
+    event = "LspAttach",
     config = function()
       require("rainbow-delimiters.setup").setup({
         strategy = {},
@@ -75,6 +76,7 @@ return {
   },
   {
     "tpope/vim-sleuth", -- Automatically detects which indents should be used in the current buffer
+    event = "LspAttach",
   },
   {
     "MagicDuck/grug-far.nvim",
