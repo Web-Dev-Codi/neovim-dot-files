@@ -1,5 +1,6 @@
 return {
   {
+    event = "VeryLazy",
     "jim-at-jibba/micropython.nvim",
     dependencies = { "akinsho/toggleterm.nvim", "stevearc/dressing.nvim" },
   },
@@ -15,6 +16,7 @@ return {
   },
   {
     "HakonHarnes/img-clip.nvim",
+    lazy = false,
     opts = {
       filetypes = {
         codecompanion = {
@@ -25,13 +27,13 @@ return {
       },
     },
   },
-  { "echasnovski/mini.nvim", version = "*" },
+  { "echasnovski/mini.nvim", event = { "BufReadPre", "BufNewFile" }, version = "*" },
   { "wakatime/vim-wakatime", lazy = false },
   {
     "rachartier/tiny-inline-diagnostic.nvim",
-    enabled = false,    -- Temporarily disabled to check for conflicts
+    enabled = true, -- Temporarily disabled to check for conflicts
     event = "VeryLazy", -- Or `LspAttach`
-    priority = 1000,    -- needs to be loaded in first
+    priority = 1000, -- needs to be loaded in first
     config = function()
       require("tiny-inline-diagnostic").setup()
     end,
@@ -78,6 +80,7 @@ return {
     "MagicDuck/grug-far.nvim",
     opts = { headerMaxWidth = 80 },
     cmd = "GrugFar",
+    event = { "BufReadPre", "BufNewFile" },
     keys = {
       {
         "<leader>sr",
@@ -144,5 +147,5 @@ return {
         return package.loaded["nvim-web-devicons"]
       end
     end,
-  }
+  },
 }

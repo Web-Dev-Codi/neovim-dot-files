@@ -3,91 +3,107 @@ return {
     "scottmckendry/cyberdream.nvim",
     lazy = false,
     priority = 1000,
-    opts = function(_, opts)
-      opts.transparent = true
-      opts.italic_comments = true
-      opts.borderless_telescope = false
-      opts.italic_keywords = true
-      opts.theme = {
-        variant = "default", -- use "light" for the light variant. Also accepts "auto" to set dark or light colors based on the current value of `vim.o.background`
+    config = function()
+      require("cyberdream").setup({
+        -- Set light or dark variant
+        variant = "auto", -- use "light" for the light variant. Also accepts "auto" to set dark or light colors based on the current value of `vim.o.background`
+
+        -- Enable transparent background
+        transparent = true, -- accepts a boolean value. true will set the background to transparent, false will set it to the default background color
+
+        -- Reduce the overall saturation of colours for a more muted look
         saturation = 1, -- accepts a value between 0 and 1. 0 will be fully desaturated (greyscale) and 1 will be the full color (default)
+
+        -- Enable italics comments
+        italic_comments = true, -- accepts a boolean value. true will set comments to italic, false will disable italics for comments
+
+        -- Replace all fillchars with ' ' for the ultimate clean look
+        hide_fillchars = false,
+
+        -- Apply a modern borderless look to pickers like Telescope, Snacks Picker & Fzf-Lua
+        borderless_pickers = false,
+
+        -- Set terminal colors used in `:terminal`
+        terminal_colors = true,
+
+        -- Improve start up time by caching highlights. Generate cache with :CyberdreamBuildCache and clear with :CyberdreamClearCache
+        cache = true, -- accepts a boolean value. true will enable caching of highlights, false will disable caching
+
+        -- Override highlight groups with your own colour values
         highlights = {
           -- Highlight groups to override, adding new groups is also possible
           -- See `:h highlight-groups` for a list of highlight groups or run `:hi` to see all groups and their current values
 
           -- Example:
-          Comment = { fg = "#696969", bg = "NONE", italic = true, bold = true },
+          Comment = { fg = "#696969", bg = "NONE", italic = true },
 
-          -- Complete list can be found in `lua/cyberdream/theme.lua`
+          -- More examples can be found in `lua/cyberdream/extensions/*.lua`
         },
 
-        -- Override a highlight group entirely using the color palette
+        -- Override a highlight group entirely using the built-in colour palette
         overrides = function(colors) -- NOTE: This function nullifies the `highlights` option
           -- Example:
           return {
-            Comment = { fg = colors.gray, bg = "NONE", italic = true },
+            Comment = { fg = colors.green, bg = "NONE", italic = true },
             ["@property"] = { fg = colors.magenta, bold = true },
           }
         end,
 
-        -- Override a color entirely
+        -- Override colors
         colors = {
           -- For a list of colors see `lua/cyberdream/colours.lua`
-          -- Example:
+
+          -- Override colors for both light and dark variants
+          bg = "#000000",
           green = "#00ff00",
-          magenta = "#ff00ff",
+
+          -- If you want to override colors for light or dark variants only, use the following format:
+          dark = {
+            magenta = "#ff00ff",
+            fg = "#eeeeee",
+          },
+          light = {
+            red = "#ff5c57",
+            cyan = "#5ef1ff",
+          },
         },
-      }
-    end,
-  },
-  {
-    "SmiteshP/nvim-navic",
-    dependencies = "neovim/nvim-lspconfig",
-    config = function()
-      require("nvim-navic").setup({
-        icons = {
-          File = "󰈙 ",
-          Module = " ",
-          Namespace = "󰌗 ",
-          Package = " ",
-          Class = "󰌗 ",
-          Method = "󰆧 ",
-          Property = " ",
-          Field = " ",
-          Constructor = " ",
-          Enum = "󰕘",
-          Interface = "󰕘",
-          Function = "󰊕 ",
-          Variable = "󰆧 ",
-          Constant = "󰏿 ",
-          String = "󰀬 ",
-          Number = "󰎠 ",
-          Boolean = "◩ ",
-          Array = "󰅪 ",
-          Object = "󰅩 ",
-          Key = "󰌋 ",
-          Null = "󰟢 ",
-          EnumMember = " ",
-          Struct = "󰌗 ",
-          Event = " ",
-          Operator = "󰆕 ",
-          TypeParameter = "󰊄 ",
+
+        -- Disable or enable colorscheme extensions
+        extensions = {
+          alpha = true,
+          blinkcmp = true,
+          cmp = true,
+          dashboard = true,
+          fzflua = true,
+          gitpad = true,
+          gitsigns = true,
+          grapple = true,
+          grugfar = true,
+          heirline = true,
+          helpview = true,
+          hop = true,
+          indentblankline = true,
+          kubectl = true,
+          lazy = true,
+          leap = true,
+          markdown = true,
+          markview = true,
+          mini = true,
+          noice = true,
+          neogit = true,
+          notify = true,
+          rainbow_delimiters = true,
+          snacks = true,
+          telescope = true,
+          treesitter = true,
+          treesittercontext = true,
+          trouble = true,
+          whichkey = true,
         },
-        lsp = {
-          auto_attach = false,
-          preference = nil,
-        },
-        highlight = false,
-        separator = " > ",
-        depth_limit = 0,
-        depth_limit_indicator = "..",
-        safe_output = true,
-        lazy_update_context = false,
-        click = false,
-        format_text = function(text)
-          return text
-        end,
       })
+
+      -- Apply the colorscheme
+      vim.cmd.colorscheme("cyberdream")
     end,
   },
   { "roobert/tailwindcss-colorizer-cmp.nvim", opts = {} },
@@ -145,14 +161,14 @@ return {
           move_wraps_at_ends = false,
 
           -- Slanted separator style
-          separator_style = "slant", -- Already set, keeping slanted tabs
+          separator_style = "slant",    -- Already set, keeping slanted tabs
           enforce_regular_tabs = false, -- Allow slanted tabs to work properly
           always_show_bufferline = true,
 
           -- Enhanced hover events
           hover = {
             enabled = true,
-            delay = 150, -- Faster response
+            delay = 150,          -- Faster response
             reveal = { "close" }, -- Show close button on hover
           },
 
@@ -498,17 +514,17 @@ return {
       require("colorizer").setup({
         filetypes = { "*" },
         user_default_options = {
-          RGB = true, -- #RGB hex codes
-          RRGGBB = true, -- #RRGGBB hex codes
-          names = true, -- "Name" codes like Blue or blue
-          RRGGBBAA = false, -- #RRGGBBAA hex codes
-          AARRGGBB = true, -- 0xAARRGGBB hex codes
-          rgb_fn = false, -- CSS rgb() and rgba() functions
-          hsl_fn = false, -- CSS hsl() and hsla() functions
-          css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-          css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
-          mode = "background", -- Set the display mode.
-          tailwind = false, -- Enable tailwind colors
+          RGB = true,                                     -- #RGB hex codes
+          RRGGBB = true,                                  -- #RRGGBB hex codes
+          names = true,                                   -- "Name" codes like Blue or blue
+          RRGGBBAA = false,                               -- #RRGGBBAA hex codes
+          AARRGGBB = true,                                -- 0xAARRGGBB hex codes
+          rgb_fn = false,                                 -- CSS rgb() and rgba() functions
+          hsl_fn = false,                                 -- CSS hsl() and hsla() functions
+          css = false,                                    -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+          css_fn = false,                                 -- Enable all CSS *functions*: rgb_fn, hsl_fn
+          mode = "background",                            -- Set the display mode.
+          tailwind = false,                               -- Enable tailwind colors
           sass = { enable = false, parsers = { "css" } }, -- Enable sass colors
           virtualtext = "■",
           always_update = false,

@@ -2,10 +2,12 @@
 return {
   {
     "olimorris/codecompanion.nvim",
-    lazy = true,
     cmd = { "CodeCompanion", "CodeCompanionActions", "CodeCompanionChat" },
     keys = {
-      { "<leader>a" }, { "<leader>aa" }, { "<leader>ac" }, { "<leader>ai" }
+      { "<leader>a" },
+      { "<leader>aa" },
+      { "<leader>ac" },
+      { "<leader>ai" },
     },
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -69,6 +71,7 @@ return {
                     "llama3.2:3b",
                     "phind-codellama:latest",
                     "qwen2.5-coder:7b",
+                    "dolphin3:8b",
                   },
                 },
                 num_ctx = {
@@ -397,6 +400,7 @@ Adapt your documentation style to match the language and context of the code.]],
   {
     "hrsh7th/nvim-cmp",
     optional = true,
+    event = "VeryLazy",
     opts = function(_, opts)
       -- Ensure opts.sources exists
       opts.sources = opts.sources or {}

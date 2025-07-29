@@ -41,13 +41,13 @@ return {
       "svelte",
     },
     config = function()
-      vim.g.user_emmet_leader_key = '<C-Z>'
+      vim.g.user_emmet_leader_key = "<C-Z>"
       vim.g.user_emmet_settings = {
         javascript = {
-          extends = 'jsx',
+          extends = "jsx",
         },
         typescript = {
-          extends = 'tsx',
+          extends = "tsx",
         },
       }
     end,
@@ -58,6 +58,7 @@ return {
   },
   {
     "vuki656/package-info.nvim",
+    event = "VeryLazy",
     dependencies = "MunifTanjim/nui.nvim",
     config = function()
       require("package-info").setup({
@@ -75,7 +76,7 @@ return {
         autostart = true,
         hide_up_to_date = false,
         hide_unstable_versions = false,
-        package_manager = "npm"
+        package_manager = "npm",
       })
     end,
   },
@@ -85,7 +86,7 @@ return {
   {
     "kristijanhusak/vim-dadbod-ui",
     dependencies = {
-      { "tpope/vim-dadbod",                     lazy = true },
+      { "tpope/vim-dadbod", lazy = true },
       { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
     },
     cmd = {
@@ -117,11 +118,11 @@ return {
           "toggleterm",
           direction = "horizontal",
           autos_croll = true,
-          quit_on_exit = "success"
+          quit_on_exit = "success",
         },
         component_aliases = {
           default = {
-            { "display_duration",   detail_level = 2 },
+            { "display_duration", detail_level = 2 },
             "on_output_summarize",
             "on_exit_set_status",
             { "on_complete_notify", on_change = true },
@@ -171,7 +172,7 @@ return {
           toggle_fold = { "zA", "za" },
           previous = "k",
           next = "j",
-          help = "?"
+          help = "?",
         },
         multiline = true,
         indent_lines = true,
@@ -184,7 +185,7 @@ return {
         include_declaration = {
           "lsp_references",
           "lsp_implementations",
-          "lsp_definitions"
+          "lsp_definitions",
         },
         signs = {
           error = "",
@@ -193,15 +194,27 @@ return {
           information = "",
           other = "",
         },
-        use_diagnostic_signs = false
+        use_diagnostic_signs = false,
       })
 
-      vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
-      vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
-      vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
-      vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
-      vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
-      vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)
+      vim.keymap.set("n", "<leader>xx", function()
+        require("trouble").toggle()
+      end)
+      vim.keymap.set("n", "<leader>xw", function()
+        require("trouble").toggle("workspace_diagnostics")
+      end)
+      vim.keymap.set("n", "<leader>xd", function()
+        require("trouble").toggle("document_diagnostics")
+      end)
+      vim.keymap.set("n", "<leader>xq", function()
+        require("trouble").toggle("quickfix")
+      end)
+      vim.keymap.set("n", "<leader>xl", function()
+        require("trouble").toggle("loclist")
+      end)
+      vim.keymap.set("n", "gR", function()
+        require("trouble").toggle("lsp_references")
+      end)
     end,
   },
   -- {
@@ -290,9 +303,15 @@ return {
         save_empty = false,
       })
 
-      vim.keymap.set("n", "<leader>qs", function() require("persistence").load() end)
-      vim.keymap.set("n", "<leader>ql", function() require("persistence").load({ last = true }) end)
-      vim.keymap.set("n", "<leader>qd", function() require("persistence").stop() end)
+      vim.keymap.set("n", "<leader>qs", function()
+        require("persistence").load()
+      end)
+      vim.keymap.set("n", "<leader>ql", function()
+        require("persistence").load({ last = true })
+      end)
+      vim.keymap.set("n", "<leader>qd", function()
+        require("persistence").stop()
+      end)
     end,
   },
 }

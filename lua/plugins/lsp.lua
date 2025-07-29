@@ -109,12 +109,12 @@ return {
           local context = "LSP Diagnostics:\n"
           for _, diagnostic in ipairs(diagnostics) do
             context = context
-                .. string.format(
-                  "• Line %d (%s): %s\n",
-                  diagnostic.lnum + 1,
-                  vim.diagnostic.severity[diagnostic.severity],
-                  diagnostic.message
-                )
+              .. string.format(
+                "• Line %d (%s): %s\n",
+                diagnostic.lnum + 1,
+                vim.diagnostic.severity[diagnostic.severity],
+                diagnostic.message
+              )
           end
           return context
         end
@@ -229,6 +229,7 @@ Code to refactor:
     },
     {
       "williamboman/mason.nvim",
+      event = { "BufReadPre", "BufNewFile" },
       build = ":MasonUpdate",
       config = function()
         require("mason").setup({
@@ -244,6 +245,7 @@ Code to refactor:
     },
     {
       "williamboman/mason-lspconfig.nvim",
+      event = { "BufReadPre", "BufNewFile" },
       config = function()
         require("mason-lspconfig").setup({
           ensure_installed = {
@@ -265,6 +267,7 @@ Code to refactor:
     },
     {
       "ray-x/lsp_signature.nvim",
+      event = { "BufReadPre", "BufNewFile" },
       config = function()
         require("lsp_signature").setup({
           bind = true,
@@ -276,6 +279,7 @@ Code to refactor:
     },
     {
       "lewis6991/hover.nvim",
+      event = { "BufReadPre", "BufNewFile" },
       config = function()
         require("hover").setup({
           init = function()

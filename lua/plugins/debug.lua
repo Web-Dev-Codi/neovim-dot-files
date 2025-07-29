@@ -1,12 +1,13 @@
 return {
   {
     "mfussenegger/nvim-dap",
+    event = "VeryLazy",
     dependencies = {
       "rcarriga/nvim-dap-ui",
       "theHamsta/nvim-dap-virtual-text",
       "jay-babu/mason-nvim-dap.nvim",
     },
-    lazy = false,
+    lazy = true,
     config = function()
       local dap = require("dap")
       local dapui = require("dapui")
@@ -33,8 +34,8 @@ return {
   },
   {
     "rcarriga/nvim-dap-ui",
-    dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"},
-    lazy = false,
+    dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+    lazy = true,
     config = function()
       require("dapui").setup({
         icons = { expanded = "", collapsed = "", current_frame = "" },
@@ -93,13 +94,13 @@ return {
         render = {
           max_type_length = nil,
           max_value_lines = 100,
-        }
+        },
       })
     end,
   },
   {
     "theHamsta/nvim-dap-virtual-text",
-    lazy = false,
+    lazy = true,
     config = function()
       require("nvim-dap-virtual-text").setup({
         enabled = true,
@@ -112,22 +113,22 @@ return {
         all_references = false,
         clear_on_continue = false,
         display_callback = function(variable, buf, stackframe, node, options)
-          if options.virt_text_pos == 'inline' then
-            return ' = ' .. variable.value
+          if options.virt_text_pos == "inline" then
+            return " = " .. variable.value
           else
-            return variable.name .. ' = ' .. variable.value
+            return variable.name .. " = " .. variable.value
           end
         end,
-        virt_text_pos = vim.fn.has 'nvim-0.10' == 1 and 'inline' or 'eol',
+        virt_text_pos = vim.fn.has("nvim-0.10") == 1 and "inline" or "eol",
         all_frames = false,
         virt_lines = false,
-        virt_text_win_col = nil
+        virt_text_win_col = nil,
       })
     end,
   },
   {
     "jay-babu/mason-nvim-dap.nvim",
-    lazy = false,
+    lazy = true,
     dependencies = {
       "williamboman/mason.nvim",
       "mfussenegger/nvim-dap",
@@ -143,7 +144,7 @@ return {
         automatic_installation = true,
         handlers = {
           function(config)
-            require('mason-nvim-dap').default_setup(config)
+            require("mason-nvim-dap").default_setup(config)
           end,
           python = function(config)
             config.adapters = {
@@ -154,7 +155,7 @@ return {
                 "debugpy.adapter",
               },
             }
-            require('mason-nvim-dap').default_setup(config)
+            require("mason-nvim-dap").default_setup(config)
           end,
         },
       })

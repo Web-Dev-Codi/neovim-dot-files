@@ -12,7 +12,7 @@ return {
           untracked = { text = "┆" },
         },
         signcolumn = true,
-        numhl = false,
+        numhl = true,
         linehl = false,
         word_diff = false,
         watch_gitdir = {
@@ -99,6 +99,7 @@ return {
   },
   {
     "tpope/vim-fugitive",
+    event = "VeryLazy",
     config = function()
       vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
       vim.keymap.set("n", "<leader>gf", ":Git fetch<CR>")
@@ -113,6 +114,7 @@ return {
   },
   {
     "sindrets/diffview.nvim",
+    event = "VeryLazy",
     config = function()
       require("diffview").setup({
         diff_binaries = false,

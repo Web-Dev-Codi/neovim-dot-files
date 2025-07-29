@@ -2,6 +2,7 @@ return {
   {
     "nvim-neotest/neotest",
     version = "*",
+    lazy = true,
     dependencies = {
       "nvim-neotest/nvim-nio",
       "nvim-lua/plenary.nvim",
@@ -31,7 +32,7 @@ return {
             options = {
               persist_project_selection = true,
               enable_dynamic_test_discovery = true,
-            }
+            },
           }),
         },
         discovery = {
@@ -101,7 +102,7 @@ return {
           running = "",
           running_animated = { "/", "|", "\\", "-", "/", "|", "\\", "-" },
           skipped = "",
-          unknown = ""
+          unknown = "",
         },
         highlights = {
           adapter_name = "NeotestAdapterName",
@@ -120,13 +121,13 @@ return {
           skipped = "NeotestSkipped",
           target = "NeotestTarget",
           test = "NeotestTest",
-          unknown = "NeotestUnknown"
+          unknown = "NeotestUnknown",
         },
         floating = {
           border = "rounded",
           max_height = 0.6,
           max_width = 0.6,
-          options = {}
+          options = {},
         },
       })
 

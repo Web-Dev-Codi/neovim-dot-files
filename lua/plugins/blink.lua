@@ -11,7 +11,7 @@ return {
       config = function()
         require("copilot").setup({
           suggestion = { enabled = false }, -- disable inline suggestions since we use blink
-          panel = { enabled = false },      -- disable panel since we use blink
+          panel = { enabled = false }, -- disable panel since we use blink
         })
       end,
     },
@@ -67,7 +67,6 @@ return {
         },
       },
     },
-
 
     -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
     -- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
