@@ -81,28 +81,8 @@ return {
     end,
   },
   {
-    "tpope/vim-dadbod",
-  },
-  {
-    "kristijanhusak/vim-dadbod-ui",
-    dependencies = {
-      { "tpope/vim-dadbod", lazy = true },
-      { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
-    },
-    cmd = {
-      "DBUI",
-      "DBUIToggle",
-      "DBUIAddConnection",
-      "DBUIFindBuffer",
-    },
-    init = function()
-      vim.g.db_ui_use_nerd_fonts = 1
-    end,
-  },
-  {
     "stevearc/overseer.nvim",
     version = "*",
-    event = "LspAttach",
     config = function()
       -- Suppress deprecation warnings for now
       local old_notify = vim.notify
@@ -280,40 +260,40 @@ return {
       end, { desc = "Format file or range (in visual mode)" })
     end,
   },
-  {
-    "rmagatti/auto-session",
-    config = function()
-      require("auto-session").setup({
-        log_level = "error",
-        auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
-        auto_session_use_git_branch = false,
-        auto_session_enable_last_session = false,
-        auto_save_enabled = false,
-        auto_restore_enabled = false,
-        auto_session_root_dir = vim.fn.stdpath("data") .. "/sessions/",
-      })
-    end,
-  },
-  {
-    "folke/persistence.nvim",
-    event = "BufReadPre",
-    config = function()
-      require("persistence").setup({
-        dir = vim.fn.expand(vim.fn.stdpath("state") .. "/sessions/"),
-        options = { "buffers", "curdir", "tabpages", "winsize" },
-        pre_save = nil,
-        save_empty = false,
-      })
-
-      vim.keymap.set("n", "<leader>qs", function()
-        require("persistence").load()
-      end)
-      vim.keymap.set("n", "<leader>ql", function()
-        require("persistence").load({ last = true })
-      end)
-      vim.keymap.set("n", "<leader>qd", function()
-        require("persistence").stop()
-      end)
-    end,
-  },
+  -- {
+  --   "rmagatti/auto-session",
+  --   config = function()
+  --     require("auto-session").setup({
+  --       log_level = "error",
+  --       auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+  --       auto_session_use_git_branch = false,
+  --       auto_session_enable_last_session = false,
+  --       auto_save_enabled = false,
+  --       auto_restore_enabled = false,
+  --       auto_session_root_dir = vim.fn.stdpath("data") .. "/sessions/",
+  --     })
+  --   end,
+  -- },
+  -- {
+  --   "folke/persistence.nvim",
+  --   event = "BufReadPre",
+  --   config = function()
+  --     require("persistence").setup({
+  --       dir = vim.fn.expand(vim.fn.stdpath("state") .. "/sessions/"),
+  --       options = { "buffers", "curdir", "tabpages", "winsize" },
+  --       pre_save = nil,
+  --       save_empty = false,
+  --     })
+  --
+  --     vim.keymap.set("n", "<leader>qs", function()
+  --       require("persistence").load()
+  --     end)
+  --     vim.keymap.set("n", "<leader>ql", function()
+  --       require("persistence").load({ last = true })
+  --     end)
+  --     vim.keymap.set("n", "<leader>qd", function()
+  --       require("persistence").stop()
+  --     end)
+  --   end,
+  -- },
 }

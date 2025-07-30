@@ -107,7 +107,7 @@ return {
   { "roobert/tailwindcss-colorizer-cmp.nvim", opts = {} },
   {
     "stevearc/aerial.nvim", -- Toggled list of classes, methods etc in current file
-    event = "VeryLazy",
+    lazy = false,
     opts = {
       attach_mode = "global",
       close_on_select = true,
@@ -173,8 +173,8 @@ return {
           buffer_close_icon = "󰅖",
           modified_icon = "●",
           close_icon = "󰅖",
-          left_trunc_marker = "",
-          right_trunc_marker = "",
+          left_trunc_marker = " ",
+          right_trunc_marker = " ",
 
           -- Buffer display settings
           max_name_length = 30,
@@ -184,10 +184,31 @@ return {
 
           -- Enhanced LSP diagnostics indicators
           diagnostics = "nvim_lsp",
-          diagnostics_update_in_insert = false,
-          diagnostics_indicator = function(count, level, diagnostics_dict, context)
-            local icon = level:match("error") and " " or " "
+          diagnostics_update_on_event = true, -- use nvim's diagnostic handler
+          -- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
+          diagnostics_indicator = function(count, level)
+            local icon = level:match("error") and " " or " "
             return " " .. icon .. count
+          end,
+          -- NOTE: this will be called a lot so don't do any heavy processing here
+          custom_filter = function(buf_number, buf_numbers)
+            -- filter out filetypes you don't want to see
+            if vim.bo[buf_number].filetype ~= "<i-dont-want-to-see-this>" then
+              return true
+            end
+            -- filter out by buffer name
+            if vim.fn.bufname(buf_number) ~= "<buffer-name-I-dont-want>" then
+              return true
+            end
+            -- filter out based on arbitrary rules
+            -- e.g. filter out vim wiki buffer from tabline in your work repo
+            if vim.fn.getcwd() == "<work-repo>" and vim.bo[buf_number].filetype ~= "wiki" then
+              return true
+            end
+            -- filter out by it's index number in list (don't show first buffer)
+            if buf_numbers[1] ~= buf_number then
+              return true
+            end
           end,
 
           -- Visual enhancements
@@ -201,17 +222,16 @@ return {
           move_wraps_at_ends = false,
 
           -- Slanted separator style
-          separator_style = "slant", -- Already set, keeping slanted tabs
-          enforce_regular_tabs = false, -- Allow slanted tabs to work properly
+          separator_style = "slope", -- Already set, keeping slanted tabs
+          enforce_regular_tabs = true, -- Allow slanted tabs to work properly
           always_show_bufferline = true,
 
           -- Enhanced hover events
           hover = {
             enabled = true,
-            delay = 150, -- Faster response
-            reveal = { "close" }, -- Show close button on hover
+            delay = 200,
+            reveal = { "close" },
           },
-
           -- Sidebar offsets for NeoTree and other sidebars
           offsets = {
             {
@@ -245,25 +265,23 @@ return {
               local hint = #vim.diagnostic.get(0, { severity = seve.HINT })
 
               if error ~= 0 then
-                table.insert(result, { text = "  " .. error, fg = "#EC5241" })
+                table.insert(result, { text = "  " .. error, link = "DiagnosticError" })
               end
 
               if warning ~= 0 then
-                table.insert(result, { text = "  " .. warning, fg = "#EFB839" })
+                table.insert(result, { text = "  " .. warning, link = "DiagnosticWarn" })
               end
 
               if hint ~= 0 then
-                table.insert(result, { text = "  " .. hint, fg = "#A3BA5E" })
+                table.insert(result, { text = "  " .. hint, link = "DiagnosticHint" })
               end
 
               if info ~= 0 then
-                table.insert(result, { text = "  " .. info, fg = "#7EA9A7" })
+                table.insert(result, { text = "  " .. info, link = "DiagnosticInfo" })
               end
               return result
             end,
           },
-
-          sort_by = "insert_after_current",
         },
 
         -- Enhanced highlights for better visual appeal
@@ -757,7 +775,7 @@ return {
         },
       },
       notify = {
-        enabled = false,
+        enabled = true,
         view = "notify",
         opts = {
           timeout = 3000,

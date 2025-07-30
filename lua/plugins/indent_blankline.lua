@@ -9,7 +9,6 @@ return {
       "RainbowBlue",
       "RainbowOrange",
       "RainbowGreen",
-
       "RainbowViolet",
       "RainbowCyan",
     }

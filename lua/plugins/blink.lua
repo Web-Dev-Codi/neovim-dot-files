@@ -1,5 +1,6 @@
 return {
   "saghen/blink.cmp",
+  lazy = false,
   -- optional: provides snippets for the snippet source
   dependencies = {
     "rafamadriz/friendly-snippets",
@@ -15,14 +16,16 @@ return {
         })
       end,
     },
+    {
+      "saghen/blink.compat",
+      optional = true, -- make optional so it's only enabled if any extras need it
+      opts = {},
+      version = not vim.g.lazyvim_blink_main and "*",
+    },
   },
 
-  -- use a release tag to download pre-built binaries
-  version = "1.*",
-  -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-  -- build = 'cargo build --release',
-  -- If you use nix, you can build from source using latest nightly rust with:
-  -- build = 'nix run .#build-plugin',
+  version = not vim.g.lazyvim_blink_main and "*",
+  build = vim.g.lazyvim_blink_main and "cargo build --release",
 
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
@@ -57,6 +60,7 @@ return {
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
+      compat = {},
       default = { "lsp", "path", "snippets", "buffer", "codecompanion", "copilot" },
       providers = {
         copilot = {
@@ -75,5 +79,5 @@ return {
     -- See the fuzzy documentation for more information
     fuzzy = { implementation = "prefer_rust_with_warning" },
   },
-  opts_extend = { "sources.default" },
+  opts_extend = { "sources.completion.enabled_providers", "sources.compat", "sources.default" },
 }

@@ -6,6 +6,8 @@ vim.g.lazyvim_picker = "auto"
 vim.g.ai_cmp = true
 vim.g.lazyvim_prettier_needs_config = true
 vim.g.lazyvim_blink_main = true
+vim.g.lazyvim_mini_snippets_in_completion = true
+
 vim.g.autoformat = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
