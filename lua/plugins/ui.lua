@@ -222,8 +222,8 @@ return {
           move_wraps_at_ends = false,
 
           -- Slanted separator style
-          separator_style = "slope", -- Already set, keeping slanted tabs
-          enforce_regular_tabs = true, -- Allow slanted tabs to work properly
+          separator_style = "padded_slope", -- Already set, keeping slanted tabs
+          enforce_regular_tabs = true,      -- Allow slanted tabs to work properly
           always_show_bufferline = true,
 
           -- Enhanced hover events
@@ -572,17 +572,17 @@ return {
       require("colorizer").setup({
         filetypes = { "*" },
         user_default_options = {
-          RGB = true, -- #RGB hex codes
-          RRGGBB = true, -- #RRGGBB hex codes
-          names = true, -- "Name" codes like Blue or blue
-          RRGGBBAA = false, -- #RRGGBBAA hex codes
-          AARRGGBB = true, -- 0xAARRGGBB hex codes
-          rgb_fn = false, -- CSS rgb() and rgba() functions
-          hsl_fn = false, -- CSS hsl() and hsla() functions
-          css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-          css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
-          mode = "background", -- Set the display mode.
-          tailwind = false, -- Enable tailwind colors
+          RGB = true,                                     -- #RGB hex codes
+          RRGGBB = true,                                  -- #RRGGBB hex codes
+          names = true,                                   -- "Name" codes like Blue or blue
+          RRGGBBAA = false,                               -- #RRGGBBAA hex codes
+          AARRGGBB = true,                                -- 0xAARRGGBB hex codes
+          rgb_fn = false,                                 -- CSS rgb() and rgba() functions
+          hsl_fn = false,                                 -- CSS hsl() and hsla() functions
+          css = false,                                    -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+          css_fn = false,                                 -- Enable all CSS *functions*: rgb_fn, hsl_fn
+          mode = "background",                            -- Set the display mode.
+          tailwind = false,                               -- Enable tailwind colors
           sass = { enable = false, parsers = { "css" } }, -- Enable sass colors
           virtualtext = "■",
           always_update = false,
@@ -766,7 +766,7 @@ return {
     opts = {
       lsp = {
         progress = {
-          enabled = false,
+          enabled = true,
         },
         override = {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
@@ -886,43 +886,9 @@ return {
     end,
     config = function(_, opts)
       if type(opts.tailwind) == "table" and opts.tailwind.enabled then
-        -- reset hl groups when colorscheme changes
-        vim.api.nvim_create_autocmd("ColorScheme", {
-          callback = function()
-            M.hl = {}
-          end,
-        })
-        opts.highlighters.tailwind = {
-          pattern = function()
-            if not vim.tbl_contains(opts.tailwind.ft, vim.bo.filetype) then
-              return
-            end
-            if opts.tailwind.style == "full" then
-              return "%f[%w:-]()[%w:-]+%-[a-z%-]+%-%d+()%f[^%w:-]"
-            elseif opts.tailwind.style == "compact" then
-              return "%f[%w:-][%w:-]+%-()[a-z%-]+%-%d+()%f[^%w:-]"
-            end
-          end,
-          group = function(_, _, m)
-            ---@type string
-            local match = m.full_match
-            ---@type string, number
-            local color, shade = match:match("[%w-]+%-([a-z%-]+)%-(%d+)")
-            shade = tonumber(shade)
-            local bg = vim.tbl_get(M.colors, color, shade)
-            if bg then
-              local hl = "MiniHipatternsTailwind" .. color .. shade
-              if not M.hl[hl] then
-                M.hl[hl] = true
-                local bg_shade = shade == 500 and 950 or shade < 500 and 900 or 100
-                local fg = vim.tbl_get(M.colors, color, bg_shade)
-                vim.api.nvim_set_hl(0, hl, { bg = "#" .. bg, fg = "#" .. fg })
-              end
-              return hl
-            end
-          end,
-          extmark_opts = { priority = 2000 },
-        }
+        -- Disable Tailwind integration for now to prevent errors
+        -- You can re-enable this once you have a proper Tailwind color palette
+        opts.tailwind.enabled = false
       end
       require("mini.hipatterns").setup(opts)
     end,

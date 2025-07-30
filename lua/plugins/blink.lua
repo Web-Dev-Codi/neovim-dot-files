@@ -6,6 +6,33 @@ return {
     "rafamadriz/friendly-snippets",
     "giuxtaposition/blink-cmp-copilot",
     {
+      "echasnovski/mini.nvim",
+      event = { "BufReadPre", "BufNewFile" },
+      version = "*",
+      config = function()
+        require("mini.deps").setup({
+          enabled = true,
+        })
+        require("mini.snippets").setup({
+          snippets = {
+            lua = require("blink.cmp.snippets.lua"),
+            javascript = require("blink.cmp.snippets.javascript"),
+            typescript = require("blink.cmp.snippets.typescript"),
+            html = require("blink.cmp.snippets.html"),
+            css = require("blink.cmp.snippets.css"),
+          },
+        })
+        require("mini.completion").setup({
+          -- Enable Mini Completion for all buffers
+          enabled = true,
+          -- Use blink-cmp for completion
+          provider = "blink.cmp",
+          -- Use blink-cmp for signature help
+          signature_provider = "blink.cmp",
+        })
+      end,
+    },
+    {
       "zbirenbaum/copilot.lua",
       cmd = "Copilot",
       event = "InsertEnter",

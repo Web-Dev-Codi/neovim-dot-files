@@ -27,7 +27,19 @@ return {
       },
     },
   },
-  { "echasnovski/mini.nvim", event = { "BufReadPre", "BufNewFile" }, version = "*" },
+  {
+    "echasnovski/mini.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    version = "*",
+    config = function()
+      require("mini.ai").setup()
+      require("mini.align").setup()
+      require("mini.comment").setup()
+      require("mini.snippets").setup()
+      require("mini.surround").setup()
+      require("mini.move").setup()
+    end,
+  },
   { "wakatime/vim-wakatime", lazy = false },
   {
     "rachartier/tiny-inline-diagnostic.nvim",

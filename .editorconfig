@@ -1,0 +1,10 @@
+[*.lua]
+indent_style = space
+indent_size = 2
+display_indent_guides = true
+documentation = true
+
+[*.js]
+indent_style = tab
+indent_size = 4
+
