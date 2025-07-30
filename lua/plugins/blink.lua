@@ -38,7 +38,7 @@ return {
       event = "InsertEnter",
       config = function()
         require("copilot").setup({
-          suggestion = { enabled = false }, -- disable inline suggestions since we use blink
+          suggestion = { enabled = true }, -- disable inline suggestions since we use blink
           panel = { enabled = false }, -- disable panel since we use blink
         })
       end,
