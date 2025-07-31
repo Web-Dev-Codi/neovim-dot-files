@@ -62,19 +62,19 @@ return {
                 model = {
                   default = "qwen2.5-coder:7b",
                   choices = {
-                    "codegemma:7b",
                     "codellama:7b",
                     "codellama:13b",
                     "codellama:34b",
                     "deepcoder:14b",
                     "deepseek-coder:6.7b",
                     "deepseek-r1:32b",
+                    "dolphin3:8b",
                     "fastcode:latest",
                     "llama3.1:8b",
                     "llama3.2:3b",
                     "phind-codellama:latest",
                     "qwen2.5-coder:7b",
-                    "dolphin3:8b",
+                    "qwen3:14b",
                   },
                 },
                 num_ctx = {

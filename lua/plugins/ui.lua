@@ -158,8 +158,40 @@ return {
           style_preset = require("bufferline").style_preset.default,
           themable = true,
           numbers = "none",
-          close_command = "bdelete! %d",
-          right_mouse_command = "bdelete! %d",
+          close_command = function(bufnum)
+            -- Use mini.bufremove if available, otherwise smart buffer deletion
+            local ok, bufremove = pcall(require, "mini.bufremove")
+            if ok then
+              bufremove.delete(bufnum, false)
+            else
+              -- Fallback: ensure we don't exit Neovim when closing last buffer
+              local buffers = vim.fn.getbufinfo({ buflisted = 1 })
+              if #buffers > 1 then
+                vim.cmd("bdelete! " .. bufnum)
+              else
+                -- Create new empty buffer before deleting the last one
+                vim.cmd("enew")
+                vim.cmd("bdelete! " .. bufnum)
+              end
+            end
+          end,
+          right_mouse_command = function(bufnum)
+            -- Use mini.bufremove if available, otherwise smart buffer deletion
+            local ok, bufremove = pcall(require, "mini.bufremove")
+            if ok then
+              bufremove.delete(bufnum, false)
+            else
+              -- Fallback: ensure we don't exit Neovim when closing last buffer
+              local buffers = vim.fn.getbufinfo({ buflisted = 1 })
+              if #buffers > 1 then
+                vim.cmd("bdelete! " .. bufnum)
+              else
+                -- Create new empty buffer before deleting the last one
+                vim.cmd("enew")
+                vim.cmd("bdelete! " .. bufnum)
+              end
+            end
+          end,
           left_mouse_command = "buffer %d",
           middle_mouse_command = nil,
 
@@ -222,8 +254,8 @@ return {
           move_wraps_at_ends = false,
 
           -- Slanted separator style
-          separator_style = "padded_slope", -- Already set, keeping slanted tabs
-          enforce_regular_tabs = true,      -- Allow slanted tabs to work properly
+          separator_style = "slope", -- Already set, keeping slanted tabs
+          enforce_regular_tabs = true, -- Allow slanted tabs to work properly
           always_show_bufferline = true,
 
           -- Enhanced hover events
@@ -284,284 +316,8 @@ return {
           },
         },
 
-        -- Enhanced highlights for better visual appeal
-        highlights = {
-          fill = {
-            fg = "#7c7d83",
-            bg = "#181825",
-          },
-          background = {
-            fg = "#7c7d83",
-            bg = "#181825",
-          },
-          tab = {
-            fg = "#7c7d83",
-            bg = "#181825",
-          },
-          tab_selected = {
-            fg = "#cdd6f4",
-            bg = "#1e1e2e",
-          },
-          tab_separator = {
-            fg = "#181825",
-            bg = "#181825",
-          },
-          tab_separator_selected = {
-            fg = "#181825",
-            bg = "#1e1e2e",
-          },
-          tab_close = {
-            fg = "#7c7d83",
-            bg = "#181825",
-          },
-          close_button = {
-            fg = "#7c7d83",
-            bg = "#181825",
-          },
-          close_button_visible = {
-            fg = "#7c7d83",
-            bg = "#313244",
-          },
-          close_button_selected = {
-            fg = "#f38ba8",
-            bg = "#1e1e2e",
-          },
-          buffer_visible = {
-            fg = "#cdd6f4",
-            bg = "#313244",
-          },
-          buffer_selected = {
-            fg = "#cdd6f4",
-            bg = "#1e1e2e",
-            bold = true,
-            italic = false,
-          },
-          numbers = {
-            fg = "#7c7d83",
-            bg = "#181825",
-          },
-          numbers_visible = {
-            fg = "#7c7d83",
-            bg = "#313244",
-          },
-          numbers_selected = {
-            fg = "#cdd6f4",
-            bg = "#1e1e2e",
-            bold = true,
-            italic = false,
-          },
-          diagnostic = {
-            fg = "#7c7d83",
-            bg = "#181825",
-          },
-          diagnostic_visible = {
-            fg = "#7c7d83",
-            bg = "#313244",
-          },
-          diagnostic_selected = {
-            fg = "#fab387",
-            bg = "#1e1e2e",
-            bold = true,
-            italic = false,
-          },
-          hint = {
-            fg = "#94e2d5",
-            sp = "#94e2d5",
-            bg = "#181825",
-          },
-          hint_visible = {
-            fg = "#94e2d5",
-            bg = "#313244",
-          },
-          hint_selected = {
-            fg = "#94e2d5",
-            bg = "#1e1e2e",
-            sp = "#94e2d5",
-            bold = true,
-            italic = false,
-          },
-          hint_diagnostic = {
-            fg = "#94e2d5",
-            sp = "#94e2d5",
-            bg = "#181825",
-          },
-          hint_diagnostic_visible = {
-            fg = "#94e2d5",
-            bg = "#313244",
-          },
-          hint_diagnostic_selected = {
-            fg = "#94e2d5",
-            bg = "#1e1e2e",
-            sp = "#94e2d5",
-            bold = true,
-            italic = false,
-          },
-          info = {
-            fg = "#89b4fa",
-            sp = "#89b4fa",
-            bg = "#181825",
-          },
-          info_visible = {
-            fg = "#89b4fa",
-            bg = "#313244",
-          },
-          info_selected = {
-            fg = "#89b4fa",
-            bg = "#1e1e2e",
-            sp = "#89b4fa",
-            bold = true,
-            italic = false,
-          },
-          info_diagnostic = {
-            fg = "#89b4fa",
-            sp = "#89b4fa",
-            bg = "#181825",
-          },
-          info_diagnostic_visible = {
-            fg = "#89b4fa",
-            bg = "#313244",
-          },
-          info_diagnostic_selected = {
-            fg = "#89b4fa",
-            bg = "#1e1e2e",
-            sp = "#89b4fa",
-            bold = true,
-            italic = false,
-          },
-          warning = {
-            fg = "#fab387",
-            sp = "#fab387",
-            bg = "#181825",
-          },
-          warning_visible = {
-            fg = "#fab387",
-            bg = "#313244",
-          },
-          warning_selected = {
-            fg = "#fab387",
-            bg = "#1e1e2e",
-            sp = "#fab387",
-            bold = true,
-            italic = false,
-          },
-          warning_diagnostic = {
-            fg = "#fab387",
-            sp = "#fab387",
-            bg = "#181825",
-          },
-          warning_diagnostic_visible = {
-            fg = "#fab387",
-            bg = "#313244",
-          },
-          warning_diagnostic_selected = {
-            fg = "#fab387",
-            bg = "#1e1e2e",
-            sp = "#fab387",
-            bold = true,
-            italic = false,
-          },
-          error = {
-            fg = "#f38ba8",
-            sp = "#f38ba8",
-            bg = "#181825",
-          },
-          error_visible = {
-            fg = "#f38ba8",
-            bg = "#313244",
-          },
-          error_selected = {
-            fg = "#f38ba8",
-            bg = "#1e1e2e",
-            sp = "#f38ba8",
-            bold = true,
-            italic = false,
-          },
-          error_diagnostic = {
-            fg = "#f38ba8",
-            sp = "#f38ba8",
-            bg = "#181825",
-          },
-          error_diagnostic_visible = {
-            fg = "#f38ba8",
-            bg = "#313244",
-          },
-          error_diagnostic_selected = {
-            fg = "#f38ba8",
-            bg = "#1e1e2e",
-            sp = "#f38ba8",
-            bold = true,
-            italic = false,
-          },
-          modified = {
-            fg = "#fab387",
-            bg = "#181825",
-          },
-          modified_visible = {
-            fg = "#fab387",
-            bg = "#313244",
-          },
-          modified_selected = {
-            fg = "#fab387",
-            bg = "#1e1e2e",
-          },
-          duplicate_selected = {
-            fg = "#7c7d83",
-            bg = "#1e1e2e",
-            italic = true,
-          },
-          duplicate_visible = {
-            fg = "#7c7d83",
-            bg = "#313244",
-            italic = true,
-          },
-          duplicate = {
-            fg = "#7c7d83",
-            bg = "#181825",
-            italic = true,
-          },
-          separator_selected = {
-            fg = "#1e1e2e",
-            bg = "#1e1e2e",
-          },
-          separator_visible = {
-            fg = "#313244",
-            bg = "#313244",
-          },
-          separator = {
-            fg = "#181825",
-            bg = "#181825",
-          },
-          indicator_visible = {
-            fg = "#313244",
-            bg = "#313244",
-          },
-          indicator_selected = {
-            fg = "#89b4fa",
-            bg = "#1e1e2e",
-          },
-          pick_selected = {
-            fg = "#f38ba8",
-            bg = "#1e1e2e",
-            bold = true,
-            italic = false,
-          },
-          pick_visible = {
-            fg = "#f38ba8",
-            bg = "#313244",
-            bold = true,
-            italic = false,
-          },
-          pick = {
-            fg = "#f38ba8",
-            bg = "#181825",
-            bold = true,
-            italic = false,
-          },
-          offset_separator = {
-            fg = "#45475a",
-            bg = "#181825",
-          },
-        },
+        -- Let cyberdream theme handle bufferline styling
+        -- Remove custom highlights to use theme defaults
       })
     end,
   },
@@ -572,17 +328,17 @@ return {
       require("colorizer").setup({
         filetypes = { "*" },
         user_default_options = {
-          RGB = true,                                     -- #RGB hex codes
-          RRGGBB = true,                                  -- #RRGGBB hex codes
-          names = true,                                   -- "Name" codes like Blue or blue
-          RRGGBBAA = false,                               -- #RRGGBBAA hex codes
-          AARRGGBB = true,                                -- 0xAARRGGBB hex codes
-          rgb_fn = false,                                 -- CSS rgb() and rgba() functions
-          hsl_fn = false,                                 -- CSS hsl() and hsla() functions
-          css = false,                                    -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-          css_fn = false,                                 -- Enable all CSS *functions*: rgb_fn, hsl_fn
-          mode = "background",                            -- Set the display mode.
-          tailwind = false,                               -- Enable tailwind colors
+          RGB = true, -- #RGB hex codes
+          RRGGBB = true, -- #RRGGBB hex codes
+          names = true, -- "Name" codes like Blue or blue
+          RRGGBBAA = false, -- #RRGGBBAA hex codes
+          AARRGGBB = true, -- 0xAARRGGBB hex codes
+          rgb_fn = false, -- CSS rgb() and rgba() functions
+          hsl_fn = false, -- CSS hsl() and hsla() functions
+          css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+          css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+          mode = "background", -- Set the display mode.
+          tailwind = false, -- Enable tailwind colors
           sass = { enable = false, parsers = { "css" } }, -- Enable sass colors
           virtualtext = "■",
           always_update = false,

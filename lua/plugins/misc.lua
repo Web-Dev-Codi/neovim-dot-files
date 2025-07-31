@@ -34,6 +34,7 @@ return {
     config = function()
       require("mini.ai").setup()
       require("mini.align").setup()
+      require("mini.bufremove").setup()
       require("mini.comment").setup()
       require("mini.snippets").setup()
       require("mini.surround").setup()
