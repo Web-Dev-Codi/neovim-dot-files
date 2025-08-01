@@ -20,6 +20,10 @@ return {
       local capabilities = require("blink.cmp").get_lsp_capabilities()
 
       local servers = {
+        vtsls = {
+          filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+        },
+
         -- TypeScript/JavaScript - use ts_ls only (remove biome to avoid conflicts)
         ts_ls = {
           filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },

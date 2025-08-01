@@ -19,7 +19,7 @@ return {
           source = "if_many",
           prefix = "●",
         },
-        update_in_insert = false,
+        update_in_insert = true,
         underline = true,
         severity_sort = true,
         float = {

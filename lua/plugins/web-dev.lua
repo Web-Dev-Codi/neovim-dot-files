@@ -80,122 +80,104 @@ return {
       })
     end,
   },
-  {
-    "stevearc/overseer.nvim",
-    version = "*",
-    config = function()
-      -- Suppress deprecation warnings for now
-      local old_notify = vim.notify
-      vim.notify = function(msg, level, opts)
-        if type(msg) == "string" and msg:match("vim%.validate.*deprecated") then
-          return
-        end
-        return old_notify(msg, level, opts)
-      end
-
-      require("overseer").setup({
-        templates = { "builtin", "user.cpp_build" },
-        strategy = {
-          "toggleterm",
-          direction = "horizontal",
-          autos_croll = true,
-          quit_on_exit = "success",
-        },
-        component_aliases = {
-          default = {
-            { "display_duration", detail_level = 2 },
-            "on_output_summarize",
-            "on_exit_set_status",
-            { "on_complete_notify", on_change = true },
-            "on_complete_dispose",
-          },
-        },
-      })
-
-      vim.keymap.set("n", "<leader>oo", "<cmd>OverseerOpen<cr>")
-      vim.keymap.set("n", "<leader>or", "<cmd>OverseerRun<cr>")
-      vim.keymap.set("n", "<leader>ot", "<cmd>OverseerToggle<cr>")
-    end,
-  },
+  -- {
+  --   "stevearc/overseer.nvim",
+  --   version = "*",
+  --   config = function()
+  --     -- Suppress deprecation warnings for now
+  --     local old_notify = vim.notify
+  --     vim.notify = function(msg, level, opts)
+  --       if type(msg) == "string" and msg:match("vim%.validate.*deprecated") then
+  --         return
+  --       end
+  --       return old_notify(msg, level, opts)
+  --     end
+  --
+  --     require("overseer").setup({
+  --       templates = { "builtin", "user.cpp_build" },
+  --       strategy = {
+  --         "toggleterm",
+  --         direction = "horizontal",
+  --         autos_croll = true,
+  --         quit_on_exit = "success",
+  --       },
+  --       component_aliases = {
+  --         default = {
+  --           { "display_duration", detail_level = 2 },
+  --           "on_output_summarize",
+  --           "on_exit_set_status",
+  --           { "on_complete_notify", on_change = true },
+  --           "on_complete_dispose",
+  --         },
+  --       },
+  --     })
+  --
+  --     vim.keymap.set("n", "<leader>oo", "<cmd>OverseerOpen<cr>")
+  --     vim.keymap.set("n", "<leader>or", "<cmd>OverseerRun<cr>")
+  --     vim.keymap.set("n", "<leader>ot", "<cmd>OverseerToggle<cr>")
+  --   end,
+  -- },
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("trouble").setup({
-        position = "top",
-        height = 10,
-        width = 50,
-        icons = true,
-        mode = "workspace_diagnostics",
-        severity = nil,
-        fold_open = "",
-        fold_closed = "",
-        group = true,
-        padding = true,
-        cycle_results = true,
-        action_keys = {
-          close = "q",
-          cancel = "<esc>",
-          refresh = "r",
-          jump = { "<cr>", "<tab>", "<2-leftmouse>" },
-          open_split = { "<c-x>" },
-          open_vsplit = { "<c-v>" },
-          open_tab = { "<c-t>" },
-          jump_close = { "o" },
-          toggle_mode = "m",
-          switch_severity = "s",
-          toggle_preview = "P",
-          hover = "K",
-          preview = "p",
-          open_code_href = "c",
-          close_folds = { "zM", "zm" },
-          open_folds = { "zR", "zr" },
-          toggle_fold = { "zA", "za" },
-          previous = "k",
-          next = "j",
-          help = "?",
+        -- Trouble v3 configuration
+        modes = {
+          diagnostics = {
+            mode = "diagnostics",
+            preview = {
+              type = "split",
+              relative = "win",
+              position = "right",
+              size = 0.3,
+            },
+          },
         },
-        multiline = true,
-        indent_lines = true,
-        win_config = { border = "single" },
-        auto_open = false,
-        auto_close = false,
-        auto_preview = true,
-        auto_fold = false,
-        auto_jump = { "lsp_definitions" },
-        include_declaration = {
-          "lsp_references",
-          "lsp_implementations",
-          "lsp_definitions",
+        icons = {
+          indent = {
+            top = "│ ",
+            middle = "├╴",
+            last = "└╴",
+            fold_open = " ",
+            fold_closed = " ",
+            ws = "  ",
+          },
+          folder_closed = " ",
+          folder_open = " ",
+          kinds = {
+            Array = " ",
+            Boolean = "󰨙 ",
+            Class = " ",
+            Constant = "󰏿 ",
+            Constructor = " ",
+            Enum = " ",
+            EnumMember = " ",
+            Event = " ",
+            Field = " ",
+            File = " ",
+            Function = "󰊕 ",
+            Interface = " ",
+            Key = " ",
+            Method = "󰊕 ",
+            Module = " ",
+            Namespace = "󰦮 ",
+            Null = " ",
+            Number = "󰎠 ",
+            Object = " ",
+            Operator = " ",
+            Package = " ",
+            Property = " ",
+            String = " ",
+            Struct = "󰆼 ",
+            TypeParameter = " ",
+            Variable = "󰀫 ",
+          },
         },
-        signs = {
-          error = " ",
-          warning = " ",
-          hint = "",
-          information = " ",
-          other = "",
-        },
-        use_diagnostic_signs = true,
       })
 
-      vim.keymap.set("n", "<leader>xx", function()
-        require("trouble").toggle()
-      end)
-      vim.keymap.set("n", "<leader>xw", function()
-        require("trouble").toggle("workspace_diagnostics")
-      end)
-      vim.keymap.set("n", "<leader>xd", function()
-        require("trouble").toggle("document_diagnostics")
-      end)
-      vim.keymap.set("n", "<leader>xq", function()
-        require("trouble").toggle("quickfix")
-      end)
-      vim.keymap.set("n", "<leader>xl", function()
-        require("trouble").toggle("loclist")
-      end)
-      vim.keymap.set("n", "gR", function()
-        require("trouble").toggle("lsp_references")
-      end)
+      -- Keybindings are now handled by which-key.lua with the new v3 API
+      -- No need for manual keybindings here as they're defined in which-key
     end,
   },
   -- {

@@ -9,7 +9,7 @@ return {
         fg = "#39FF14",
       },
       -- This plugin will not be activated for filetype in the following table.
-      no_exec_files = { "packer", "TelescopePrompt", "mason", "CompetiTest", "NvimTree" },
+      no_exec_files = { "packer", "TelescopePrompt", "mason", "CompetiTest", "NvimTree", "lazygit" },
       -- Symbols for separator lines, the order: horizontal, vertical, top left, top right, bottom left, bottom right.
       symbols = { "━", "┃", "┏", "┓", "┗", "┛" },
       -- #70: https://github.com/nvim-zh/colorful-winsep.nvim/discussions/70

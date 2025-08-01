@@ -39,6 +39,14 @@ return {
       require("mini.snippets").setup()
       require("mini.surround").setup()
       require("mini.move").setup()
+      require("mini.indentscope").setup()
+      require("mini.cursorword").setup()
+      require("mini.pairs").setup()
+      require("mini.doc").setup()
+      require("mini.statusline").setup()
+      require("mini.tabline").setup()
+      require("mini.clue").setup()
+      require("mini.extra").setup()
     end,
   },
   { "wakatime/vim-wakatime", lazy = false },
