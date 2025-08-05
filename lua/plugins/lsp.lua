@@ -20,9 +20,9 @@ return {
       local capabilities = require("blink.cmp").get_lsp_capabilities()
 
       local servers = {
-        vtsls = {
-          filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-        },
+        -- vtsls = {
+        --   filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+        -- },
 
         -- TypeScript/JavaScript - use ts_ls only (remove biome to avoid conflicts)
         ts_ls = {
@@ -113,12 +113,12 @@ return {
           local context = "LSP Diagnostics:\n"
           for _, diagnostic in ipairs(diagnostics) do
             context = context
-              .. string.format(
-                "• Line %d (%s): %s\n",
-                diagnostic.lnum + 1,
-                vim.diagnostic.severity[diagnostic.severity],
-                diagnostic.message
-              )
+                .. string.format(
+                  "• Line %d (%s): %s\n",
+                  diagnostic.lnum + 1,
+                  vim.diagnostic.severity[diagnostic.severity],
+                  diagnostic.message
+                )
           end
           return context
         end

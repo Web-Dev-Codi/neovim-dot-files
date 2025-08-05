@@ -213,7 +213,7 @@ return {
           move_wraps_at_ends = false,
 
           -- Slanted separator style
-          separator_style = "slope", -- Already set, keeping slanted tabs
+          separator_style = "slope",   -- Already set, keeping slanted tabs
           enforce_regular_tabs = true, -- Allow slanted tabs to work properly
           always_show_bufferline = true,
 
@@ -287,17 +287,17 @@ return {
       require("colorizer").setup({
         filetypes = { "*" },
         user_default_options = {
-          RGB = true, -- #RGB hex codes
-          RRGGBB = true, -- #RRGGBB hex codes
-          names = true, -- "Name" codes like Blue or blue
-          RRGGBBAA = false, -- #RRGGBBAA hex codes
-          AARRGGBB = true, -- 0xAARRGGBB hex codes
-          rgb_fn = false, -- CSS rgb() and rgba() functions
-          hsl_fn = false, -- CSS hsl() and hsla() functions
-          css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-          css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
-          mode = "background", -- Set the display mode.
-          tailwind = false, -- Enable tailwind colors
+          RGB = true,                                     -- #RGB hex codes
+          RRGGBB = true,                                  -- #RRGGBB hex codes
+          names = true,                                   -- "Name" codes like Blue or blue
+          RRGGBBAA = false,                               -- #RRGGBBAA hex codes
+          AARRGGBB = true,                                -- 0xAARRGGBB hex codes
+          rgb_fn = false,                                 -- CSS rgb() and rgba() functions
+          hsl_fn = false,                                 -- CSS hsl() and hsla() functions
+          css = false,                                    -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+          css_fn = false,                                 -- Enable all CSS *functions*: rgb_fn, hsl_fn
+          mode = "background",                            -- Set the display mode.
+          tailwind = false,                               -- Enable tailwind colors
           sass = { enable = false, parsers = { "css" } }, -- Enable sass colors
           virtualtext = "■",
           always_update = false,
@@ -326,7 +326,7 @@ return {
       scope = { enabled = false },
       scroll = { enabled = true },
       statuscolumn = { enabled = true },
-      words = { enabled = true },
+      words = { enabled = false },
       image = { enabled = true },
       lazygit = { enabled = true },
       notify = { enabled = false },

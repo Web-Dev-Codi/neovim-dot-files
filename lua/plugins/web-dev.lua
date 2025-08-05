@@ -213,19 +213,22 @@ return {
         formatters_by_ft = {
           lua = { "stylua" },
           python = { "isort", "black" },
-          javascript = { { "prettierd", "prettier" } },
-          typescript = { { "prettierd", "prettier" } },
-          javascriptreact = { { "prettierd", "prettier" } },
-          typescriptreact = { { "prettierd", "prettier" } },
-          json = { { "prettierd", "prettier" } },
-          yaml = { { "prettierd", "prettier" } },
-          markdown = { { "prettierd", "prettier" } },
-          html = { { "prettierd", "prettier" } },
-          css = { { "prettierd", "prettier" } },
-          scss = { { "prettierd", "prettier" } },
+          javascript = { "prettierd", "prettier" },
+          typescript = { "prettierd", "prettier" },
+          javascriptreact = { "prettierd", "prettier" },
+          typescriptreact = { "prettierd", "prettier" },
+          json = { "prettierd", "prettier" },
+          yaml = { "prettierd", "prettier" },
+          markdown = { "prettierd", "prettier" },
+          html = { "prettierd", "prettier" },
+          css = { "prettierd", "prettier" },
+          scss = { "prettierd", "prettier" },
           sh = { "shfmt" },
           bash = { "shfmt" },
           zsh = { "shfmt" },
+        },
+        default_format_opts = {
+          stop_after_first = true,
         },
         format_on_save = {
           timeout_ms = 500,
@@ -242,40 +245,40 @@ return {
       end, { desc = "Format file or range (in visual mode)" })
     end,
   },
-  -- {
-  --   "rmagatti/auto-session",
-  --   config = function()
-  --     require("auto-session").setup({
-  --       log_level = "error",
-  --       auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
-  --       auto_session_use_git_branch = false,
-  --       auto_session_enable_last_session = false,
-  --       auto_save_enabled = false,
-  --       auto_restore_enabled = false,
-  --       auto_session_root_dir = vim.fn.stdpath("data") .. "/sessions/",
-  --     })
-  --   end,
-  -- },
-  -- {
-  --   "folke/persistence.nvim",
-  --   event = "BufReadPre",
-  --   config = function()
-  --     require("persistence").setup({
-  --       dir = vim.fn.expand(vim.fn.stdpath("state") .. "/sessions/"),
-  --       options = { "buffers", "curdir", "tabpages", "winsize" },
-  --       pre_save = nil,
-  --       save_empty = false,
-  --     })
-  --
-  --     vim.keymap.set("n", "<leader>qs", function()
-  --       require("persistence").load()
-  --     end)
-  --     vim.keymap.set("n", "<leader>ql", function()
-  --       require("persistence").load({ last = true })
-  --     end)
-  --     vim.keymap.set("n", "<leader>qd", function()
-  --       require("persistence").stop()
-  --     end)
-  --   end,
-  -- },
+  {
+    "rmagatti/auto-session",
+    config = function()
+      require("auto-session").setup({
+        log_level = "error",
+        auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+        auto_session_use_git_branch = false,
+        auto_session_enable_last_session = false,
+        auto_save_enabled = false,
+        auto_restore_enabled = false,
+        auto_session_root_dir = vim.fn.stdpath("data") .. "/sessions/",
+      })
+    end,
+  },
+  {
+    "folke/persistence.nvim",
+    event = "BufReadPre",
+    config = function()
+      require("persistence").setup({
+        dir = vim.fn.expand(vim.fn.stdpath("state") .. "/sessions/"),
+        options = { "buffers", "curdir", "tabpages", "winsize" },
+        pre_save = nil,
+        save_empty = false,
+      })
+
+      vim.keymap.set("n", "<leader>qs", function()
+        require("persistence").load()
+      end)
+      vim.keymap.set("n", "<leader>ql", function()
+        require("persistence").load({ last = true })
+      end)
+      vim.keymap.set("n", "<leader>qd", function()
+        require("persistence").stop()
+      end)
+    end,
+  },
 }
