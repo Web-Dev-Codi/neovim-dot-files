@@ -35,7 +35,7 @@ opt.smartindent = true
 opt.autoindent = true
 opt.updatetime = 300 -- faster completion (4000ms default)
 opt.cmdheight = 1
-opt.spell = true
+opt.spell = false
 opt.spelllang:append("en")
 opt.wrap = false
 opt.completeopt = "menuone,noselect"

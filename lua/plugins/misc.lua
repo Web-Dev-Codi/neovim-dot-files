@@ -51,6 +51,13 @@ return {
   },
   { "wakatime/vim-wakatime", lazy = false },
   {
+    "code-biscuits/nvim-biscuits",
+    requires = {
+      "nvim-treesitter/nvim-treesitter",
+      run = ":TSUpdate",
+    },
+  },
+  {
     "rachartier/tiny-inline-diagnostic.nvim",
     enabled = true, -- Temporarily disabled to check for conflicts
     event = "VeryLazy", -- Or `LspAttach`
