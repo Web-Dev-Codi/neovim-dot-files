@@ -1,12 +1,13 @@
--- Options are automatically loaded before lazy.nvim startup
--- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
--- Add any additional options here
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 vim.loader.enable()
 vim.g.lazyvim_picker = "auto"
 vim.g.ai_cmp = true
 vim.g.lazyvim_prettier_needs_config = true
 vim.g.lazyvim_blink_main = true
+vim.g.lazyvim_mini_snippets_in_completion = true
+
 vim.g.autoformat = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "

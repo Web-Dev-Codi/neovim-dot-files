@@ -1,14 +1,58 @@
 return {
   "saghen/blink.cmp",
+  lazy = false,
   -- optional: provides snippets for the snippet source
-  dependencies = { "rafamadriz/friendly-snippets" },
+  dependencies = {
+    "rafamadriz/friendly-snippets",
+    "giuxtaposition/blink-cmp-copilot",
+    {
+      "echasnovski/mini.nvim",
+      event = { "BufReadPre", "BufNewFile" },
+      version = "*",
+      config = function()
+        require("mini.deps").setup({
+          enabled = true,
+        })
+        require("mini.snippets").setup({
+          snippets = {
+            lua = require("blink.cmp.snippets.lua"),
+            javascript = require("blink.cmp.snippets.javascript"),
+            typescript = require("blink.cmp.snippets.typescript"),
+            html = require("blink.cmp.snippets.html"),
+            css = require("blink.cmp.snippets.css"),
+          },
+        })
+        require("mini.completion").setup({
+          -- Enable Mini Completion for all buffers
+          enabled = true,
+          -- Use blink-cmp for completion
+          provider = "blink.cmp",
+          -- Use blink-cmp for signature help
+          signature_provider = "blink.cmp",
+        })
+      end,
+    },
+    {
+      "zbirenbaum/copilot.lua",
+      cmd = "Copilot",
+      event = "InsertEnter",
+      config = function()
+        require("copilot").setup({
+          suggestion = { enabled = true }, -- disable inline suggestions since we use blink
+          panel = { enabled = false }, -- disable panel since we use blink
+        })
+      end,
+    },
+    {
+      "saghen/blink.compat",
+      optional = true, -- make optional so it's only enabled if any extras need it
+      opts = {},
+      version = not vim.g.lazyvim_blink_main and "*",
+    },
+  },
 
-  -- use a release tag to download pre-built binaries
-  version = "1.*",
-  -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-  -- build = 'cargo build --release',
-  -- If you use nix, you can build from source using latest nightly rust with:
-  -- build = 'nix run .#build-plugin',
+  version = not vim.g.lazyvim_blink_main and "*",
+  build = vim.g.lazyvim_blink_main and "cargo build --release",
 
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
@@ -25,7 +69,7 @@ return {
     -- C-k: Toggle signature help (if signature.enabled = true)
     --
     -- See :h blink-cmp-config-keymap for defining your own keymap
-    keymap = { preset = "default" },
+    keymap = { preset = "super-tab" },
 
     appearance = {
       -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
@@ -43,7 +87,16 @@ return {
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
-      default = { "lsp", "path", "snippets", "buffer", "codecompanion" },
+      compat = {},
+      default = { "lsp", "path", "snippets", "buffer", "codecompanion", "copilot" },
+      providers = {
+        copilot = {
+          name = "copilot",
+          module = "blink-cmp-copilot",
+          score_offset = 100,
+          async = true,
+        },
+      },
     },
 
     -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
@@ -53,5 +106,5 @@ return {
     -- See the fuzzy documentation for more information
     fuzzy = { implementation = "prefer_rust_with_warning" },
   },
-  opts_extend = { "sources.default" },
+  opts_extend = { "sources.completion.enabled_providers", "sources.compat", "sources.default" },
 }

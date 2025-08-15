@@ -1,6 +1,22 @@
 {
-    "diagnostics.disable": [
-        "missing-fields",
-        "undefined-global"
-    ]
+	"$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+	"Lua.runtime.version": "LuaJIT",
+	"Lua.runtime.path": ["?.lua", "?/init.lua"],
+	"Lua.diagnostics.globals": ["vim"],
+	"Lua.workspace.library": [
+		"${3rd}/luv/library",
+		"${3rd}/busted/library",
+		"${3rd}/luassert/library"
+	],
+	"Lua.workspace.maxPreload": 100000,
+	"Lua.workspace.preloadFileSize": 10000,
+	"Lua.completion.callSnippet": "Both",
+	"Lua.completion.keywordSnippet": "Both",
+	"Lua.completion.displayContext": 5,
+	"Lua.hint.enable": true,
+	"Lua.hint.paramType": true,
+	"Lua.hint.setType": false,
+	"Lua.hint.paramName": "Disable",
+	"Lua.hint.semicolon": "Disable",
+	"Lua.hint.arrayIndex": "Disable"
 }

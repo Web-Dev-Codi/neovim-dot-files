@@ -2,6 +2,13 @@
 return {
   {
     "olimorris/codecompanion.nvim",
+    cmd = { "CodeCompanion", "CodeCompanionActions", "CodeCompanionChat" },
+    keys = {
+      { "<leader>a" },
+      { "<leader>aa" },
+      { "<leader>ac" },
+      { "<leader>ai" },
+    },
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
@@ -20,13 +27,16 @@ return {
 
       local mason_lspconfig = require("mason-lspconfig")
       mason_lspconfig.setup({
-        ensure_installed = { "sumneko_lua" }, -- Ensure Lua language server is installed
+        ensure_installed = { "lua_ls" }, -- Ensure Lua language server is installed
       })
 
       require("codecompanion").setup({
         strategies = {
           chat = {
             adapter = "ollama",
+            tools = {
+              groups = {},
+            },
           },
           inline = {
             adapter = "ollama",
@@ -50,20 +60,21 @@ return {
               },
               schema = {
                 model = {
-                  default = "phind-codellama:latest",
+                  default = "qwen2.5-coder:7b",
                   choices = {
-                    "codegemma:7b",
-                    "codellama:7b",
+                    "qwen2.5vl:32b",
                     "codellama:13b",
                     "codellama:34b",
                     "deepcoder:14b",
                     "deepseek-coder:6.7b",
                     "deepseek-r1:32b",
-                    "fastcode:latest",
+                    "dolphin3:8b",
+                    "gpt-oss:20b",
                     "llama3.1:8b",
                     "llama3.2:3b",
-                    "phind-codellama:latest",
+                    "mistral-small3.2:latest",
                     "qwen2.5-coder:7b",
+                    "qwen3:14b",
                   },
                 },
                 num_ctx = {
@@ -304,6 +315,26 @@ Adapt your documentation style to match the language and context of the code.]],
           action_palette = {
             width = 95,
             height = 10,
+            -- Fix UI shifting issues
+            border = "rounded",
+            relative = "editor",
+            row = "50%",
+            col = "50%",
+            anchor = "NW",
+            style = "minimal",
+            focusable = true,
+            zindex = 1000,
+            -- Additional UI stability settings
+            noautocmd = true,
+            title = "Select Model",
+            title_pos = "center",
+          },
+          -- Add selection menu specific configuration
+          selection = {
+            -- Prevent UI shifting during navigation
+            stable_positioning = true,
+            preserve_cursor = true,
+            redraw_on_change = false,
           },
           chat = {
             window = {
@@ -319,7 +350,7 @@ Adapt your documentation style to match the language and context of the code.]],
                 linebreak = true,
                 list = false,
                 signcolumn = "no",
-                spell = false,
+                spell = true,
                 wrap = true,
               },
             },
@@ -331,6 +362,7 @@ Adapt your documentation style to match the language and context of the code.]],
           use_default_actions = true, -- Use default actions
           use_default_prompt_library = false, -- We're defining our own
         },
+        extensions = {},
         -- Integration with LSP and diagnostics
         on_attach = function(bufnr)
           -- Get LSP diagnostics for context
@@ -372,7 +404,10 @@ Adapt your documentation style to match the language and context of the code.]],
   {
     "hrsh7th/nvim-cmp",
     optional = true,
+    event = "VeryLazy",
     opts = function(_, opts)
+      -- Ensure opts.sources exists
+      opts.sources = opts.sources or {}
       -- Add codecompanion as a completion source
       table.insert(opts.sources, {
         name = "codecompanion",
